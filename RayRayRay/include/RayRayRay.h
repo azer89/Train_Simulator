@@ -64,6 +64,7 @@ protected:
 	float mRotateSpeed;					//the rotation speed for the camera
  
 	bool bRobotMode;					//if true we place robots in the world
+	bool hideTray;
 
 private:
 	

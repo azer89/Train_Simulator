@@ -25,7 +25,8 @@ RayRayRay::RayRayRay(void):
 	bLMouseDown(false),
 	bRMouseDown(false),
 	mRotateSpeed(0.1f),
-	bRobotMode(true)
+	bRobotMode(true),
+	hideTray(false)
 {
 }
 //-------------------------------------------------------------------------------------
@@ -43,7 +44,8 @@ void RayRayRay::destroyScene(void)
 //-------------------------------------------------------------------------------------
 void getTerrainImage(bool flipX, bool flipY, Ogre::Image& img)
 {
-	img.load("terrain.png", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
+	img.load("terrain.png", 
+		Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
     if (flipX) img.flipAroundY();
     if (flipY) img.flipAroundX();
 	
@@ -69,10 +71,10 @@ void RayRayRay::initBlendMaps(Ogre::Terrain* terrain)
 {
 	Ogre::TerrainLayerBlendMap* blendMap0 = terrain->getLayerBlendMap(1);
     Ogre::TerrainLayerBlendMap* blendMap1 = terrain->getLayerBlendMap(2);
-    Ogre::Real minHeight0 = 500;
-    Ogre::Real fadeDist0 = 40;
-    Ogre::Real minHeight1 = 500;
-    Ogre::Real fadeDist1 = 15;
+    Ogre::Real minHeight0 = 40;
+    Ogre::Real fadeDist0 = 20;
+    Ogre::Real minHeight1 = 20;
+    Ogre::Real fadeDist1 = 5;
     float* pBlend1 = blendMap1->getBlendPointer();
     for (Ogre::uint16 y = 0; y < terrain->getLayerBlendMapSize(); ++y)
     {
@@ -116,7 +118,7 @@ void RayRayRay::configureTerrainDefaults(Ogre::Light* light)
     defaultimp.minBatchSize = 33;
     defaultimp.maxBatchSize = 65;
     // textures
-	/*
+	
     defaultimp.layerList.resize(3);
 	defaultimp.layerList[0].worldSize = 100;
     defaultimp.layerList[0].textureNames.push_back("dirt_grayrocky_diffusespecular.dds");
@@ -127,31 +129,19 @@ void RayRayRay::configureTerrainDefaults(Ogre::Light* light)
     defaultimp.layerList[2].worldSize = 200;
     defaultimp.layerList[2].textureNames.push_back("growth_weirdfungus-03_diffusespecular.dds");
     defaultimp.layerList[2].textureNames.push_back("growth_weirdfungus-03_normalheight.dds");
-	*/
-
+	
+	/*
 	defaultimp.layerList.resize(1);
     defaultimp.layerList[0].worldSize = 30;
     defaultimp.layerList[0].textureNames.push_back("grass_green-01_diffusespecular.dds");
     defaultimp.layerList[0].textureNames.push_back("grass_green-01_normalheight.dds");
+	*/
 }
  
 //-------------------------------------------------------------------------------------
 void RayRayRay::createScene(void)
 {
-	/*
-	//Scene setup
-	mSceneMgr->setAmbientLight(Ogre::ColourValue(0.5f, 0.5f, 0.5f));
-	mSceneMgr->setSkyDome(true, "Examples/CloudySky", 5, 8);
- 
-	//World geometry
-	mSceneMgr->setWorldGeometry("terrain.cfg");
- 
-	//camera setup
-	mCamera->setPosition(40, 100, 580);
-	mCamera->pitch(Ogre::Degree(-30));
-	mCamera->yaw(Ogre::Degree(-45));
-	*/
-
+	// set camera
 	mCamera->setPosition(Ogre::Vector3(357, 70, 171));
     mCamera->lookAt(Ogre::Vector3(357, 80, 200));
     mCamera->setNearClipDistance(5);
@@ -183,7 +173,7 @@ void RayRayRay::createScene(void)
 	mTerrainGroup = OGRE_NEW Ogre::TerrainGroup(mSceneMgr, Ogre::Terrain::ALIGN_X_Z, 65, 1000.f);
     mTerrainGroup->setFilenameConvention(Ogre::String("RayRayRay"), Ogre::String("dat"));
     mTerrainGroup->setOrigin(Ogre::Vector3::ZERO);
- 
+
     configureTerrainDefaults(light);
  
     for (long x = 0; x <= 0; ++x)
@@ -204,25 +194,20 @@ void RayRayRay::createScene(void)
     }
  
     mTerrainGroup->freeTemporaryResources();
- 
-	/*
-    Ogre::ColourValue fadeColour(0.9, 0.9, 0.9);
-    mSceneMgr->setFog(Ogre::FOG_LINEAR, fadeColour, 0.0, 10, 1200);
-    mWindow->getViewport(0)->setBackgroundColour(fadeColour);
-	*/
+
     Ogre::Plane plane;
     plane.d = 100;
     plane.normal = Ogre::Vector3::NEGATIVE_UNIT_Y;
  
     //mSceneMgr->setSkyDome(true, "Examples/CloudySky", 5, 8, 500);
-    mSceneMgr->setSkyPlane(true, plane, "Examples/CloudySky", 500, 20, true, 0.5, 150, 150);
-
+	mSceneMgr->setSkyPlane(true, plane, "Examples/CloudySky", 50, 10 , true, 0.7, 10, 10); 
+	
 	//CEGUI setup
 	mGUIRenderer = &CEGUI::OgreRenderer::bootstrapSystem();
  
 	//show the CEGUI cursor
-	CEGUI::SchemeManager::getSingleton().create((CEGUI::utf8*)"TaharezLook.scheme");
-	CEGUI::MouseCursor::getSingleton().setImage("TaharezLook", "MouseArrow");
+	CEGUI::SchemeManager::getSingleton().create((CEGUI::utf8*)"WindowsLook.scheme");
+	CEGUI::MouseCursor::getSingleton().setImage("WindowsLook", "MouseArrow");
 }
  
 void RayRayRay::chooseSceneManager(void)
@@ -250,12 +235,17 @@ bool RayRayRay::frameRenderingQueued(const Ogre::FrameEvent& arg)
 	{
 		return false;
 	}
-	
-	/*
-	This next big chunk basically sends a raycast straight down from the camera's position
-	It then checks to see if it is under world geometry and if it is we move the camera back up
-	*/
 
+	// hide 
+	if(!hideTray)
+	{
+		mTrayMgr->hideLogo();
+		mTrayMgr->toggleAdvancedFrameStats();
+		hideTray = true;
+	}
+
+	// This next big chunk basically sends a raycast straight down from the camera's position
+	// It then checks to see if it is under world geometry and if it is we move the camera back up
 	Ogre::Vector3 camPos = mCamera->getPosition();
 	Ogre::Terrain* pTerrain = mTerrainGroup->getTerrain(0, 0);
 	Ogre::Ray mouseRay(Ogre::Vector3(camPos.x, 5000.0f, camPos.z), Ogre::Vector3::NEGATIVE_UNIT_Y);
@@ -269,8 +259,7 @@ bool RayRayRay::frameRenderingQueued(const Ogre::FrameEvent& arg)
 		if((terrainHeight + 10.0f) > camPos.y)
 		{
 			mCamera->setPosition(camPos.x, terrainHeight + 10.0f, camPos.z);
-		}
-			
+		}			
 	}
 
 
@@ -371,13 +360,16 @@ bool RayRayRay::mousePressed(const OIS::MouseEvent& arg, OIS::MouseButtonID id)
 		mRayScnQuery->setSortByDistance(true);
 		mRayScnQuery->setQueryMask(bRobotMode ? ROBOT_MASK : NINJA_MASK);	//will return objects with the query mask in the results
  
-		/*
-		This next chunk finds the results of the raycast
-		If the mouse is pointing at world geometry we spawn a robot at that position
-		*/
+		// create rayIntersect fro TerrainGroup
+		Ogre::Terrain* pTerrain = mTerrainGroup->getTerrain(0, 0);
+		std::pair <bool, Ogre::Vector3> test;
+		test = pTerrain->rayIntersects(mouseRay, true, 0);
+		
+		//This next chunk finds the results of the raycast
+		//If the mouse is pointing at world geometry we spawn a robot at that position
 		Ogre::RaySceneQueryResult& result = mRayScnQuery->execute();
 		Ogre::RaySceneQueryResult::iterator iter = result.begin();
-				
+
 		for(iter; iter != result.end(); iter++)
 		{
 			//if you clicked on a robot or ninja it becomes selected
@@ -387,10 +379,6 @@ bool RayRayRay::mousePressed(const OIS::MouseEvent& arg, OIS::MouseButtonID id)
 				break;
 			}
 		}
-
-		Ogre::Terrain* pTerrain = mTerrainGroup->getTerrain(0, 0);
-		std::pair <bool, Ogre::Vector3> test;
-		test = pTerrain->rayIntersects(mouseRay, true, 0);
 
 		if(test.first)
 		{
@@ -417,7 +405,7 @@ bool RayRayRay::mousePressed(const OIS::MouseEvent& arg, OIS::MouseButtonID id)
 			mCurrentObject->attachObject(ent);
 
 			//lets shrink the object, only because the terrain is pretty small
-			mCurrentObject->setScale(0.1f, 0.1f, 0.1f);
+			mCurrentObject->setScale(0.2f, 0.2f, 0.2f);
 		}
  
 		//now we show the bounding box so the user can see that this object is selected
