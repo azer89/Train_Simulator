@@ -29,6 +29,7 @@ RayRayRay::RayRayRay(void):
 	bRobotMode(true),
 	hideTray(false)
 {
+
 }
 //-------------------------------------------------------------------------------------
 RayRayRay::~RayRayRay(void)
@@ -41,6 +42,8 @@ void RayRayRay::destroyScene(void)
 {
 	OGRE_DELETE mTerrainGroup;
     OGRE_DELETE mTerrainGlobals;
+
+	if(rail != NULL) delete rail;
 }
 //-------------------------------------------------------------------------------------
 void getTerrainImage(bool flipX, bool flipY, Ogre::Image& img)
@@ -115,19 +118,19 @@ void RayRayRay::configureTerrainDefaults(Ogre::Light* light)
     Ogre::Terrain::ImportData& defaultimp = mTerrainGroup->getDefaultImportSettings();
     defaultimp.terrainSize = 65;
     defaultimp.worldSize = 1000.0f;
-	defaultimp.inputScale = 100;
+	defaultimp.inputScale = 50;
     defaultimp.minBatchSize = 33;
     defaultimp.maxBatchSize = 65;
-    
+	
 	// textures	
     defaultimp.layerList.resize(3);
-	defaultimp.layerList[0].worldSize = 100;
+	defaultimp.layerList[0].worldSize = 10;
     defaultimp.layerList[0].textureNames.push_back("dirt_grayrocky_diffusespecular.dds");
     defaultimp.layerList[0].textureNames.push_back("dirt_grayrocky_normalheight.dds");
     defaultimp.layerList[1].worldSize = 30;
     defaultimp.layerList[1].textureNames.push_back("grass_green-01_diffusespecular.dds");
     defaultimp.layerList[1].textureNames.push_back("grass_green-01_normalheight.dds");
-    defaultimp.layerList[2].worldSize = 200;
+    defaultimp.layerList[2].worldSize = 20;
     defaultimp.layerList[2].textureNames.push_back("grass_green-01_diffusespecular.dds");
     defaultimp.layerList[2].textureNames.push_back("grass_green-01_normalheight.dds");
 	
@@ -142,6 +145,9 @@ void RayRayRay::configureTerrainDefaults(Ogre::Light* light)
 //-------------------------------------------------------------------------------------
 void RayRayRay::createScene(void)
 {
+	// set Rail
+	rail = new Rail();
+
 	// set camera
 	mCamera->setPosition(Ogre::Vector3(357, 70, 171));
     mCamera->lookAt(Ogre::Vector3(357, 80, 200));
@@ -170,8 +176,8 @@ void RayRayRay::createScene(void)
     mSceneMgr->setAmbientLight(Ogre::ColourValue(0.2, 0.2, 0.2));
 	
     mTerrainGlobals = OGRE_NEW Ogre::TerrainGlobalOptions();
-	
 	mTerrainGroup = OGRE_NEW Ogre::TerrainGroup(mSceneMgr, Ogre::Terrain::ALIGN_X_Z, 65, 1000.f);
+	
     mTerrainGroup->setFilenameConvention(Ogre::String("RayRayRay"), Ogre::String("dat"));
     mTerrainGroup->setOrigin(Ogre::Vector3::ZERO);
 	
@@ -397,7 +403,8 @@ bool RayRayRay::mousePressed(const OIS::MouseEvent& arg, OIS::MouseButtonID id)
 			if(bRobotMode)
 			{
 				sprintf(name, "Robot%d", mCount++);
-				ent = mSceneMgr->createEntity(name, "robot.mesh");
+				//ent = mSceneMgr->createEntity(name, "cube.mesh");
+				ent = rail->addPoint(mSceneMgr);
 				ent->setQueryFlags(ROBOT_MASK);
 			}
 			//otherwise we spawn a ninja
