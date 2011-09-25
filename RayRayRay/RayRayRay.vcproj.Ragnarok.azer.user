@@ -10,7 +10,7 @@
 			>
 			<DebugSettings
 				Command="$(OGRE_HOME)\Bin\$(ConfigurationName)\$(ProjectName).exe"
-				WorkingDirectory="$(OGRE_HOME)\Bin\$(ConfigurationName)"
+				WorkingDirectory="bin\Debug"
 				CommandArguments=""
 				Attach="false"
 				DebuggerType="3"
