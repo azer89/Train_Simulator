@@ -207,6 +207,10 @@
 				RelativePath=".\src\RayRayRay.cpp"
 				>
 			</File>
+			<File
+				RelativePath=".\src\RayTerrain.cpp"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -223,6 +227,10 @@
 			</File>
 			<File
 				RelativePath=".\include\RayRayRay.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\RayTerrain.h"
 				>
 			</File>
 			<File

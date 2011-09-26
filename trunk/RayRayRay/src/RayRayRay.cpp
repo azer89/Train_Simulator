@@ -25,8 +25,7 @@ RayRayRay::RayRayRay(void):
 	mCurrentObject(0),
 	bLMouseDown(false),
 	bRMouseDown(false),
-	mRotateSpeed(0.1f),
-	bRobotMode(true),
+	mRotateSpeed(0.1f),	
 	hideTray(false)
 {
 
@@ -40,12 +39,15 @@ RayRayRay::~RayRayRay(void)
 //-------------------------------------------------------------------------------------
 void RayRayRay::destroyScene(void)
 {
-	OGRE_DELETE mTerrainGroup;
-    OGRE_DELETE mTerrainGlobals;
+	//OGRE_DELETE mTerrainGroup;
+    //OGRE_DELETE mTerrainGlobals;
 
-	if(rail != NULL) delete rail;
+	if(rail) delete rail;
+	if(rayTerrain) delete rayTerrain;
 }
+
 //-------------------------------------------------------------------------------------
+/*
 void getTerrainImage(bool flipX, bool flipY, Ogre::Image& img)
 {
 	img.load("terrain.png", 
@@ -54,7 +56,10 @@ void getTerrainImage(bool flipX, bool flipY, Ogre::Image& img)
     if (flipY) img.flipAroundX();
 	
 }
+*/
+
 //-------------------------------------------------------------------------------------
+/*
 void RayRayRay::defineTerrain(long x, long y)
 {
 	Ogre::String filename = mTerrainGroup->generateFilename(x, y);
@@ -70,7 +75,10 @@ void RayRayRay::defineTerrain(long x, long y)
         mTerrainsImported = true;
     }
 }
+*/
+
 //-------------------------------------------------------------------------------------
+/*
 void RayRayRay::initBlendMaps(Ogre::Terrain* terrain)
 {
 	Ogre::TerrainLayerBlendMap* blendMap0 = terrain->getLayerBlendMap(1);
@@ -101,7 +109,10 @@ void RayRayRay::initBlendMaps(Ogre::Terrain* terrain)
     blendMap0->update();
     blendMap1->update();
 }
+*/
+
 //-------------------------------------------------------------------------------------
+/*
 void RayRayRay::configureTerrainDefaults(Ogre::Light* light)
 {
 	// Configure global
@@ -133,20 +144,15 @@ void RayRayRay::configureTerrainDefaults(Ogre::Light* light)
     defaultimp.layerList[2].worldSize = 20;
     defaultimp.layerList[2].textureNames.push_back("grass_green-01_diffusespecular.dds");
     defaultimp.layerList[2].textureNames.push_back("grass_green-01_normalheight.dds");
-	
-	/*
-	defaultimp.layerList.resize(1);
-    defaultimp.layerList[0].worldSize = 30;
-    defaultimp.layerList[0].textureNames.push_back("grass_green-01_diffusespecular.dds");
-    defaultimp.layerList[0].textureNames.push_back("grass_green-01_normalheight.dds");
-	*/
 }
- 
+*/
+
 //-------------------------------------------------------------------------------------
 void RayRayRay::createScene(void)
 {
 	// set Rail
 	rail = new Rail();
+	rayTerrain = new RayTerrain();
 
 	// set camera
 	mCamera->setPosition(Ogre::Vector3(357, 70, 171));
@@ -174,7 +180,11 @@ void RayRayRay::createScene(void)
     light->setSpecularColour(Ogre::ColourValue(0.4, 0.4, 0.4));
  
     mSceneMgr->setAmbientLight(Ogre::ColourValue(0.2, 0.2, 0.2));
+
+	// set up Terrain
+	rayTerrain->createTerrain(this->mSceneMgr, light);
 	
+	/*
     mTerrainGlobals = OGRE_NEW Ogre::TerrainGlobalOptions();
 	mTerrainGroup = OGRE_NEW Ogre::TerrainGroup(mSceneMgr, Ogre::Terrain::ALIGN_X_Z, 65, 1000.f);
 	
@@ -201,7 +211,8 @@ void RayRayRay::createScene(void)
     }
  
     mTerrainGroup->freeTemporaryResources();
-		
+	*/
+
     Ogre::Plane plane;
     plane.d = 100;
     plane.normal = Ogre::Vector3::NEGATIVE_UNIT_Y;
@@ -254,7 +265,7 @@ bool RayRayRay::frameRenderingQueued(const Ogre::FrameEvent& arg)
 	// This next big chunk basically sends a raycast straight down from the camera's position
 	// It then checks to see if it is under world geometry and if it is we move the camera back up
 	Ogre::Vector3 camPos = mCamera->getPosition();
-	Ogre::Terrain* pTerrain = mTerrainGroup->getTerrain(0, 0);
+	Ogre::Terrain* pTerrain = rayTerrain->getTerrainGroup()->getTerrain(0, 0);
 	Ogre::Ray mouseRay(Ogre::Vector3(camPos.x, 5000.0f, camPos.z), Ogre::Vector3::NEGATIVE_UNIT_Y);
     std::pair <bool, Ogre::Vector3> test;
     test = pTerrain->rayIntersects(mouseRay, true, 0);
@@ -270,11 +281,11 @@ bool RayRayRay::frameRenderingQueued(const Ogre::FrameEvent& arg)
 	}
 
 
-	if (mTerrainGroup->isDerivedDataUpdateInProgress())
+	if (rayTerrain->getTerrainGroup()->isDerivedDataUpdateInProgress())
     {
         mTrayMgr->moveWidgetToTray(mInfoLabel, OgreBites::TL_TOP, 0);
         mInfoLabel->show();
-        if (mTerrainsImported)
+        if (rayTerrain->getTerrainsImported())
         {
             mInfoLabel->setCaption("Building terrain, please wait...");
         }
@@ -287,10 +298,11 @@ bool RayRayRay::frameRenderingQueued(const Ogre::FrameEvent& arg)
     {
         mTrayMgr->removeWidgetFromTray(mInfoLabel);
         mInfoLabel->hide();
-        if (mTerrainsImported)
+        if (rayTerrain->getTerrainsImported())
         {
-            mTerrainGroup->saveAllTerrains(true);
-            mTerrainsImported = false;
+            rayTerrain->getTerrainGroup()->saveAllTerrains(true);
+            //mTerrainsImported = false;
+			rayTerrain->setTerrainsImported(false);
         }
     }
  
@@ -312,32 +324,14 @@ bool RayRayRay::mouseMoved(const OIS::MouseEvent& arg)
 		Ogre::Ray mouseRay = mCamera->getCameraToViewportRay(mousePos.d_x/float(arg.state.width), mousePos.d_y/float(arg.state.height));
 		
 		Ogre::Vector3 camPos = mCamera->getPosition();
-		Ogre::Terrain* pTerrain = mTerrainGroup->getTerrain(0, 0);
+		Ogre::Terrain* pTerrain = rayTerrain->getTerrainGroup()->getTerrain(0, 0);
 		std::pair <bool, Ogre::Vector3> test;
 		test = pTerrain->rayIntersects(mouseRay, true, 0);
 
 		if (test.first) 
 		{
-			mCurrentObject->setPosition(test.second);
+			mCurrentObject->setPosition(test.second + Ogre::Vector3(0, 10, 0));
 		}
-
-		/*
-		mRayScnQuery->setRay(mouseRay);
-		mRayScnQuery->setSortByDistance(false);	//world geometry is at the end of the list if we sort it, so lets not do that
- 
-		Ogre::RaySceneQueryResult& result = mRayScnQuery->execute();
-		Ogre::RaySceneQueryResult::iterator iter = result.begin();
- 
-		//check to see if the mouse is pointing at the world and put our current object at that location
-		for(iter; iter != result.end(); iter++)
-		{
-			if(iter->worldFragment)
-			{
-				mCurrentObject->setPosition(iter->worldFragment->singleIntersection);
-				break;
-			}	
-		}
-		*/
 	}
 	else if(bRMouseDown)	//if the right mouse button is held down, be rotate the camera with the mouse
 	{
@@ -365,10 +359,9 @@ bool RayRayRay::mousePressed(const OIS::MouseEvent& arg, OIS::MouseButtonID id)
 		Ogre::Ray mouseRay = mCamera->getCameraToViewportRay(mousePos.d_x/float(arg.state.width), mousePos.d_y/float(arg.state.height));
 		mRayScnQuery->setRay(mouseRay);
 		mRayScnQuery->setSortByDistance(true);
-		mRayScnQuery->setQueryMask(bRobotMode ? ROBOT_MASK : NINJA_MASK);	//will return objects with the query mask in the results
- 
+
 		// create rayIntersect fro TerrainGroup
-		Ogre::Terrain* pTerrain = mTerrainGroup->getTerrain(0, 0);
+		Ogre::Terrain* pTerrain = rayTerrain->getTerrainGroup()->getTerrain(0, 0);
 		std::pair <bool, Ogre::Vector3> test;
 		test = pTerrain->rayIntersects(mouseRay, true, 0);
 		
@@ -396,31 +389,7 @@ bool RayRayRay::mousePressed(const OIS::MouseEvent& arg, OIS::MouseButtonID id)
 
 		if(test.first && !getObject)
 		{
-			char name[16];
-			Ogre::Entity* ent;
-
-			//if we are in robot mode we spawn a robot at the mouse location
-			if(bRobotMode)
-			{
-				sprintf(name, "Robot%d", mCount++);
-				//ent = mSceneMgr->createEntity(name, "cube.mesh");
-				ent = rail->addPoint(mSceneMgr);
-				ent->setQueryFlags(ROBOT_MASK);
-			}
-			//otherwise we spawn a ninja
-			else
-			{
-				sprintf(name, "Ninja%d", mCount++);
-				ent = mSceneMgr->createEntity(name, "ninja.mesh");
-				ent->setQueryFlags(NINJA_MASK);
-
-			}
-			//attach the object to a scene node
-			mCurrentObject = mSceneMgr->getRootSceneNode()->createChildSceneNode(std::string(name) + "Node", test.second);
-			mCurrentObject->attachObject(ent);
-
-			//lets shrink the object, only because the terrain is pretty small
-			mCurrentObject->setScale(0.2f, 0.2f, 0.2f);
+			mCurrentObject = rail->addPoint(mSceneMgr, test.second + Ogre::Vector3(0, 10, 0));
 		}
  
 		//now we show the bounding box so the user can see that this object is selected
@@ -455,13 +424,7 @@ bool RayRayRay::mouseReleased(const OIS::MouseEvent& arg, OIS::MouseButtonID id)
 }
  
 bool RayRayRay::keyPressed(const OIS::KeyEvent& arg)
-{
-	//check and see if the spacebar was hit, and this will switch which mesh is spawned
-	if(arg.key == OIS::KC_SPACE)
-	{
-		bRobotMode = !bRobotMode;
-	}
- 
+{ 
 	//then we return the base app keyPressed function so that we get all of the functionality
 	//and the return value in one line
 	return BaseApplication::keyPressed(arg);
