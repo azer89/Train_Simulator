@@ -21,7 +21,7 @@ Ogre::list<Ogre::Entity*>::type Rail::getRailPoints()
 Ogre::SceneNode* Rail::addPoint(Ogre::SceneManager* mSceneMgr, Ogre::Vector3 pos)
 {
 	char name[16];
-	sprintf(name, "Robot%d", num++);
+	sprintf(name, "RailPoint%d", num++);
 
 	Ogre::Entity* ent;
 	ent = mSceneMgr->createEntity(name, "cube.mesh");

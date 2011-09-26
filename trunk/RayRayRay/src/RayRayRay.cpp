@@ -44,6 +44,25 @@ void RayRayRay::destroyScene(void)
 }
 
 //-------------------------------------------------------------------------------------
+CEGUI::MouseButton convertButton(OIS::MouseButtonID buttonID)
+{
+    switch (buttonID)
+    {
+    case OIS::MB_Left:
+        return CEGUI::LeftButton;
+ 
+    case OIS::MB_Right:
+        return CEGUI::RightButton;
+ 
+    case OIS::MB_Middle:
+        return CEGUI::MiddleButton;
+ 
+    default:
+        return CEGUI::LeftButton;
+    }
+}
+
+//-------------------------------------------------------------------------------------
 void RayRayRay::createScene(void)
 {
 	// set Rail
@@ -89,45 +108,88 @@ void RayRayRay::createScene(void)
 	
 	//CEGUI setup
 	mGUIRenderer = &CEGUI::OgreRenderer::bootstrapSystem();
+	CEGUI::Imageset::setDefaultResourceGroup("Imagesets");
+	CEGUI::Font::setDefaultResourceGroup("Fonts");
+	CEGUI::Scheme::setDefaultResourceGroup("Schemes");
+	CEGUI::WidgetLookManager::setDefaultResourceGroup("LookNFeel");
+	CEGUI::WindowManager::setDefaultResourceGroup("Layouts");
  
 	//show the CEGUI cursor
 	CEGUI::SchemeManager::getSingleton().create((CEGUI::utf8*)"WindowsLook.scheme");
 	CEGUI::MouseCursor::getSingleton().setImage("WindowsLook", "MouseArrow");
 }
  
+//-------------------------------------------------------------------------------------
 void RayRayRay::chooseSceneManager(void)
 {
 	//create a scene manager that is meant for handling outdoor scenes
 	mSceneMgr = mRoot->createSceneManager(Ogre::ST_EXTERIOR_CLOSE);
 }
  
+//-------------------------------------------------------------------------------------
 void RayRayRay::createFrameListener(void)
 {
 	//we still want to create the frame listener from the base app
-	BaseApplication::createFrameListener();
+	//BaseApplication::createFrameListener();
 
-	mInfoLabel = mTrayMgr->createLabel(OgreBites::TL_TOP, "TInfo", "", 350);
+	//mInfoLabel = mTrayMgr->createLabel(OgreBites::TL_TOP, "TInfo", "", 350);
  
-	//but we also want to set up our raySceneQuery after everything has been initialized
+	// Set up our raySceneQuery after everything has been initialized
 	mRayScnQuery = mSceneMgr->createRayQuery(Ogre::Ray());
+
+	Ogre::LogManager::getSingletonPtr()->logMessage("*** Initializing OIS ***");
+    OIS::ParamList pl;
+    size_t windowHnd = 0;
+    std::ostringstream windowHndStr;
+ 
+    mWindow->getCustomAttribute("WINDOW", &windowHnd);
+    windowHndStr << windowHnd;
+    pl.insert(std::make_pair(std::string("WINDOW"), windowHndStr.str()));
+ 
+    mInputManager = OIS::InputManager::createInputSystem( pl );
+ 
+    mKeyboard = static_cast<OIS::Keyboard*>(mInputManager->createInputObject( OIS::OISKeyboard, true ));
+    mMouse = static_cast<OIS::Mouse*>(mInputManager->createInputObject( OIS::OISMouse, true ));
+ 
+    mMouse->setEventCallback(this);
+    mKeyboard->setEventCallback(this);
+ 
+    //Set initial mouse clipping size
+    windowResized(mWindow);
+ 
+    //Register as a Window listener
+    Ogre::WindowEventUtilities::addWindowEventListener(mWindow, this);
+ 
+    mRoot->addFrameListener(this);
 }
  
+//-------------------------------------------------------------------------------------
 bool RayRayRay::frameRenderingQueued(const Ogre::FrameEvent& arg)
 {
+	if(mWindow->isClosed())
+        return false;
+ 
+    if(mShutDown)
+        return false;
+ 
+    //Need to capture/update each device
+    mKeyboard->capture();
+    mMouse->capture();
+
 	//we want to run everything in the previous frameRenderingQueued call
 	//but we also want to do something afterwards, so lets  start off with this
-	if(!BaseApplication::frameRenderingQueued(arg))
-	{
-		return false;
-	}
+	//if(!BaseApplication::frameRenderingQueued(arg))
+	//{
+	//	return false;
+	//}
 
 	// hide 
-	if(!hideTray)
-	{
-		mTrayMgr->hideLogo();
-		mTrayMgr->toggleAdvancedFrameStats();
-		hideTray = true;
-	}
+	//if(!hideTray)
+	//{
+	//	mTrayMgr->hideLogo();
+	//	mTrayMgr->toggleAdvancedFrameStats();
+	//	hideTray = true;
+	//}
 
 	// This next big chunk basically sends a raycast straight down from the camera's position
 	// It then checks to see if it is under world geometry and if it is we move the camera back up
@@ -148,8 +210,10 @@ bool RayRayRay::frameRenderingQueued(const Ogre::FrameEvent& arg)
 	}
 
 
+	
 	if (rayTerrain->getTerrainGroup()->isDerivedDataUpdateInProgress())
     {
+		/*
         mTrayMgr->moveWidgetToTray(mInfoLabel, OgreBites::TL_TOP, 0);
         mInfoLabel->show();
         if (rayTerrain->getTerrainsImported())
@@ -160,11 +224,12 @@ bool RayRayRay::frameRenderingQueued(const Ogre::FrameEvent& arg)
         {
             mInfoLabel->setCaption("Updating textures, patience...");
         }
+		*/
     }
     else
     {
-        mTrayMgr->removeWidgetFromTray(mInfoLabel);
-        mInfoLabel->hide();
+        //mTrayMgr->removeWidgetFromTray(mInfoLabel);
+        //mInfoLabel->hide();
         if (rayTerrain->getTerrainsImported())
         {
             rayTerrain->getTerrainGroup()->saveAllTerrains(true);
@@ -172,15 +237,23 @@ bool RayRayRay::frameRenderingQueued(const Ogre::FrameEvent& arg)
 			rayTerrain->setTerrainsImported(false);
         }
     }
- 
+
+
 	return true;
 }
  
+//-------------------------------------------------------------------------------------
 bool RayRayRay::mouseMoved(const OIS::MouseEvent& arg)
 {
 	//updates CEGUI with mouse movement
-	CEGUI::System::getSingleton().injectMouseMove(arg.state.X.rel, arg.state.Y.rel);
- 
+	//CEGUI::System::getSingleton().injectMouseMove(arg.state.X.rel, arg.state.Y.rel);
+	CEGUI::System &sys = CEGUI::System::getSingleton();
+	sys.injectMouseMove(arg.state.X.rel, arg.state.Y.rel);
+	// Scroll wheel.
+	if (arg.state.Z.rel)
+		sys.injectMouseWheelChange(arg.state.Z.rel / 120.0f);
+
+
 	//if the left mouse button is held down
 	if(bLMouseDown)
 	{
@@ -209,8 +282,11 @@ bool RayRayRay::mouseMoved(const OIS::MouseEvent& arg)
 	return true;
 }
  
+//-------------------------------------------------------------------------------------
 bool RayRayRay::mousePressed(const OIS::MouseEvent& arg, OIS::MouseButtonID id)
 {
+	CEGUI::System::getSingleton().injectMouseButtonDown(convertButton(id));
+
 	if(id == OIS::MB_Left)
 	{
 		//show that the current object has been deselected by removing the bounding box visual
@@ -276,8 +352,11 @@ bool RayRayRay::mousePressed(const OIS::MouseEvent& arg, OIS::MouseButtonID id)
 	return true;
 }
  
+//-------------------------------------------------------------------------------------
 bool RayRayRay::mouseReleased(const OIS::MouseEvent& arg, OIS::MouseButtonID id)
 {
+	CEGUI::System::getSingleton().injectMouseButtonUp(convertButton(id));
+
 	if(id  == OIS::MB_Left)
 	{
 		bLMouseDown = false;
@@ -289,13 +368,36 @@ bool RayRayRay::mouseReleased(const OIS::MouseEvent& arg, OIS::MouseButtonID id)
 	}
 	return true;
 }
- 
+
+//------------------------------------------------------------------------------------- 
 bool RayRayRay::keyPressed(const OIS::KeyEvent& arg)
 { 
 	//then we return the base app keyPressed function so that we get all of the functionality
 	//and the return value in one line
-	return BaseApplication::keyPressed(arg);
+	//return BaseApplication::keyPressed(arg);
+
+	CEGUI::System &sys = CEGUI::System::getSingleton();
+	sys.injectKeyDown(arg.key);
+	sys.injectChar(arg.text);
+
+	return true;
 }
+
+//-------------------------------------------------------------------------------------
+bool RayRayRay::keyReleased( const OIS::KeyEvent &arg )
+{
+    CEGUI::System::getSingleton().injectKeyUp(arg.key);
+
+	return true;
+}
+
+//-------------------------------------------------------------------------------------
+bool RayRayRay::quit(const CEGUI::EventArgs &e)
+{
+    return true;
+}
+
+
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_WIN32
 #define WIN32_LEAN_AND_MEAN
