@@ -50,10 +50,16 @@ protected:
  
 	virtual bool frameRenderingQueued(const Ogre::FrameEvent& arg);
  
+	// OIS::MouseListener
 	virtual bool mouseMoved(const OIS::MouseEvent& arg);
 	virtual bool mousePressed(const OIS::MouseEvent& arg, OIS::MouseButtonID id);
 	virtual bool mouseReleased(const OIS::MouseEvent& arg, OIS::MouseButtonID id);
+
+	// OIS::KeyListener
 	virtual bool keyPressed(const OIS::KeyEvent& arg);
+	virtual bool keyReleased( const OIS::KeyEvent &arg );
+
+	bool quit(const CEGUI::EventArgs &e);
  
 	Ogre::SceneNode *mCurrentObject;	//pointer to our currently selected object
 	Ogre::RaySceneQuery* mRayScnQuery;	//pointer to our ray scene query
@@ -68,15 +74,8 @@ protected:
 private:
 	Rail* rail;
 	RayTerrain* rayTerrain;
-	
-	//Ogre::TerrainGlobalOptions* mTerrainGlobals;
-    //Ogre::TerrainGroup* mTerrainGroup;
-    //bool mTerrainsImported;
+
     OgreBites::Label* mInfoLabel;
- 
-    //void defineTerrain(long x, long y);
-    //void initBlendMaps(Ogre::Terrain* terrain);
-    //void configureTerrainDefaults(Ogre::Light* light);
 
 };
 
