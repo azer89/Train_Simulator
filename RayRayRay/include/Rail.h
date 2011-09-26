@@ -15,10 +15,11 @@ public:
 	Rail(void);
     virtual ~Rail(void);
 
-	Ogre::list<Ogre::Entity> getRailPoints();
-	Ogre::Entity* addPoint(Ogre::SceneManager* mSceneMgr);
-	int num;
+	Ogre::list<Ogre::Entity*>::type getRailPoints();
+	Ogre::SceneNode* addPoint(Ogre::SceneManager* mSceneMgr, Ogre::Vector3 pos);
+	
 
 private:
+	int num;
 	Ogre::list<Ogre::Entity*>::type railPoints;
 };
