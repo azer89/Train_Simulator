@@ -113,10 +113,70 @@ void RayRayRay::createScene(void)
 	CEGUI::Scheme::setDefaultResourceGroup("Schemes");
 	CEGUI::WidgetLookManager::setDefaultResourceGroup("LookNFeel");
 	CEGUI::WindowManager::setDefaultResourceGroup("Layouts");
+
+	CEGUI::SchemeManager::getSingleton().create("TaharezLook.scheme");
+ 
+    CEGUI::System::getSingleton().setDefaultMouseCursor("TaharezLook", "MouseArrow");
+ 
+    CEGUI::WindowManager &wmgr = CEGUI::WindowManager::getSingleton();
+    CEGUI::Window *sheet = wmgr.createWindow("DefaultWindow", "RayRayRay/Sheet");
+ 
+	// combo box
+	CEGUI::Combobox* objectComboBox = (CEGUI::Combobox*)CEGUI::WindowManager::getSingleton().createWindow((CEGUI::utf8*)"TaharezLook/Combobox", (CEGUI::utf8*)"NameID");
+
+	CEGUI::ListboxTextItem* item;
+	item = new CEGUI::ListboxTextItem((CEGUI::utf8*)"Linear", 1);
+	objectComboBox->addItem(item);
+	item = new CEGUI::ListboxTextItem((CEGUI::utf8*)"Cardinal Cubic", 2);
+	objectComboBox->addItem(item);
+	item = new CEGUI::ListboxTextItem((CEGUI::utf8*)"Cubic B-Spline", 3);
+	objectComboBox->addItem(item);
+	objectComboBox->setPosition(CEGUI::UVector2(CEGUI::UDim(0.01, 0), CEGUI::UDim(0.01, 0)));
+    objectComboBox->setSize(CEGUI::UVector2(CEGUI::UDim(0.15, 0), CEGUI::UDim(0.2, 0))); 
+	objectComboBox->setText("Rail Type");
+	objectComboBox->setAlwaysOnTop(true);
+	sheet->addChildWindow(objectComboBox);
+
+	/*
+	// slider
+	//CEGUI::ScrolledContainer *scrollContainer =
+	//	(CEGUI::ScrolledContainer*)CEGUI::WindowManager::getSingleton().createWindow((CEGUI::utf8*)"TaharezLook/HorizontalScrollbar", (CEGUI::utf8*)"RaySlider");
+
+	CEGUI::Scrollbar *slider = (CEGUI::Scrollbar*)CEGUI::WindowManager::getSingleton().createWindow((CEGUI::utf8*)"TaharezLook/HorizontalScrollbarThumb", (CEGUI::utf8*)"RaySlider");
+	
+	slider->setPosition(CEGUI::UVector2(CEGUI::UDim(0.01, 0), CEGUI::UDim(0.85, 0)));
+    slider->setSize(CEGUI::UVector2(CEGUI::UDim(0.05, 0), CEGUI::UDim(0.01, 0))); 
+
+	slider->setText("Speed");
+	slider->setStepSize(1.0f);
+	slider->setDocumentSize(10.0f);
+	slider->setScrollPosition(5.0f);
+
+    sheet->addChildWindow(slider);
+	*/
+
+	// start button
+	CEGUI::Window *startButton = wmgr.createWindow("TaharezLook/Button", "RayRayRay/StartButton");
+    startButton->setText("Start");
+	startButton->setPosition(CEGUI::UVector2(CEGUI::UDim(0.01, 0), CEGUI::UDim(0.05, 0)));
+    startButton->setSize(CEGUI::UVector2(CEGUI::UDim(0.15, 0), CEGUI::UDim(0.04, 0))); 
+    sheet->addChildWindow(startButton);
+
+	// quit button
+    CEGUI::Window *quit = wmgr.createWindow("TaharezLook/Button", "RayRayRay/QuitButton");
+    quit->setText("Quit");
+	quit->setPosition(CEGUI::UVector2(CEGUI::UDim(0.01, 0), CEGUI::UDim(0.95, 0)));
+    quit->setSize(CEGUI::UVector2(CEGUI::UDim(0.15, 0), CEGUI::UDim(0.04, 0))); 
+    sheet->addChildWindow(quit);
+
+    CEGUI::System::getSingleton().setGUISheet(sheet);
+ 
+    quit->subscribeEvent(CEGUI::PushButton::EventClicked,
+    CEGUI::Event::Subscriber(&RayRayRay::quit, this));
  
 	//show the CEGUI cursor
-	CEGUI::SchemeManager::getSingleton().create((CEGUI::utf8*)"WindowsLook.scheme");
-	CEGUI::MouseCursor::getSingleton().setImage("WindowsLook", "MouseArrow");
+	//CEGUI::SchemeManager::getSingleton().create((CEGUI::utf8*)"WindowsLook.scheme");
+	//CEGUI::MouseCursor::getSingleton().setImage("WindowsLook", "MouseArrow");
 }
  
 //-------------------------------------------------------------------------------------
@@ -394,7 +454,8 @@ bool RayRayRay::keyReleased( const OIS::KeyEvent &arg )
 //-------------------------------------------------------------------------------------
 bool RayRayRay::quit(const CEGUI::EventArgs &e)
 {
-    return true;
+    mShutDown = true;
+	return true;
 }
 
 
