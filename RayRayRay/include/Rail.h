@@ -22,4 +22,5 @@ public:
 private:
 	int num;
 	Ogre::list<Ogre::Entity*>::type railPoints;
+	Ogre::list<Ogre::SceneNode*>::type railNodes;
 };

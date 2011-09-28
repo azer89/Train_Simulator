@@ -25,14 +25,17 @@ Ogre::SceneNode* Rail::addPoint(Ogre::SceneManager* mSceneMgr, Ogre::Vector3 pos
 
 	Ogre::Entity* ent;
 	ent = mSceneMgr->createEntity(name, "cube.mesh");
-	this->railPoints.push_back(ent);
-
+	
 	std::cout << "name = " << ent->getName() << "\n"; // debug
 	std::cout << "number = " << this->num << "\n"; // debug
 
-	//attach the object to a scene node
+	// attach the object to a scene node
 	Ogre::SceneNode* mNode = mSceneMgr->getRootSceneNode()->createChildSceneNode(std::string(name) + "Node", pos);
 	mNode->attachObject(ent);
+
+	// attach to list
+	this->railNodes.push_back(mNode);
+	//this->railPoints.push_back(ent);
 
 	//lets shrink the object, only because the terrain is pretty small
 	mNode->setScale(0.03f, 0.07f, 0.03f);

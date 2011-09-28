@@ -137,23 +137,16 @@ void RayRayRay::createScene(void)
 	objectComboBox->setAlwaysOnTop(true);
 	sheet->addChildWindow(objectComboBox);
 
-	/*
 	// slider
-	//CEGUI::ScrolledContainer *scrollContainer =
-	//	(CEGUI::ScrolledContainer*)CEGUI::WindowManager::getSingleton().createWindow((CEGUI::utf8*)"TaharezLook/HorizontalScrollbar", (CEGUI::utf8*)"RaySlider");
-
-	CEGUI::Scrollbar *slider = (CEGUI::Scrollbar*)CEGUI::WindowManager::getSingleton().createWindow((CEGUI::utf8*)"TaharezLook/HorizontalScrollbarThumb", (CEGUI::utf8*)"RaySlider");
-	
-	slider->setPosition(CEGUI::UVector2(CEGUI::UDim(0.01, 0), CEGUI::UDim(0.85, 0)));
-    slider->setSize(CEGUI::UVector2(CEGUI::UDim(0.05, 0), CEGUI::UDim(0.01, 0))); 
-
-	slider->setText("Speed");
-	slider->setStepSize(1.0f);
-	slider->setDocumentSize(10.0f);
-	slider->setScrollPosition(5.0f);
-
+	CEGUI::Window* slider = CEGUI::WindowManager::getSingleton().createWindow("TaharezLook/HorizontalScrollbar", "slider1");
     sheet->addChildWindow(slider);
-	*/
+    slider->setPosition(CEGUI::UVector2(CEGUI::UDim(0.01, 0), CEGUI::UDim(0.11, 0)));
+    slider->setSize(CEGUI::UVector2(CEGUI::UDim(0.15, 0), CEGUI::UDim(0.04, 0))); 
+    slider->setProperty("DocumentSize", "50");
+    slider->setProperty("PageSize", "16");
+    slider->setProperty("StepSize", "1");
+    slider->setProperty("OverlapSize", "1");
+    slider->setProperty("ScrollPosition", "25");
 
 	// start button
 	CEGUI::Window *startButton = wmgr.createWindow("TaharezLook/Button", "RayRayRay/StartButton");
