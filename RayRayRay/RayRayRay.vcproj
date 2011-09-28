@@ -200,11 +200,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\FlashInterface.cpp"
+				RelativePath=".\src\Rail.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\src\Rail.cpp"
+				RelativePath=".\src\RayFlashInterface.cpp"
 				>
 			</File>
 			<File
@@ -226,11 +226,15 @@
 				>
 			</File>
 			<File
-				RelativePath=".\include\FlashInterface.h"
+				RelativePath=".\include\ClassDefine.h"
 				>
 			</File>
 			<File
 				RelativePath=".\include\Rail.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\RayFlashInterface.h"
 				>
 			</File>
 			<File
