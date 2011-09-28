@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<menu>
+	<button>
+		<Function>Left</Function>
+		<rotation>90</rotation>
+		<x>49</x>
+		<y>120</y>
+	</button>
+	<button>
+		<Function>Right</Function>
+		<rotation>-90</rotation>
+		<x>193</x>
+		<y>120</y>
+	</button>
+	<button>
+		<Function>Top</Function>
+		<rotation>180</rotation>
+		<x>122</x>
+		<y>50</y>
+	</button>
+	<button>
+		<Function>Down</Function>
+		<rotation>0</rotation>
+		<x>122</x>
+		<y>191</y>
+	</button>
+</menu>
