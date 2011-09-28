@@ -64,10 +64,10 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="OgreMain_d.lib OIS_d.lib CEGUIOgreRenderer_d.lib CEGUIBase_d.lib OgreTerrain_d.lib"
+				AdditionalDependencies="OgreMain_d.lib OIS_d.lib CEGUIOgreRenderer_d.lib CEGUIBase_d.lib OgreTerrain_d.lib Hikari_d.lib"
 				OutputFile="$(OutDir)\$(ProjectName).exe"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories="&quot;$(OGRE_HOME)\lib\debug&quot;;&quot;$(OGRE_HOME)\boost_1_44\lib&quot;;&quot;C:\CEGUI-SDK-0.7.5-vc9\lib&quot;"
+				AdditionalLibraryDirectories="&quot;$(OGRE_HOME)\lib\debug&quot;;&quot;$(OGRE_HOME)\boost_1_44\lib&quot;;&quot;C:\CEGUI-SDK-0.7.5-vc9\lib&quot;;bin\Debug"
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile="$(OutDir)/RayRayRay.pdb"
 				SubSystem="1"
@@ -219,6 +219,10 @@
 			>
 			<File
 				RelativePath=".\include\BaseApplication.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\HikariInterface.h"
 				>
 			</File>
 			<File
