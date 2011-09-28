@@ -44,33 +44,16 @@ void RayRayRay::destroyScene(void)
 	if(rayTerrain) delete rayTerrain;
 }
 
-//-------------------------------------------------------------------------------------
-/*
-CEGUI::MouseButton convertButton(OIS::MouseButtonID buttonID)
-{
-    switch (buttonID)
-    {
-    case OIS::MB_Left:
-        return CEGUI::LeftButton;
- 
-    case OIS::MB_Right:
-        return CEGUI::RightButton;
- 
-    case OIS::MB_Middle:
-        return CEGUI::MiddleButton;
- 
-    default:
-        return CEGUI::LeftButton;
-    }
-}
-*/
+
 //-------------------------------------------------------------------------------------
 void RayRayRay::createScene(void)
 {
 	// Set Hikari
-	//hViewPort = mCamera->getViewport();
-	//menu = new RayFlashInterface(this);
-	//menu->setupHikari();
+	hViewPort = mCamera->getViewport();
+	menu = new RayFlashInterface(this);
+	menu->setupHikari();
+
+	
 
 	// set Rail
 	rail = new Rail();
@@ -114,70 +97,11 @@ void RayRayRay::createScene(void)
 	mSceneMgr->setSkyPlane(true, plane, "Examples/CloudySky", 50, 10 , true, 0.7, 10, 10); 
 	
 	//CEGUI setup
-	mGUIRenderer = &CEGUI::OgreRenderer::bootstrapSystem();
-	//CEGUI::Imageset::setDefaultResourceGroup("Imagesets");
-	//CEGUI::Font::setDefaultResourceGroup("Fonts");
-	//CEGUI::Scheme::setDefaultResourceGroup("Schemes");
-	//CEGUI::WidgetLookManager::setDefaultResourceGroup("LookNFeel");
-	//CEGUI::WindowManager::setDefaultResourceGroup("Layouts");
-
-	//CEGUI::SchemeManager::getSingleton().create("TaharezLook.scheme"); 
-    //CEGUI::System::getSingleton().setDefaultMouseCursor("TaharezLook", "MouseArrow");
-
-	/*
-    CEGUI::WindowManager &wmgr = CEGUI::WindowManager::getSingleton();
-    CEGUI::Window *sheet = wmgr.createWindow("DefaultWindow", "RayRayRay/Sheet");
- 
-	// combo box
-	CEGUI::Combobox* objectComboBox = (CEGUI::Combobox*)CEGUI::WindowManager::getSingleton().createWindow((CEGUI::utf8*)"TaharezLook/Combobox", (CEGUI::utf8*)"NameID");
-
-	CEGUI::ListboxTextItem* item;
-	item = new CEGUI::ListboxTextItem((CEGUI::utf8*)"Linear", 1);
-	objectComboBox->addItem(item);
-	item = new CEGUI::ListboxTextItem((CEGUI::utf8*)"Cardinal Cubic", 2);
-	objectComboBox->addItem(item);
-	item = new CEGUI::ListboxTextItem((CEGUI::utf8*)"Cubic B-Spline", 3);
-	objectComboBox->addItem(item);
-	objectComboBox->setPosition(CEGUI::UVector2(CEGUI::UDim(0.01, 0), CEGUI::UDim(0.01, 0)));
-    objectComboBox->setSize(CEGUI::UVector2(CEGUI::UDim(0.15, 0), CEGUI::UDim(0.2, 0))); 
-	objectComboBox->setText("Rail Type");
-	objectComboBox->setAlwaysOnTop(true);
-	sheet->addChildWindow(objectComboBox);
-
-	// slider
-	CEGUI::Window* slider = CEGUI::WindowManager::getSingleton().createWindow("TaharezLook/HorizontalScrollbar", "slider1");
-    sheet->addChildWindow(slider);
-    slider->setPosition(CEGUI::UVector2(CEGUI::UDim(0.01, 0), CEGUI::UDim(0.11, 0)));
-    slider->setSize(CEGUI::UVector2(CEGUI::UDim(0.15, 0), CEGUI::UDim(0.04, 0))); 
-    slider->setProperty("DocumentSize", "50");
-    slider->setProperty("PageSize", "16");
-    slider->setProperty("StepSize", "1");
-    slider->setProperty("OverlapSize", "1");
-    slider->setProperty("ScrollPosition", "25");
-
-	// start button
-	CEGUI::Window *startButton = wmgr.createWindow("TaharezLook/Button", "RayRayRay/StartButton");
-    startButton->setText("Start");
-	startButton->setPosition(CEGUI::UVector2(CEGUI::UDim(0.01, 0), CEGUI::UDim(0.05, 0)));
-    startButton->setSize(CEGUI::UVector2(CEGUI::UDim(0.15, 0), CEGUI::UDim(0.04, 0))); 
-    sheet->addChildWindow(startButton);
-
-	// quit button
-    CEGUI::Window *quit = wmgr.createWindow("TaharezLook/Button", "RayRayRay/QuitButton");
-    quit->setText("Quit");
-	quit->setPosition(CEGUI::UVector2(CEGUI::UDim(0.01, 0), CEGUI::UDim(0.95, 0)));
-    quit->setSize(CEGUI::UVector2(CEGUI::UDim(0.15, 0), CEGUI::UDim(0.04, 0))); 
-    sheet->addChildWindow(quit);
-
-    CEGUI::System::getSingleton().setGUISheet(sheet);
- 
-    quit->subscribeEvent(CEGUI::PushButton::EventClicked,
-    CEGUI::Event::Subscriber(&RayRayRay::quit, this));
-	*/
+	//mGUIRenderer = &CEGUI::OgreRenderer::bootstrapSystem();
 
 	//show the CEGUI cursor
-	CEGUI::SchemeManager::getSingleton().create((CEGUI::utf8*)"WindowsLook.scheme");
-	CEGUI::MouseCursor::getSingleton().setImage("WindowsLook", "MouseArrow");
+	//CEGUI::SchemeManager::getSingleton().create((CEGUI::utf8*)"WindowsLook.scheme");
+	//CEGUI::MouseCursor::getSingleton().setImage("WindowsLook", "MouseArrow");
 }
  
 //-------------------------------------------------------------------------------------
@@ -197,34 +121,6 @@ void RayRayRay::createFrameListener(void)
  
 	// Set up our raySceneQuery after everything has been initialized
 	mRayScnQuery = mSceneMgr->createRayQuery(Ogre::Ray());
-
-
-	/*
-	Ogre::LogManager::getSingletonPtr()->logMessage("*** Initializing OIS ***");
-    OIS::ParamList pl;
-    size_t windowHnd = 0;
-    std::ostringstream windowHndStr;
- 
-    mWindow->getCustomAttribute("WINDOW", &windowHnd);
-    windowHndStr << windowHnd;
-    pl.insert(std::make_pair(std::string("WINDOW"), windowHndStr.str()));
- 
-    mInputManager = OIS::InputManager::createInputSystem( pl );
- 
-    mKeyboard = static_cast<OIS::Keyboard*>(mInputManager->createInputObject( OIS::OISKeyboard, true ));
-    mMouse = static_cast<OIS::Mouse*>(mInputManager->createInputObject( OIS::OISMouse, true ));
- 
-    mMouse->setEventCallback(this);
-    mKeyboard->setEventCallback(this);
- 
-    //Set initial mouse clipping size
-    windowResized(mWindow);
- 
-    //Register as a Window listener
-    Ogre::WindowEventUtilities::addWindowEventListener(mWindow, this);
- 
-    mRoot->addFrameListener(this);
-	*/
 }
  
 //-------------------------------------------------------------------------------------
@@ -306,7 +202,7 @@ bool RayRayRay::frameRenderingQueued(const Ogre::FrameEvent& arg)
     }
 
 	// update Hikari
-	//menu->hikariMgr->update();
+	menu->hikariMgr->update();
 
 	return true;
 }
@@ -314,34 +210,41 @@ bool RayRayRay::frameRenderingQueued(const Ogre::FrameEvent& arg)
 //-------------------------------------------------------------------------------------
 bool RayRayRay::mouseMoved(const OIS::MouseEvent& arg)
 {
+	if(!BaseApplication::mouseMoved(arg))
+	{
+		return false;
+	}
+	
+	Ogre::Real screenWidth = hViewPort->getWidth();
+	Ogre::Real screenHeight = hViewPort->getHeight();
+
+	Ogre::Real offsetX = (float)arg.state.X.abs / (float)arg.state.width;
+	Ogre::Real offsetY = (float)arg.state.Y.abs / (float)arg.state.height;
+	
+	//std::cout << "mouseX" << offsetX << "\n";
+	//std::cout << "mouseY" << offsetY << "\n";
+
+	//mTrayMgr->getCursorImage()->setPosition(offsetX, offsetY);
+	//mTrayMgr->getCursorContainer()->setPosition(offsetX, offsetY);
+
 	//updates CEGUI with mouse movement
-	CEGUI::System::getSingleton().injectMouseMove(arg.state.X.rel, arg.state.Y.rel);
+	//CEGUI::System::getSingleton().injectMouseMove(arg.state.X.rel, arg.state.Y.rel);
 
 	//using namespace Hikari;
-	//bool val = menu->hikariMgr->injectMouseMove(arg.state.X.abs, arg.state.Y.abs) ||  menu->hikariMgr->injectMouseWheel(arg.state.Z.rel);
-	//CEGUI::System &sys = CEGUI::System::getSingleton();
-	//sys.injectMouseMove(arg.state.X.rel, arg.state.Y.rel);
-	// Scroll wheel.
-	//if (arg.state.Z.rel)
-	//	sys.injectMouseWheelChange(arg.state.Z.rel / 120.0f);
-
-
+	bool val = menu->hikariMgr->injectMouseMove(arg.state.X.abs, arg.state.Y.abs) ||  menu->hikariMgr->injectMouseWheel(arg.state.Z.rel);
+	
+	
 	//if the left mouse button is held down
 	if(bLMouseDown)
 	{
-		//find the current mouse position
-		CEGUI::Point mousePos = CEGUI::MouseCursor::getSingleton().getPosition();
-		//mMouse->getMouseState().X
-		//create a raycast straight out from the camera at the mouse's location
-		Ogre::Ray mouseRay = mCamera->getCameraToViewportRay(mousePos.d_x/float(arg.state.width), mousePos.d_y/float(arg.state.height));
-		//Ogre::Ray mouseRay = mCamera->getCameraToViewportRay(arg.state.X.abs / float(arg.state.width), arg.state.Y.abs / float(arg.state.height));
-		
+		Ogre::Ray mouseRay = mCamera->getCameraToViewportRay(offsetX, offsetY);
+
 		Ogre::Vector3 camPos = mCamera->getPosition();
 		Ogre::Terrain* pTerrain = rayTerrain->getTerrainGroup()->getTerrain(0, 0);
 		std::pair <bool, Ogre::Vector3> test;
 		test = pTerrain->rayIntersects(mouseRay, true, 0);
 
-		if (test.first) 
+		if (mCurrentObject && test.first) 
 		{
 			mCurrentObject->setPosition(test.second + Ogre::Vector3(0, 10, 0));
 		}
@@ -351,15 +254,13 @@ bool RayRayRay::mouseMoved(const OIS::MouseEvent& arg)
 		mCamera->yaw(Ogre::Degree(-arg.state.X.rel * mRotateSpeed));
 		mCamera->pitch(Ogre::Degree(-arg.state.Y.rel * mRotateSpeed));
 	}
- 
-	return true;
+	
+	return val;
 }
  
 //-------------------------------------------------------------------------------------
 bool RayRayRay::mousePressed(const OIS::MouseEvent& arg, OIS::MouseButtonID id)
 {
-	//CEGUI::System::getSingleton().injectMouseButtonDown(convertButton(id));
-
 	if(id == OIS::MB_Left)
 	{
 		//show that the current object has been deselected by removing the bounding box visual
@@ -367,12 +268,14 @@ bool RayRayRay::mousePressed(const OIS::MouseEvent& arg, OIS::MouseButtonID id)
 		{
 			mCurrentObject->showBoundingBox(false);
 		}
- 
-		//find the current mouse position
-		CEGUI::Point mousePos = CEGUI::MouseCursor::getSingleton().getPosition();
- 
-		//then send a raycast straight out from the camera at the mouse's position
-		Ogre::Ray mouseRay = mCamera->getCameraToViewportRay(mousePos.d_x/float(arg.state.width), mousePos.d_y/float(arg.state.height));
+		
+		Ogre::Real screenWidth = hViewPort->getWidth();
+		Ogre::Real screenHeight = hViewPort->getHeight();
+
+		Ogre::Real offsetX = (float)arg.state.X.abs / (float)arg.state.width;
+		Ogre::Real offsetY = (float)arg.state.Y.abs / (float)arg.state.height;
+
+		Ogre::Ray mouseRay = mCamera->getCameraToViewportRay(offsetX, offsetY);
 		mRayScnQuery->setRay(mouseRay);
 		mRayScnQuery->setSortByDistance(true);
 
@@ -394,7 +297,8 @@ bool RayRayRay::mousePressed(const OIS::MouseEvent& arg, OIS::MouseButtonID id)
 			if(iter->movable && iter->movable->getName().substr(0, 5) != "tile[")
 			{
 				Ogre::SceneNode* tempNode = iter->movable->getParentSceneNode();
-				if(tempNode->getName() == "Unnamed_2") continue;
+				std::cout << tempNode->getName() << "\n";
+				if(tempNode->getName() == "Unnamed_3") continue;
 			
 				mCurrentObject = tempNode;
 				//std::cout << "~~~ name1" << mCurrentObject->getName() << "\n";
@@ -413,40 +317,39 @@ bool RayRayRay::mousePressed(const OIS::MouseEvent& arg, OIS::MouseButtonID id)
 		{
 			mCurrentObject->showBoundingBox(true);
 		}
- 
+		
 		bLMouseDown = true;
+		
 	}
 	else if(id == OIS::MB_Right)	// if the right mouse button is held we hide the mouse cursor for view mode
 	{
-		CEGUI::MouseCursor::getSingleton().hide();
+		//CEGUI::MouseCursor::getSingleton().hide();
 		bRMouseDown = true;
 	}
 
 	using namespace Hikari;
 	return  menu->hikariMgr->injectMouseDown(id);
  
-	//return true;
+	return true;
 }
  
 //-------------------------------------------------------------------------------------
 bool RayRayRay::mouseReleased(const OIS::MouseEvent& arg, OIS::MouseButtonID id)
 {
-	//CEGUI::System::getSingleton().injectMouseButtonUp(convertButton(id));
-
 	if(id  == OIS::MB_Left)
 	{
 		bLMouseDown = false;
 	}
 	else if(id == OIS::MB_Right)	//when the right mouse is released we then unhide the cursor
 	{
-		CEGUI::MouseCursor::getSingleton().show();
+		//CEGUI::MouseCursor::getSingleton().show();
 		bRMouseDown = false;
 	}
 
 	using namespace Hikari;
 	return  menu->hikariMgr->injectMouseUp(id);
 
-	//return true;
+	return true;
 }
 
 //------------------------------------------------------------------------------------- 
@@ -456,30 +359,8 @@ bool RayRayRay::keyPressed(const OIS::KeyEvent& arg)
 	//and the return value in one line
 	return BaseApplication::keyPressed(arg);
 
-	//CEGUI::System &sys = CEGUI::System::getSingleton();
-	//sys.injectKeyDown(arg.key);
-	//sys.injectChar(arg.text);
-
 	//return true;
 }
-
-//-------------------------------------------------------------------------------------
-/*
-bool RayRayRay::keyReleased( const OIS::KeyEvent &arg )
-{
-    //CEGUI::System::getSingleton().injectKeyUp(arg.key);
-
-	return true;
-}
-*/
-//-------------------------------------------------------------------------------------
-/*
-bool RayRayRay::quit(const CEGUI::EventArgs &e)
-{
-    mShutDown = true;
-	return true;
-}
-*/
 
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_WIN32
