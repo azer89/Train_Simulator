@@ -65,6 +65,11 @@ CEGUI::MouseButton convertButton(OIS::MouseButtonID buttonID)
 //-------------------------------------------------------------------------------------
 void RayRayRay::createScene(void)
 {
+	// Set Hikari
+	hViewPort = mCamera->getViewport();
+	//menu = new HikariInterface(this);
+	//menu->setupHikari();
+
 	// set Rail
 	rail = new Rail();
 	rayTerrain = new RayTerrain();

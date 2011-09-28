@@ -1,276 +1,276 @@
-27/09/2011 11:00:47 (Std) 	+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-27/09/2011 11:00:47 (Std) 	+                     Crazy Eddie's GUI System - Event log                    +
-27/09/2011 11:00:47 (Std) 	+                          (http://www.cegui.org.uk/)                         +
-27/09/2011 11:00:47 (Std) 	+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+28/09/2011 21:05:37 (Std) 	+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+28/09/2011 21:05:37 (Std) 	+                     Crazy Eddie's GUI System - Event log                    +
+28/09/2011 21:05:37 (Std) 	+                          (http://www.cegui.org.uk/)                         +
+28/09/2011 21:05:37 (Std) 	+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-27/09/2011 11:00:47 (Std) 	CEGUI::Logger singleton created. (070E68C0)
-27/09/2011 11:00:47 (Std) 	
-27/09/2011 11:00:47 (Std) 	********************************************************************************
-27/09/2011 11:00:47 (Std) 	* Important:                                                                   *
-27/09/2011 11:00:47 (Std) 	*     To get support at the CEGUI forums, you must post _at least_ the section *
-27/09/2011 11:00:47 (Std) 	*     of this log file indicated below.  Failure to do this will result in no  *
-27/09/2011 11:00:47 (Std) 	*     support being given; please do not waste our time.                       *
-27/09/2011 11:00:47 (Std) 	********************************************************************************
-27/09/2011 11:00:47 (Std) 	********************************************************************************
-27/09/2011 11:00:47 (Std) 	* -------- START OF ESSENTIAL SECTION TO BE POSTED ON THE FORUM       -------- *
-27/09/2011 11:00:47 (Std) 	********************************************************************************
-27/09/2011 11:00:47 (Std) 	---- Version 0.7.5 (Build: Nov 19 2010 Debug Microsoft Windows MSVC++ 9.0 32 bit) ----
-27/09/2011 11:00:47 (Std) 	---- Renderer module is: CEGUI::OgreRenderer - Official OGRE based 2nd generation renderer module. ----
-27/09/2011 11:00:47 (Std) 	---- XML Parser module is: CEGUI::ExpatParser - Official expat based parser module for CEGUI ----
-27/09/2011 11:00:47 (Std) 	---- Image Codec module is: OgreImageCodec - Integrated ImageCodec using the Ogre engine. ----
-27/09/2011 11:00:47 (Std) 	---- Scripting module is: None ----
-27/09/2011 11:00:47 (Std) 	********************************************************************************
-27/09/2011 11:00:47 (Std) 	* -------- END OF ESSENTIAL SECTION TO BE POSTED ON THE FORUM         -------- *
-27/09/2011 11:00:47 (Std) 	********************************************************************************
-27/09/2011 11:00:47 (Std) 	
-27/09/2011 11:00:47 (Std) 	---- Begining CEGUI System initialisation ----
-27/09/2011 11:00:47 (Std) 	CEGUI::ImagesetManager singleton created (025CCDF8)
-27/09/2011 11:00:47 (Std) 	CEGUI::FontManager singleton created. (025CC900)
-27/09/2011 11:00:47 (Std) 	CEGUI::WindowFactoryManager singleton created
-27/09/2011 11:00:47 (Std) 	CEGUI::WindowManager singleton created (0705E488)
-27/09/2011 11:00:47 (Std) 	CEGUI::SchemeManager singleton created. (0705E6F8)
-27/09/2011 11:00:47 (Std) 	CEGUI::MouseCursor singleton created. (070E8BE8)
-27/09/2011 11:00:47 (Std) 	CEGUI::GlobalEventSet singleton created. (070F3F70)
-27/09/2011 11:00:47 (Std) 	CEGUI::AnimationManager singleton created (070E9670)
-27/09/2011 11:00:47 (Std) 	CEGUI::WidgetLookManager singleton created. (070E95D0)
-27/09/2011 11:00:47 (Std) 	CEGUI::WindowRendererManager singleton created (070E9800)
-27/09/2011 11:00:47 (Std) 	CEGUI::RenderEffectManager singleton created (070FD920)
-27/09/2011 11:00:47 (Std) 	Created WindowFactory for 'DefaultWindow' windows.
-27/09/2011 11:00:47 (Std) 	WindowFactory for 'DefaultWindow' windows added. (070FDA80)
-27/09/2011 11:00:47 (Std) 	Created WindowFactory for 'DragContainer' windows.
-27/09/2011 11:00:47 (Std) 	WindowFactory for 'DragContainer' windows added. (070FDC40)
-27/09/2011 11:00:47 (Std) 	Created WindowFactory for 'ScrolledContainer' windows.
-27/09/2011 11:00:47 (Std) 	WindowFactory for 'ScrolledContainer' windows added. (070FDE00)
-27/09/2011 11:00:47 (Std) 	Created WindowFactory for 'ClippedContainer' windows.
-27/09/2011 11:00:47 (Std) 	WindowFactory for 'ClippedContainer' windows added. (070FDFC0)
-27/09/2011 11:00:47 (Std) 	Created WindowFactory for 'CEGUI/Checkbox' windows.
-27/09/2011 11:00:47 (Std) 	WindowFactory for 'CEGUI/Checkbox' windows added. (070FE1D0)
-27/09/2011 11:00:47 (Std) 	Created WindowFactory for 'CEGUI/PushButton' windows.
-27/09/2011 11:00:47 (Std) 	WindowFactory for 'CEGUI/PushButton' windows added. (070FE3E8)
-27/09/2011 11:00:47 (Std) 	Created WindowFactory for 'CEGUI/RadioButton' windows.
-27/09/2011 11:00:47 (Std) 	WindowFactory for 'CEGUI/RadioButton' windows added. (070FE5A8)
-27/09/2011 11:00:47 (Std) 	Created WindowFactory for 'CEGUI/Combobox' windows.
-27/09/2011 11:00:47 (Std) 	WindowFactory for 'CEGUI/Combobox' windows added. (070FE7C8)
-27/09/2011 11:00:47 (Std) 	Created WindowFactory for 'CEGUI/ComboDropList' windows.
-27/09/2011 11:00:47 (Std) 	WindowFactory for 'CEGUI/ComboDropList' windows added. (070FE988)
-27/09/2011 11:00:47 (Std) 	Created WindowFactory for 'CEGUI/Editbox' windows.
-27/09/2011 11:00:47 (Std) 	WindowFactory for 'CEGUI/Editbox' windows added. (070FEB48)
-27/09/2011 11:00:47 (Std) 	Created WindowFactory for 'CEGUI/FrameWindow' windows.
-27/09/2011 11:00:47 (Std) 	WindowFactory for 'CEGUI/FrameWindow' windows added. (070FED78)
-27/09/2011 11:00:47 (Std) 	Created WindowFactory for 'CEGUI/ItemEntry' windows.
-27/09/2011 11:00:47 (Std) 	WindowFactory for 'CEGUI/ItemEntry' windows added. (070FEF38)
-27/09/2011 11:00:47 (Std) 	Created WindowFactory for 'CEGUI/Listbox' windows.
-27/09/2011 11:00:47 (Std) 	WindowFactory for 'CEGUI/Listbox' windows added. (070FF0F8)
-27/09/2011 11:00:47 (Std) 	Created WindowFactory for 'CEGUI/ListHeader' windows.
-27/09/2011 11:00:47 (Std) 	WindowFactory for 'CEGUI/ListHeader' windows added. (070FF2B8)
-27/09/2011 11:00:47 (Std) 	Created WindowFactory for 'CEGUI/ListHeaderSegment' windows.
-27/09/2011 11:00:47 (Std) 	WindowFactory for 'CEGUI/ListHeaderSegment' windows added. (070FF478)
-27/09/2011 11:00:47 (Std) 	Created WindowFactory for 'CEGUI/Menubar' windows.
-27/09/2011 11:00:47 (Std) 	WindowFactory for 'CEGUI/Menubar' windows added. (070FF708)
-27/09/2011 11:00:47 (Std) 	Created WindowFactory for 'CEGUI/PopupMenu' windows.
-27/09/2011 11:00:47 (Std) 	WindowFactory for 'CEGUI/PopupMenu' windows added. (070FFAC8)
-27/09/2011 11:00:47 (Std) 	Created WindowFactory for 'CEGUI/MenuItem' windows.
-27/09/2011 11:00:47 (Std) 	WindowFactory for 'CEGUI/MenuItem' windows added. (070FFC40)
-27/09/2011 11:00:47 (Std) 	Created WindowFactory for 'CEGUI/MultiColumnList' windows.
-27/09/2011 11:00:47 (Std) 	WindowFactory for 'CEGUI/MultiColumnList' windows added. (070FFE00)
-27/09/2011 11:00:47 (Std) 	Created WindowFactory for 'CEGUI/MultiLineEditbox' windows.
-27/09/2011 11:00:47 (Std) 	WindowFactory for 'CEGUI/MultiLineEditbox' windows added. (0707E918)
-27/09/2011 11:00:47 (Std) 	Created WindowFactory for 'CEGUI/ProgressBar' windows.
-27/09/2011 11:00:47 (Std) 	WindowFactory for 'CEGUI/ProgressBar' windows added. (0707EB88)
-27/09/2011 11:00:47 (Std) 	Created WindowFactory for 'CEGUI/ScrollablePane' windows.
-27/09/2011 11:00:47 (Std) 	WindowFactory for 'CEGUI/ScrollablePane' windows added. (0707ED48)
-27/09/2011 11:00:47 (Std) 	Created WindowFactory for 'CEGUI/Scrollbar' windows.
-27/09/2011 11:00:47 (Std) 	WindowFactory for 'CEGUI/Scrollbar' windows added. (0707EF08)
-27/09/2011 11:00:47 (Std) 	Created WindowFactory for 'CEGUI/Slider' windows.
-27/09/2011 11:00:47 (Std) 	WindowFactory for 'CEGUI/Slider' windows added. (0707F0C8)
-27/09/2011 11:00:47 (Std) 	Created WindowFactory for 'CEGUI/Spinner' windows.
-27/09/2011 11:00:47 (Std) 	WindowFactory for 'CEGUI/Spinner' windows added. (0707F288)
-27/09/2011 11:00:47 (Std) 	Created WindowFactory for 'CEGUI/TabButton' windows.
-27/09/2011 11:00:47 (Std) 	WindowFactory for 'CEGUI/TabButton' windows added. (0707F448)
-27/09/2011 11:00:47 (Std) 	Created WindowFactory for 'CEGUI/TabControl' windows.
-27/09/2011 11:00:47 (Std) 	WindowFactory for 'CEGUI/TabControl' windows added. (0707F608)
-27/09/2011 11:00:47 (Std) 	Created WindowFactory for 'CEGUI/Thumb' windows.
-27/09/2011 11:00:47 (Std) 	WindowFactory for 'CEGUI/Thumb' windows added. (0707F7C8)
-27/09/2011 11:00:47 (Std) 	Created WindowFactory for 'CEGUI/Titlebar' windows.
-27/09/2011 11:00:47 (Std) 	WindowFactory for 'CEGUI/Titlebar' windows added. (0707F988)
-27/09/2011 11:00:47 (Std) 	Created WindowFactory for 'CEGUI/Tooltip' windows.
-27/09/2011 11:00:47 (Std) 	WindowFactory for 'CEGUI/Tooltip' windows added. (0707FC30)
-27/09/2011 11:00:47 (Std) 	Created WindowFactory for 'CEGUI/ItemListbox' windows.
-27/09/2011 11:00:47 (Std) 	WindowFactory for 'CEGUI/ItemListbox' windows added. (0707FDF0)
-27/09/2011 11:00:47 (Std) 	Created WindowFactory for 'CEGUI/GroupBox' windows.
-27/09/2011 11:00:47 (Std) 	WindowFactory for 'CEGUI/GroupBox' windows added. (0707FFB0)
-27/09/2011 11:00:47 (Std) 	Created WindowFactory for 'CEGUI/Tree' windows.
-27/09/2011 11:00:47 (Std) 	WindowFactory for 'CEGUI/Tree' windows added. (07080170)
-27/09/2011 11:00:47 (Std) 	Created WindowFactory for 'HorizontalLayoutContainer' windows.
-27/09/2011 11:00:47 (Std) 	WindowFactory for 'HorizontalLayoutContainer' windows added. (07080330)
-27/09/2011 11:00:47 (Std) 	Created WindowFactory for 'VerticalLayoutContainer' windows.
-27/09/2011 11:00:47 (Std) 	WindowFactory for 'VerticalLayoutContainer' windows added. (070804F0)
-27/09/2011 11:00:47 (Std) 	Created WindowFactory for 'GridLayoutContainer' windows.
-27/09/2011 11:00:47 (Std) 	WindowFactory for 'GridLayoutContainer' windows added. (070806B0)
-27/09/2011 11:00:47 (Std) 	Window type alias named 'DefaultGUISheet' added for window type 'DefaultWindow'.
-27/09/2011 11:00:47 (Std) 	CEGUI::System singleton created. (070E6608)
-27/09/2011 11:00:47 (Std) 	---- CEGUI System initialisation completed ----
-27/09/2011 11:00:47 (Std) 	
-27/09/2011 11:00:47 (Std) 	Started creation of Scheme from XML specification:
-27/09/2011 11:00:47 (Std) 	---- CEGUI GUIScheme name: TaharezLook
-27/09/2011 11:00:47 (Std) 	Started creation of Imageset from XML specification:
-27/09/2011 11:00:47 (Std) 	---- CEGUI Imageset name: TaharezLook
-27/09/2011 11:00:47 (Std) 	---- Source texture file: sleekspace.png in resource group: (Default)
-27/09/2011 11:00:47 (Std) 	Started creation of Font from XML specification:
-27/09/2011 11:00:47 (Std) 	---- CEGUI font name: DejaVuSans-10
-27/09/2011 11:00:47 (Std) 	----       Font type: FreeType
-27/09/2011 11:00:47 (Std) 	----     Source file: DejaVuSans.ttf in resource group: (Default)
-27/09/2011 11:00:47 (Std) 	---- Real point size: 10
-27/09/2011 11:00:47 (Std) 	===== Falagard 'root' element: look and feel parsing begins =====
-27/09/2011 11:00:48 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'GenericBrush' could not be found in Imageset 'TaharezLook'.
-27/09/2011 11:00:48 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'GenericBrush' could not be found in Imageset 'TaharezLook'.
-27/09/2011 11:00:48 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'GenericBrush' could not be found in Imageset 'TaharezLook'.
-27/09/2011 11:00:48 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'GenericBrush' could not be found in Imageset 'TaharezLook'.
-27/09/2011 11:00:48 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'TabButtonLowerRight2Normal' could not be found in Imageset 'TaharezLook'.
-27/09/2011 11:00:48 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'TabButtonUpperLeft2Normal' could not be found in Imageset 'TaharezLook'.
-27/09/2011 11:00:48 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'TabButtonLowerRight2Normal' could not be found in Imageset 'TaharezLook'.
-27/09/2011 11:00:48 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'TabButtonUpperLeft2Normal' could not be found in Imageset 'TaharezLook'.
-27/09/2011 11:00:48 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'TabContentPaneUpperLeft' could not be found in Imageset 'TaharezLook'.
-27/09/2011 11:00:48 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'TabContentPaneUpper' could not be found in Imageset 'TaharezLook'.
-27/09/2011 11:00:48 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'TabContentPaneUpperRight' could not be found in Imageset 'TaharezLook'.
-27/09/2011 11:00:48 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'TabContentPaneLeft' could not be found in Imageset 'TaharezLook'.
-27/09/2011 11:00:48 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'TabContentPaneMiddle' could not be found in Imageset 'TaharezLook'.
-27/09/2011 11:00:48 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'TabContentPaneRight' could not be found in Imageset 'TaharezLook'.
-27/09/2011 11:00:48 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'TabContentPaneLowerLeft' could not be found in Imageset 'TaharezLook'.
-27/09/2011 11:00:48 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'TabContentPaneLower' could not be found in Imageset 'TaharezLook'.
-27/09/2011 11:00:48 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'TabContentPaneLowerRight' could not be found in Imageset 'TaharezLook'.
-27/09/2011 11:00:48 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'TabHorizontalFiller' could not be found in Imageset 'TaharezLook'.
-27/09/2011 11:00:48 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'TabHorizontalFiller' could not be found in Imageset 'TaharezLook'.
-27/09/2011 11:00:48 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'MenuTopLeft' could not be found in Imageset 'TaharezLook'.
-27/09/2011 11:00:48 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'MenuTopRight' could not be found in Imageset 'TaharezLook'.
-27/09/2011 11:00:48 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'MenuBottomLeft' could not be found in Imageset 'TaharezLook'.
-27/09/2011 11:00:48 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'MenuBottomRight' could not be found in Imageset 'TaharezLook'.
-27/09/2011 11:00:48 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'MenuLeft' could not be found in Imageset 'TaharezLook'.
-27/09/2011 11:00:48 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'MenuRight' could not be found in Imageset 'TaharezLook'.
-27/09/2011 11:00:48 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'MenuTop' could not be found in Imageset 'TaharezLook'.
-27/09/2011 11:00:48 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'MenuBottom' could not be found in Imageset 'TaharezLook'.
-27/09/2011 11:00:48 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'MenuMiddle' could not be found in Imageset 'TaharezLook'.
-27/09/2011 11:00:48 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'PopupMenuArrowRight' could not be found in Imageset 'TaharezLook'.
-27/09/2011 11:00:48 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'PopupMenuArrowLeft' could not be found in Imageset 'TaharezLook'.
-27/09/2011 11:00:48 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'PopupMenuFrameTopLeft' could not be found in Imageset 'TaharezLook'.
-27/09/2011 11:00:48 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'PopupMenuFrameTopRight' could not be found in Imageset 'TaharezLook'.
-27/09/2011 11:00:49 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'PopupMenuFrameBottomLeft' could not be found in Imageset 'TaharezLook'.
-27/09/2011 11:00:49 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'PopupMenuFrameBottomRight' could not be found in Imageset 'TaharezLook'.
-27/09/2011 11:00:49 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'PopupMenuFrameLeft' could not be found in Imageset 'TaharezLook'.
-27/09/2011 11:00:49 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'PopupMenuFrameRight' could not be found in Imageset 'TaharezLook'.
-27/09/2011 11:00:49 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'PopupMenuFrameTop' could not be found in Imageset 'TaharezLook'.
-27/09/2011 11:00:49 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'PopupMenuFrameBottom' could not be found in Imageset 'TaharezLook'.
-27/09/2011 11:00:49 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'PopupMenuMiddle' could not be found in Imageset 'TaharezLook'.
-27/09/2011 11:00:49 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'PopupMenuFrameTopLeft' could not be found in Imageset 'TaharezLook'.
-27/09/2011 11:00:49 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'PopupMenuFrameTopRight' could not be found in Imageset 'TaharezLook'.
-27/09/2011 11:00:49 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'PopupMenuFrameBottomLeft' could not be found in Imageset 'TaharezLook'.
-27/09/2011 11:00:49 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'PopupMenuFrameBottomRight' could not be found in Imageset 'TaharezLook'.
-27/09/2011 11:00:49 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'PopupMenuFrameLeft' could not be found in Imageset 'TaharezLook'.
-27/09/2011 11:00:49 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'PopupMenuFrameRight' could not be found in Imageset 'TaharezLook'.
-27/09/2011 11:00:49 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'PopupMenuFrameTop' could not be found in Imageset 'TaharezLook'.
-27/09/2011 11:00:49 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'PopupMenuFrameBottom' could not be found in Imageset 'TaharezLook'.
-27/09/2011 11:00:49 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'PopupMenuMiddle' could not be found in Imageset 'TaharezLook'.
-27/09/2011 11:00:49 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'TreeListClosed' could not be found in Imageset 'TaharezLook'.
-27/09/2011 11:00:49 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'TreeListOpened' could not be found in Imageset 'TaharezLook'.
-27/09/2011 11:00:49 (Std) 	===== Look and feel parsing completed =====
-27/09/2011 11:00:49 (Std) 	No window renderer factories specified for module 'CEGUIFalagardWRBase' - adding all available factories...
-27/09/2011 11:00:49 (Std) 	Created WindowRendererFactory for 'Falagard/Button' WindowRenderers.
-27/09/2011 11:00:49 (Std) 	WindowRendererFactory 'Falagard/Button' added. (086B6AB8)
-27/09/2011 11:00:49 (Std) 	Created WindowRendererFactory for 'Falagard/Default' WindowRenderers.
-27/09/2011 11:00:49 (Std) 	WindowRendererFactory 'Falagard/Default' added. (071F8F30)
-27/09/2011 11:00:49 (Std) 	Created WindowRendererFactory for 'Falagard/Editbox' WindowRenderers.
-27/09/2011 11:00:49 (Std) 	WindowRendererFactory 'Falagard/Editbox' added. (07081970)
-27/09/2011 11:00:49 (Std) 	Created WindowRendererFactory for 'Falagard/FrameWindow' WindowRenderers.
-27/09/2011 11:00:49 (Std) 	WindowRendererFactory 'Falagard/FrameWindow' added. (071F93B8)
-27/09/2011 11:00:49 (Std) 	Created WindowRendererFactory for 'Falagard/ItemEntry' WindowRenderers.
-27/09/2011 11:00:49 (Std) 	WindowRendererFactory 'Falagard/ItemEntry' added. (086EE628)
-27/09/2011 11:00:49 (Std) 	Created WindowRendererFactory for 'Falagard/ListHeader' WindowRenderers.
-27/09/2011 11:00:49 (Std) 	WindowRendererFactory 'Falagard/ListHeader' added. (086B1110)
-27/09/2011 11:00:49 (Std) 	Created WindowRendererFactory for 'Falagard/ListHeaderSegment' WindowRenderers.
-27/09/2011 11:00:49 (Std) 	WindowRendererFactory 'Falagard/ListHeaderSegment' added. (087534A0)
-27/09/2011 11:00:49 (Std) 	Created WindowRendererFactory for 'Falagard/Listbox' WindowRenderers.
-27/09/2011 11:00:49 (Std) 	WindowRendererFactory 'Falagard/Listbox' added. (0722A108)
-27/09/2011 11:00:49 (Std) 	Created WindowRendererFactory for 'Falagard/Menubar' WindowRenderers.
-27/09/2011 11:00:49 (Std) 	WindowRendererFactory 'Falagard/Menubar' added. (0876C8F0)
-27/09/2011 11:00:49 (Std) 	Created WindowRendererFactory for 'Falagard/MenuItem' WindowRenderers.
-27/09/2011 11:00:49 (Std) 	WindowRendererFactory 'Falagard/MenuItem' added. (0876CAB0)
-27/09/2011 11:00:49 (Std) 	Created WindowRendererFactory for 'Falagard/MultiColumnList' WindowRenderers.
-27/09/2011 11:00:49 (Std) 	WindowRendererFactory 'Falagard/MultiColumnList' added. (0876CC70)
-27/09/2011 11:00:49 (Std) 	Created WindowRendererFactory for 'Falagard/MultiLineEditbox' WindowRenderers.
-27/09/2011 11:00:49 (Std) 	WindowRendererFactory 'Falagard/MultiLineEditbox' added. (0876CE30)
-27/09/2011 11:00:49 (Std) 	Created WindowRendererFactory for 'Falagard/PopupMenu' WindowRenderers.
-27/09/2011 11:00:49 (Std) 	WindowRendererFactory 'Falagard/PopupMenu' added. (07080A40)
-27/09/2011 11:00:49 (Std) 	Created WindowRendererFactory for 'Falagard/ProgressBar' WindowRenderers.
-27/09/2011 11:00:49 (Std) 	WindowRendererFactory 'Falagard/ProgressBar' added. (07080C00)
-27/09/2011 11:00:49 (Std) 	Created WindowRendererFactory for 'Falagard/ScrollablePane' WindowRenderers.
-27/09/2011 11:00:49 (Std) 	WindowRendererFactory 'Falagard/ScrollablePane' added. (07080DC0)
-27/09/2011 11:00:49 (Std) 	Created WindowRendererFactory for 'Falagard/Scrollbar' WindowRenderers.
-27/09/2011 11:00:49 (Std) 	WindowRendererFactory 'Falagard/Scrollbar' added. (07080F80)
-27/09/2011 11:00:49 (Std) 	Created WindowRendererFactory for 'Falagard/Slider' WindowRenderers.
-27/09/2011 11:00:49 (Std) 	WindowRendererFactory 'Falagard/Slider' added. (07081140)
-27/09/2011 11:00:49 (Std) 	Created WindowRendererFactory for 'Falagard/Static' WindowRenderers.
-27/09/2011 11:00:49 (Std) 	WindowRendererFactory 'Falagard/Static' added. (07081300)
-27/09/2011 11:00:49 (Std) 	Created WindowRendererFactory for 'Falagard/StaticImage' WindowRenderers.
-27/09/2011 11:00:49 (Std) 	WindowRendererFactory 'Falagard/StaticImage' added. (070814C0)
-27/09/2011 11:00:49 (Std) 	Created WindowRendererFactory for 'Falagard/StaticText' WindowRenderers.
-27/09/2011 11:00:49 (Std) 	WindowRendererFactory 'Falagard/StaticText' added. (070D5F70)
-27/09/2011 11:00:49 (Std) 	Created WindowRendererFactory for 'Falagard/SystemButton' WindowRenderers.
-27/09/2011 11:00:49 (Std) 	WindowRendererFactory 'Falagard/SystemButton' added. (070D6130)
-27/09/2011 11:00:49 (Std) 	Created WindowRendererFactory for 'Falagard/TabButton' WindowRenderers.
-27/09/2011 11:00:49 (Std) 	WindowRendererFactory 'Falagard/TabButton' added. (070D62F0)
-27/09/2011 11:00:49 (Std) 	Created WindowRendererFactory for 'Falagard/TabControl' WindowRenderers.
-27/09/2011 11:00:49 (Std) 	WindowRendererFactory 'Falagard/TabControl' added. (070D64B0)
-27/09/2011 11:00:49 (Std) 	Created WindowRendererFactory for 'Falagard/Titlebar' WindowRenderers.
-27/09/2011 11:00:49 (Std) 	WindowRendererFactory 'Falagard/Titlebar' added. (070D6670)
-27/09/2011 11:00:49 (Std) 	Created WindowRendererFactory for 'Falagard/ToggleButton' WindowRenderers.
-27/09/2011 11:00:49 (Std) 	WindowRendererFactory 'Falagard/ToggleButton' added. (070D6830)
-27/09/2011 11:00:49 (Std) 	Created WindowRendererFactory for 'Falagard/Tooltip' WindowRenderers.
-27/09/2011 11:00:49 (Std) 	WindowRendererFactory 'Falagard/Tooltip' added. (070D69F0)
-27/09/2011 11:00:49 (Std) 	Created WindowRendererFactory for 'Falagard/ItemListbox' WindowRenderers.
-27/09/2011 11:00:49 (Std) 	WindowRendererFactory 'Falagard/ItemListbox' added. (070D6BB0)
-27/09/2011 11:00:49 (Std) 	Created WindowRendererFactory for 'Falagard/Tree' WindowRenderers.
-27/09/2011 11:00:49 (Std) 	WindowRendererFactory 'Falagard/Tree' added. (087633E0)
-27/09/2011 11:00:49 (Std) 	Creating falagard mapping for type 'TaharezLook/Button' using base type 'CEGUI/PushButton', window renderer 'Falagard/Button' Look'N'Feel 'TaharezLook/Button' and RenderEffect ''. (0036C1FC)
-27/09/2011 11:00:49 (Std) 	Creating falagard mapping for type 'TaharezLook/Checkbox' using base type 'CEGUI/Checkbox', window renderer 'Falagard/ToggleButton' Look'N'Feel 'TaharezLook/Checkbox' and RenderEffect ''. (0036C1FC)
-27/09/2011 11:00:49 (Std) 	Creating falagard mapping for type 'TaharezLook/ImageButton' using base type 'CEGUI/PushButton', window renderer 'Falagard/Button' Look'N'Feel 'TaharezLook/ImageButton' and RenderEffect ''. (0036C1FC)
-27/09/2011 11:00:49 (Std) 	Creating falagard mapping for type 'TaharezLook/RadioButton' using base type 'CEGUI/RadioButton', window renderer 'Falagard/ToggleButton' Look'N'Feel 'TaharezLook/RadioButton' and RenderEffect ''. (0036C1FC)
-27/09/2011 11:00:49 (Std) 	Creating falagard mapping for type 'TaharezLook/FrameWindow' using base type 'CEGUI/FrameWindow', window renderer 'Falagard/FrameWindow' Look'N'Feel 'TaharezLook/FrameWindow' and RenderEffect ''. (0036C1FC)
-27/09/2011 11:00:49 (Std) 	Creating falagard mapping for type 'TaharezLook/Titlebar' using base type 'CEGUI/Titlebar', window renderer 'Falagard/Titlebar' Look'N'Feel 'TaharezLook/Titlebar' and RenderEffect ''. (0036C1FC)
-27/09/2011 11:00:49 (Std) 	Creating falagard mapping for type 'TaharezLook/SystemButton' using base type 'CEGUI/PushButton', window renderer 'Falagard/Button' Look'N'Feel 'TaharezLook/Button' and RenderEffect ''. (0036C1FC)
-27/09/2011 11:00:49 (Std) 	Creating falagard mapping for type 'TaharezLook/Editbox' using base type 'CEGUI/Editbox', window renderer 'Falagard/Editbox' Look'N'Feel 'TaharezLook/Editbox' and RenderEffect ''. (0036C1FC)
-27/09/2011 11:00:49 (Std) 	Creating falagard mapping for type 'TaharezLook/MultiLineEditbox' using base type 'CEGUI/MultiLineEditbox', window renderer 'Falagard/MultiLineEditbox' Look'N'Feel 'TaharezLook/MultiLineEditbox' and RenderEffect ''. (0036C1FC)
-27/09/2011 11:00:49 (Std) 	Creating falagard mapping for type 'TaharezLook/Menubar' using base type 'CEGUI/Menubar', window renderer 'Falagard/Menubar' Look'N'Feel 'TaharezLook/Menubar' and RenderEffect ''. (0036C1FC)
-27/09/2011 11:00:49 (Std) 	Creating falagard mapping for type 'TaharezLook/PopupMenu' using base type 'CEGUI/PopupMenu', window renderer 'Falagard/PopupMenu' Look'N'Feel 'TaharezLook/PopupMenu' and RenderEffect ''. (0036C1FC)
-27/09/2011 11:00:49 (Std) 	Creating falagard mapping for type 'TaharezLook/MenuItem' using base type 'CEGUI/MenuItem', window renderer 'Falagard/MenuItem' Look'N'Feel 'TaharezLook/MenuItem' and RenderEffect ''. (0036C1FC)
-27/09/2011 11:00:49 (Std) 	Creating falagard mapping for type 'TaharezLook/AlternateProgressBar' using base type 'CEGUI/ProgressBar', window renderer 'Falagard/ProgressBar' Look'N'Feel 'TaharezLook/AltProgressBar' and RenderEffect ''. (0036C1FC)
-27/09/2011 11:00:49 (Std) 	Creating falagard mapping for type 'TaharezLook/ProgressBar' using base type 'CEGUI/ProgressBar', window renderer 'Falagard/ProgressBar' Look'N'Feel 'TaharezLook/ProgressBar' and RenderEffect ''. (0036C1FC)
-27/09/2011 11:00:49 (Std) 	Creating falagard mapping for type 'TaharezLook/VUMeter' using base type 'CEGUI/ProgressBar', window renderer 'Falagard/ProgressBar' Look'N'Feel 'TaharezLook/VUMeter' and RenderEffect ''. (0036C1FC)
-27/09/2011 11:00:49 (Std) 	Creating falagard mapping for type 'TaharezLook/VerticalScrollbar' using base type 'CEGUI/Scrollbar', window renderer 'Falagard/Scrollbar' Look'N'Feel 'TaharezLook/VerticalScrollbar' and RenderEffect ''. (0036C1FC)
-27/09/2011 11:00:49 (Std) 	Creating falagard mapping for type 'TaharezLook/HorizontalScrollbar' using base type 'CEGUI/Scrollbar', window renderer 'Falagard/Scrollbar' Look'N'Feel 'TaharezLook/HorizontalScrollbar' and RenderEffect ''. (0036C1FC)
-27/09/2011 11:00:49 (Std) 	Creating falagard mapping for type 'TaharezLook/VerticalScrollbarThumb' using base type 'CEGUI/Thumb', window renderer 'Falagard/Button' Look'N'Feel 'TaharezLook/VerticalScrollbarThumb' and RenderEffect ''. (0036C1FC)
-27/09/2011 11:00:49 (Std) 	Creating falagard mapping for type 'TaharezLook/HorizontalScrollbarThumb' using base type 'CEGUI/Thumb', window renderer 'Falagard/Button' Look'N'Feel 'TaharezLook/HorizontalScrollbarThumb' and RenderEffect ''. (0036C1FC)
-27/09/2011 11:00:49 (Std) 	Creating falagard mapping for type 'TaharezLook/LargeVerticalScrollbar' using base type 'CEGUI/Scrollbar', window renderer 'Falagard/Scrollbar' Look'N'Feel 'TaharezLook/LargeVerticalScrollbar' and RenderEffect ''. (0036C1FC)
-27/09/2011 11:00:49 (Std) 	Creating falagard mapping for type 'TaharezLook/LargeVerticalScrollbarThumb' using base type 'CEGUI/Thumb', window renderer 'Falagard/Button' Look'N'Feel 'TaharezLook/LargeVerticalScrollbarThumb' and RenderEffect ''. (0036C1FC)
-27/09/2011 11:00:49 (Std) 	Creating falagard mapping for type 'TaharezLook/TabButton' using base type 'CEGUI/TabButton', window renderer 'Falagard/TabButton' Look'N'Feel 'TaharezLook/TabButton' and RenderEffect ''. (0036C1FC)
-27/09/2011 11:00:49 (Std) 	Creating falagard mapping for type 'TaharezLook/TabControl' using base type 'CEGUI/TabControl', window renderer 'Falagard/TabControl' Look'N'Feel 'TaharezLook/TabControl' and RenderEffect ''. (0036C1FC)
-27/09/2011 11:00:49 (Std) 	Creating falagard mapping for type 'TaharezLook/TabContentPane' using base type 'DefaultWindow', window renderer 'Falagard/Default' Look'N'Feel 'TaharezLook/TabContentPane' and RenderEffect ''. (0036C1FC)
-27/09/2011 11:00:49 (Std) 	Creating falagard mapping for type 'TaharezLook/TabButtonPane' using base type 'DefaultWindow', window renderer 'Falagard/Default' Look'N'Feel 'TaharezLook/TabButtonPane' and RenderEffect ''. (0036C1FC)
-27/09/2011 11:00:49 (Std) 	Creating falagard mapping for type 'TaharezLook/ComboDropList' using base type 'CEGUI/ComboDropList', window renderer 'Falagard/Listbox' Look'N'Feel 'TaharezLook/ComboDropList' and RenderEffect ''. (0036C1FC)
-27/09/2011 11:00:49 (Std) 	Creating falagard mapping for type 'TaharezLook/ComboEditbox' using base type 'CEGUI/Editbox', window renderer 'Falagard/Editbox' Look'N'Feel 'TaharezLook/ComboEditbox' and RenderEffect ''. (0036C1FC)
-27/09/2011 11:00:49 (Std) 	Creating falagard mapping for type 'TaharezLook/Combobox' using base type 'CEGUI/Combobox', window renderer 'Falagard/Default' Look'N'Feel 'TaharezLook/Combobox' and RenderEffect ''. (0036C1FC)
-27/09/2011 11:00:49 (Std) 	Creating falagard mapping for type 'TaharezLook/Listbox' using base type 'CEGUI/Listbox', window renderer 'Falagard/Listbox' Look'N'Feel 'TaharezLook/Listbox' and RenderEffect ''. (0036C1FC)
-27/09/2011 11:00:49 (Std) 	Creating falagard mapping for type 'TaharezLook/ListHeader' using base type 'CEGUI/ListHeader', window renderer 'Falagard/ListHeader' Look'N'Feel 'TaharezLook/ListHeader' and RenderEffect ''. (0036C1FC)
-27/09/2011 11:00:49 (Std) 	Creating falagard mapping for type 'TaharezLook/ListHeaderSegment' using base type 'CEGUI/ListHeaderSegment', window renderer 'Falagard/ListHeaderSegment' Look'N'Feel 'TaharezLook/ListHeaderSegment' and RenderEffect ''. (0036C1FC)
-27/09/2011 11:00:49 (Std) 	Creating falagard mapping for type 'TaharezLook/MultiColumnList' using base type 'CEGUI/MultiColumnList', window renderer 'Falagard/MultiColumnList' Look'N'Feel 'TaharezLook/MultiColumnList' and RenderEffect ''. (0036C1FC)
-27/09/2011 11:00:49 (Std) 	Creating falagard mapping for type 'TaharezLook/Slider' using base type 'CEGUI/Slider', window renderer 'Falagard/Slider' Look'N'Feel 'TaharezLook/Slider' and RenderEffect ''. (0036C1FC)
-27/09/2011 11:00:49 (Std) 	Creating falagard mapping for type 'TaharezLook/SliderThumb' using base type 'CEGUI/Thumb', window renderer 'Falagard/Button' Look'N'Feel 'TaharezLook/SliderThumb' and RenderEffect ''. (0036C1FC)
-27/09/2011 11:00:49 (Std) 	Creating falagard mapping for type 'TaharezLook/ScrollablePane' using base type 'CEGUI/ScrollablePane', window renderer 'Falagard/ScrollablePane' Look'N'Feel 'TaharezLook/ScrollablePane' and RenderEffect ''. (0036C1FC)
-27/09/2011 11:00:49 (Std) 	Creating falagard mapping for type 'TaharezLook/Spinner' using base type 'CEGUI/Spinner', window renderer 'Falagard/Default' Look'N'Feel 'TaharezLook/Spinner' and RenderEffect ''. (0036C1FC)
-27/09/2011 11:00:49 (Std) 	Creating falagard mapping for type 'TaharezLook/Tooltip' using base type 'CEGUI/Tooltip', window renderer 'Falagard/Tooltip' Look'N'Feel 'TaharezLook/Tooltip' and RenderEffect ''. (0036C1FC)
-27/09/2011 11:00:49 (Std) 	Creating falagard mapping for type 'TaharezLook/StaticImage' using base type 'DefaultWindow', window renderer 'Falagard/StaticImage' Look'N'Feel 'TaharezLook/StaticImage' and RenderEffect ''. (0036C1FC)
-27/09/2011 11:00:49 (Std) 	Creating falagard mapping for type 'TaharezLook/StaticText' using base type 'DefaultWindow', window renderer 'Falagard/StaticText' Look'N'Feel 'TaharezLook/StaticText' and RenderEffect ''. (0036C1FC)
-27/09/2011 11:00:49 (Std) 	Creating falagard mapping for type 'TaharezLook/ItemListbox' using base type 'CEGUI/ItemListbox', window renderer 'Falagard/ItemListbox' Look'N'Feel 'TaharezLook/ItemListbox' and RenderEffect ''. (0036C1FC)
-27/09/2011 11:00:49 (Std) 	Creating falagard mapping for type 'TaharezLook/ListboxItem' using base type 'CEGUI/ItemEntry', window renderer 'Falagard/ItemEntry' Look'N'Feel 'TaharezLook/ListboxItem' and RenderEffect ''. (0036C1FC)
-27/09/2011 11:00:49 (Std) 	Creating falagard mapping for type 'TaharezLook/GroupBox' using base type 'CEGUI/GroupBox', window renderer 'Falagard/Default' Look'N'Feel 'TaharezLook/GroupBox' and RenderEffect ''. (0036C1FC)
-27/09/2011 11:00:49 (Std) 	Creating falagard mapping for type 'TaharezLook/Tree' using base type 'CEGUI/Tree', window renderer 'Falagard/Tree' Look'N'Feel 'TaharezLook/Tree' and RenderEffect ''. (0036C1FC)
-27/09/2011 11:00:49 (Std) 	Attempting to create Imageset 'DejaVuSans-10_auto_glyph_images_ ' with texture only.
+28/09/2011 21:05:37 (Std) 	CEGUI::Logger singleton created. (07471B58)
+28/09/2011 21:05:37 (Std) 	
+28/09/2011 21:05:37 (Std) 	********************************************************************************
+28/09/2011 21:05:37 (Std) 	* Important:                                                                   *
+28/09/2011 21:05:37 (Std) 	*     To get support at the CEGUI forums, you must post _at least_ the section *
+28/09/2011 21:05:37 (Std) 	*     of this log file indicated below.  Failure to do this will result in no  *
+28/09/2011 21:05:37 (Std) 	*     support being given; please do not waste our time.                       *
+28/09/2011 21:05:37 (Std) 	********************************************************************************
+28/09/2011 21:05:37 (Std) 	********************************************************************************
+28/09/2011 21:05:37 (Std) 	* -------- START OF ESSENTIAL SECTION TO BE POSTED ON THE FORUM       -------- *
+28/09/2011 21:05:37 (Std) 	********************************************************************************
+28/09/2011 21:05:37 (Std) 	---- Version 0.7.5 (Build: Nov 19 2010 Debug Microsoft Windows MSVC++ 9.0 32 bit) ----
+28/09/2011 21:05:37 (Std) 	---- Renderer module is: CEGUI::OgreRenderer - Official OGRE based 2nd generation renderer module. ----
+28/09/2011 21:05:37 (Std) 	---- XML Parser module is: CEGUI::ExpatParser - Official expat based parser module for CEGUI ----
+28/09/2011 21:05:37 (Std) 	---- Image Codec module is: OgreImageCodec - Integrated ImageCodec using the Ogre engine. ----
+28/09/2011 21:05:37 (Std) 	---- Scripting module is: None ----
+28/09/2011 21:05:37 (Std) 	********************************************************************************
+28/09/2011 21:05:37 (Std) 	* -------- END OF ESSENTIAL SECTION TO BE POSTED ON THE FORUM         -------- *
+28/09/2011 21:05:37 (Std) 	********************************************************************************
+28/09/2011 21:05:37 (Std) 	
+28/09/2011 21:05:37 (Std) 	---- Begining CEGUI System initialisation ----
+28/09/2011 21:05:37 (Std) 	CEGUI::ImagesetManager singleton created (0256C150)
+28/09/2011 21:05:37 (Std) 	CEGUI::FontManager singleton created. (0746DC80)
+28/09/2011 21:05:37 (Std) 	CEGUI::WindowFactoryManager singleton created
+28/09/2011 21:05:37 (Std) 	CEGUI::WindowManager singleton created (07463E10)
+28/09/2011 21:05:37 (Std) 	CEGUI::SchemeManager singleton created. (074659A0)
+28/09/2011 21:05:37 (Std) 	CEGUI::MouseCursor singleton created. (07471EA0)
+28/09/2011 21:05:37 (Std) 	CEGUI::GlobalEventSet singleton created. (07463F98)
+28/09/2011 21:05:37 (Std) 	CEGUI::AnimationManager singleton created (07465C88)
+28/09/2011 21:05:37 (Std) 	CEGUI::WidgetLookManager singleton created. (0256CC00)
+28/09/2011 21:05:37 (Std) 	CEGUI::WindowRendererManager singleton created (0747D518)
+28/09/2011 21:05:37 (Std) 	CEGUI::RenderEffectManager singleton created (0747D658)
+28/09/2011 21:05:37 (Std) 	Created WindowFactory for 'DefaultWindow' windows.
+28/09/2011 21:05:37 (Std) 	WindowFactory for 'DefaultWindow' windows added. (0747D810)
+28/09/2011 21:05:37 (Std) 	Created WindowFactory for 'DragContainer' windows.
+28/09/2011 21:05:37 (Std) 	WindowFactory for 'DragContainer' windows added. (0747D9D0)
+28/09/2011 21:05:37 (Std) 	Created WindowFactory for 'ScrolledContainer' windows.
+28/09/2011 21:05:37 (Std) 	WindowFactory for 'ScrolledContainer' windows added. (0747DB90)
+28/09/2011 21:05:37 (Std) 	Created WindowFactory for 'ClippedContainer' windows.
+28/09/2011 21:05:37 (Std) 	WindowFactory for 'ClippedContainer' windows added. (0747DD50)
+28/09/2011 21:05:37 (Std) 	Created WindowFactory for 'CEGUI/Checkbox' windows.
+28/09/2011 21:05:37 (Std) 	WindowFactory for 'CEGUI/Checkbox' windows added. (0747DF60)
+28/09/2011 21:05:37 (Std) 	Created WindowFactory for 'CEGUI/PushButton' windows.
+28/09/2011 21:05:37 (Std) 	WindowFactory for 'CEGUI/PushButton' windows added. (0747E178)
+28/09/2011 21:05:37 (Std) 	Created WindowFactory for 'CEGUI/RadioButton' windows.
+28/09/2011 21:05:37 (Std) 	WindowFactory for 'CEGUI/RadioButton' windows added. (0747E338)
+28/09/2011 21:05:37 (Std) 	Created WindowFactory for 'CEGUI/Combobox' windows.
+28/09/2011 21:05:37 (Std) 	WindowFactory for 'CEGUI/Combobox' windows added. (0747E558)
+28/09/2011 21:05:37 (Std) 	Created WindowFactory for 'CEGUI/ComboDropList' windows.
+28/09/2011 21:05:37 (Std) 	WindowFactory for 'CEGUI/ComboDropList' windows added. (0747E718)
+28/09/2011 21:05:37 (Std) 	Created WindowFactory for 'CEGUI/Editbox' windows.
+28/09/2011 21:05:37 (Std) 	WindowFactory for 'CEGUI/Editbox' windows added. (0747E8D8)
+28/09/2011 21:05:37 (Std) 	Created WindowFactory for 'CEGUI/FrameWindow' windows.
+28/09/2011 21:05:37 (Std) 	WindowFactory for 'CEGUI/FrameWindow' windows added. (0747EB08)
+28/09/2011 21:05:37 (Std) 	Created WindowFactory for 'CEGUI/ItemEntry' windows.
+28/09/2011 21:05:37 (Std) 	WindowFactory for 'CEGUI/ItemEntry' windows added. (0747ECC8)
+28/09/2011 21:05:37 (Std) 	Created WindowFactory for 'CEGUI/Listbox' windows.
+28/09/2011 21:05:37 (Std) 	WindowFactory for 'CEGUI/Listbox' windows added. (0747EE88)
+28/09/2011 21:05:37 (Std) 	Created WindowFactory for 'CEGUI/ListHeader' windows.
+28/09/2011 21:05:37 (Std) 	WindowFactory for 'CEGUI/ListHeader' windows added. (0747F048)
+28/09/2011 21:05:37 (Std) 	Created WindowFactory for 'CEGUI/ListHeaderSegment' windows.
+28/09/2011 21:05:37 (Std) 	WindowFactory for 'CEGUI/ListHeaderSegment' windows added. (0747F208)
+28/09/2011 21:05:37 (Std) 	Created WindowFactory for 'CEGUI/Menubar' windows.
+28/09/2011 21:05:37 (Std) 	WindowFactory for 'CEGUI/Menubar' windows added. (0747F498)
+28/09/2011 21:05:37 (Std) 	Created WindowFactory for 'CEGUI/PopupMenu' windows.
+28/09/2011 21:05:37 (Std) 	WindowFactory for 'CEGUI/PopupMenu' windows added. (0747F858)
+28/09/2011 21:05:37 (Std) 	Created WindowFactory for 'CEGUI/MenuItem' windows.
+28/09/2011 21:05:37 (Std) 	WindowFactory for 'CEGUI/MenuItem' windows added. (0747F930)
+28/09/2011 21:05:37 (Std) 	Created WindowFactory for 'CEGUI/MultiColumnList' windows.
+28/09/2011 21:05:37 (Std) 	WindowFactory for 'CEGUI/MultiColumnList' windows added. (0747FAF0)
+28/09/2011 21:05:37 (Std) 	Created WindowFactory for 'CEGUI/MultiLineEditbox' windows.
+28/09/2011 21:05:37 (Std) 	WindowFactory for 'CEGUI/MultiLineEditbox' windows added. (0747FD50)
+28/09/2011 21:05:37 (Std) 	Created WindowFactory for 'CEGUI/ProgressBar' windows.
+28/09/2011 21:05:37 (Std) 	WindowFactory for 'CEGUI/ProgressBar' windows added. (073FE698)
+28/09/2011 21:05:37 (Std) 	Created WindowFactory for 'CEGUI/ScrollablePane' windows.
+28/09/2011 21:05:37 (Std) 	WindowFactory for 'CEGUI/ScrollablePane' windows added. (073FE858)
+28/09/2011 21:05:37 (Std) 	Created WindowFactory for 'CEGUI/Scrollbar' windows.
+28/09/2011 21:05:37 (Std) 	WindowFactory for 'CEGUI/Scrollbar' windows added. (073FEA18)
+28/09/2011 21:05:37 (Std) 	Created WindowFactory for 'CEGUI/Slider' windows.
+28/09/2011 21:05:37 (Std) 	WindowFactory for 'CEGUI/Slider' windows added. (073FEBD8)
+28/09/2011 21:05:37 (Std) 	Created WindowFactory for 'CEGUI/Spinner' windows.
+28/09/2011 21:05:37 (Std) 	WindowFactory for 'CEGUI/Spinner' windows added. (073FED98)
+28/09/2011 21:05:37 (Std) 	Created WindowFactory for 'CEGUI/TabButton' windows.
+28/09/2011 21:05:37 (Std) 	WindowFactory for 'CEGUI/TabButton' windows added. (073FEF58)
+28/09/2011 21:05:37 (Std) 	Created WindowFactory for 'CEGUI/TabControl' windows.
+28/09/2011 21:05:37 (Std) 	WindowFactory for 'CEGUI/TabControl' windows added. (073FF118)
+28/09/2011 21:05:37 (Std) 	Created WindowFactory for 'CEGUI/Thumb' windows.
+28/09/2011 21:05:37 (Std) 	WindowFactory for 'CEGUI/Thumb' windows added. (073FF2D8)
+28/09/2011 21:05:37 (Std) 	Created WindowFactory for 'CEGUI/Titlebar' windows.
+28/09/2011 21:05:37 (Std) 	WindowFactory for 'CEGUI/Titlebar' windows added. (073FF498)
+28/09/2011 21:05:37 (Std) 	Created WindowFactory for 'CEGUI/Tooltip' windows.
+28/09/2011 21:05:37 (Std) 	WindowFactory for 'CEGUI/Tooltip' windows added. (0747FF10)
+28/09/2011 21:05:37 (Std) 	Created WindowFactory for 'CEGUI/ItemListbox' windows.
+28/09/2011 21:05:37 (Std) 	WindowFactory for 'CEGUI/ItemListbox' windows added. (073FF828)
+28/09/2011 21:05:37 (Std) 	Created WindowFactory for 'CEGUI/GroupBox' windows.
+28/09/2011 21:05:37 (Std) 	WindowFactory for 'CEGUI/GroupBox' windows added. (073FF9E8)
+28/09/2011 21:05:37 (Std) 	Created WindowFactory for 'CEGUI/Tree' windows.
+28/09/2011 21:05:37 (Std) 	WindowFactory for 'CEGUI/Tree' windows added. (073FFBA8)
+28/09/2011 21:05:37 (Std) 	Created WindowFactory for 'HorizontalLayoutContainer' windows.
+28/09/2011 21:05:37 (Std) 	WindowFactory for 'HorizontalLayoutContainer' windows added. (073FFD68)
+28/09/2011 21:05:37 (Std) 	Created WindowFactory for 'VerticalLayoutContainer' windows.
+28/09/2011 21:05:37 (Std) 	WindowFactory for 'VerticalLayoutContainer' windows added. (073FFF28)
+28/09/2011 21:05:37 (Std) 	Created WindowFactory for 'GridLayoutContainer' windows.
+28/09/2011 21:05:37 (Std) 	WindowFactory for 'GridLayoutContainer' windows added. (074000E8)
+28/09/2011 21:05:37 (Std) 	Window type alias named 'DefaultGUISheet' added for window type 'DefaultWindow'.
+28/09/2011 21:05:37 (Std) 	CEGUI::System singleton created. (07471788)
+28/09/2011 21:05:37 (Std) 	---- CEGUI System initialisation completed ----
+28/09/2011 21:05:37 (Std) 	
+28/09/2011 21:05:37 (Std) 	Started creation of Scheme from XML specification:
+28/09/2011 21:05:37 (Std) 	---- CEGUI GUIScheme name: TaharezLook
+28/09/2011 21:05:37 (Std) 	Started creation of Imageset from XML specification:
+28/09/2011 21:05:37 (Std) 	---- CEGUI Imageset name: TaharezLook
+28/09/2011 21:05:37 (Std) 	---- Source texture file: sleekspace.png in resource group: (Default)
+28/09/2011 21:05:37 (Std) 	Started creation of Font from XML specification:
+28/09/2011 21:05:37 (Std) 	---- CEGUI font name: DejaVuSans-10
+28/09/2011 21:05:37 (Std) 	----       Font type: FreeType
+28/09/2011 21:05:37 (Std) 	----     Source file: DejaVuSans.ttf in resource group: (Default)
+28/09/2011 21:05:37 (Std) 	---- Real point size: 10
+28/09/2011 21:05:38 (Std) 	===== Falagard 'root' element: look and feel parsing begins =====
+28/09/2011 21:05:38 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'GenericBrush' could not be found in Imageset 'TaharezLook'.
+28/09/2011 21:05:38 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'GenericBrush' could not be found in Imageset 'TaharezLook'.
+28/09/2011 21:05:38 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'GenericBrush' could not be found in Imageset 'TaharezLook'.
+28/09/2011 21:05:38 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'GenericBrush' could not be found in Imageset 'TaharezLook'.
+28/09/2011 21:05:38 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'TabButtonLowerRight2Normal' could not be found in Imageset 'TaharezLook'.
+28/09/2011 21:05:38 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'TabButtonUpperLeft2Normal' could not be found in Imageset 'TaharezLook'.
+28/09/2011 21:05:38 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'TabButtonLowerRight2Normal' could not be found in Imageset 'TaharezLook'.
+28/09/2011 21:05:38 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'TabButtonUpperLeft2Normal' could not be found in Imageset 'TaharezLook'.
+28/09/2011 21:05:38 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'TabContentPaneUpperLeft' could not be found in Imageset 'TaharezLook'.
+28/09/2011 21:05:38 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'TabContentPaneUpper' could not be found in Imageset 'TaharezLook'.
+28/09/2011 21:05:38 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'TabContentPaneUpperRight' could not be found in Imageset 'TaharezLook'.
+28/09/2011 21:05:38 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'TabContentPaneLeft' could not be found in Imageset 'TaharezLook'.
+28/09/2011 21:05:38 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'TabContentPaneMiddle' could not be found in Imageset 'TaharezLook'.
+28/09/2011 21:05:38 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'TabContentPaneRight' could not be found in Imageset 'TaharezLook'.
+28/09/2011 21:05:38 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'TabContentPaneLowerLeft' could not be found in Imageset 'TaharezLook'.
+28/09/2011 21:05:38 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'TabContentPaneLower' could not be found in Imageset 'TaharezLook'.
+28/09/2011 21:05:38 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'TabContentPaneLowerRight' could not be found in Imageset 'TaharezLook'.
+28/09/2011 21:05:38 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'TabHorizontalFiller' could not be found in Imageset 'TaharezLook'.
+28/09/2011 21:05:38 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'TabHorizontalFiller' could not be found in Imageset 'TaharezLook'.
+28/09/2011 21:05:38 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'MenuTopLeft' could not be found in Imageset 'TaharezLook'.
+28/09/2011 21:05:38 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'MenuTopRight' could not be found in Imageset 'TaharezLook'.
+28/09/2011 21:05:39 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'MenuBottomLeft' could not be found in Imageset 'TaharezLook'.
+28/09/2011 21:05:39 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'MenuBottomRight' could not be found in Imageset 'TaharezLook'.
+28/09/2011 21:05:39 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'MenuLeft' could not be found in Imageset 'TaharezLook'.
+28/09/2011 21:05:39 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'MenuRight' could not be found in Imageset 'TaharezLook'.
+28/09/2011 21:05:39 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'MenuTop' could not be found in Imageset 'TaharezLook'.
+28/09/2011 21:05:39 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'MenuBottom' could not be found in Imageset 'TaharezLook'.
+28/09/2011 21:05:39 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'MenuMiddle' could not be found in Imageset 'TaharezLook'.
+28/09/2011 21:05:39 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'PopupMenuArrowRight' could not be found in Imageset 'TaharezLook'.
+28/09/2011 21:05:39 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'PopupMenuArrowLeft' could not be found in Imageset 'TaharezLook'.
+28/09/2011 21:05:39 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'PopupMenuFrameTopLeft' could not be found in Imageset 'TaharezLook'.
+28/09/2011 21:05:39 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'PopupMenuFrameTopRight' could not be found in Imageset 'TaharezLook'.
+28/09/2011 21:05:39 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'PopupMenuFrameBottomLeft' could not be found in Imageset 'TaharezLook'.
+28/09/2011 21:05:39 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'PopupMenuFrameBottomRight' could not be found in Imageset 'TaharezLook'.
+28/09/2011 21:05:39 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'PopupMenuFrameLeft' could not be found in Imageset 'TaharezLook'.
+28/09/2011 21:05:39 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'PopupMenuFrameRight' could not be found in Imageset 'TaharezLook'.
+28/09/2011 21:05:39 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'PopupMenuFrameTop' could not be found in Imageset 'TaharezLook'.
+28/09/2011 21:05:39 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'PopupMenuFrameBottom' could not be found in Imageset 'TaharezLook'.
+28/09/2011 21:05:39 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'PopupMenuMiddle' could not be found in Imageset 'TaharezLook'.
+28/09/2011 21:05:39 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'PopupMenuFrameTopLeft' could not be found in Imageset 'TaharezLook'.
+28/09/2011 21:05:39 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'PopupMenuFrameTopRight' could not be found in Imageset 'TaharezLook'.
+28/09/2011 21:05:39 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'PopupMenuFrameBottomLeft' could not be found in Imageset 'TaharezLook'.
+28/09/2011 21:05:39 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'PopupMenuFrameBottomRight' could not be found in Imageset 'TaharezLook'.
+28/09/2011 21:05:39 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'PopupMenuFrameLeft' could not be found in Imageset 'TaharezLook'.
+28/09/2011 21:05:39 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'PopupMenuFrameRight' could not be found in Imageset 'TaharezLook'.
+28/09/2011 21:05:39 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'PopupMenuFrameTop' could not be found in Imageset 'TaharezLook'.
+28/09/2011 21:05:39 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'PopupMenuFrameBottom' could not be found in Imageset 'TaharezLook'.
+28/09/2011 21:05:39 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'PopupMenuMiddle' could not be found in Imageset 'TaharezLook'.
+28/09/2011 21:05:39 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'TreeListClosed' could not be found in Imageset 'TaharezLook'.
+28/09/2011 21:05:39 (Error)	CEGUI::UnknownObjectException in file c:\cegui-0.7.5\cegui\src\ceguiimageset.cpp(133) : Imageset::getImage - The Image named 'TreeListOpened' could not be found in Imageset 'TaharezLook'.
+28/09/2011 21:05:39 (Std) 	===== Look and feel parsing completed =====
+28/09/2011 21:05:39 (Std) 	No window renderer factories specified for module 'CEGUIFalagardWRBase' - adding all available factories...
+28/09/2011 21:05:39 (Std) 	Created WindowRendererFactory for 'Falagard/Button' WindowRenderers.
+28/09/2011 21:05:39 (Std) 	WindowRendererFactory 'Falagard/Button' added. (0753C080)
+28/09/2011 21:05:39 (Std) 	Created WindowRendererFactory for 'Falagard/Default' WindowRenderers.
+28/09/2011 21:05:39 (Std) 	WindowRendererFactory 'Falagard/Default' added. (08BE3638)
+28/09/2011 21:05:39 (Std) 	Created WindowRendererFactory for 'Falagard/Editbox' WindowRenderers.
+28/09/2011 21:05:39 (Std) 	WindowRendererFactory 'Falagard/Editbox' added. (075786F0)
+28/09/2011 21:05:39 (Std) 	Created WindowRendererFactory for 'Falagard/FrameWindow' WindowRenderers.
+28/09/2011 21:05:39 (Std) 	WindowRendererFactory 'Falagard/FrameWindow' added. (08BD45F8)
+28/09/2011 21:05:39 (Std) 	Created WindowRendererFactory for 'Falagard/ItemEntry' WindowRenderers.
+28/09/2011 21:05:39 (Std) 	WindowRendererFactory 'Falagard/ItemEntry' added. (08BE33A8)
+28/09/2011 21:05:39 (Std) 	Created WindowRendererFactory for 'Falagard/ListHeader' WindowRenderers.
+28/09/2011 21:05:39 (Std) 	WindowRendererFactory 'Falagard/ListHeader' added. (08BCFCA8)
+28/09/2011 21:05:39 (Std) 	Created WindowRendererFactory for 'Falagard/ListHeaderSegment' WindowRenderers.
+28/09/2011 21:05:39 (Std) 	WindowRendererFactory 'Falagard/ListHeaderSegment' added. (07581C48)
+28/09/2011 21:05:39 (Std) 	Created WindowRendererFactory for 'Falagard/Listbox' WindowRenderers.
+28/09/2011 21:05:39 (Std) 	WindowRendererFactory 'Falagard/Listbox' added. (074023B0)
+28/09/2011 21:05:39 (Std) 	Created WindowRendererFactory for 'Falagard/Menubar' WindowRenderers.
+28/09/2011 21:05:39 (Std) 	WindowRendererFactory 'Falagard/Menubar' added. (08BE6B28)
+28/09/2011 21:05:39 (Std) 	Created WindowRendererFactory for 'Falagard/MenuItem' WindowRenderers.
+28/09/2011 21:05:39 (Std) 	WindowRendererFactory 'Falagard/MenuItem' added. (0742B088)
+28/09/2011 21:05:39 (Std) 	Created WindowRendererFactory for 'Falagard/MultiColumnList' WindowRenderers.
+28/09/2011 21:05:39 (Std) 	WindowRendererFactory 'Falagard/MultiColumnList' added. (0742B248)
+28/09/2011 21:05:39 (Std) 	Created WindowRendererFactory for 'Falagard/MultiLineEditbox' WindowRenderers.
+28/09/2011 21:05:39 (Std) 	WindowRendererFactory 'Falagard/MultiLineEditbox' added. (08BE0640)
+28/09/2011 21:05:39 (Std) 	Created WindowRendererFactory for 'Falagard/PopupMenu' WindowRenderers.
+28/09/2011 21:05:39 (Std) 	WindowRendererFactory 'Falagard/PopupMenu' added. (08BE0800)
+28/09/2011 21:05:39 (Std) 	Created WindowRendererFactory for 'Falagard/ProgressBar' WindowRenderers.
+28/09/2011 21:05:39 (Std) 	WindowRendererFactory 'Falagard/ProgressBar' added. (08BE09C0)
+28/09/2011 21:05:39 (Std) 	Created WindowRendererFactory for 'Falagard/ScrollablePane' WindowRenderers.
+28/09/2011 21:05:39 (Std) 	WindowRendererFactory 'Falagard/ScrollablePane' added. (08BE0B80)
+28/09/2011 21:05:39 (Std) 	Created WindowRendererFactory for 'Falagard/Scrollbar' WindowRenderers.
+28/09/2011 21:05:39 (Std) 	WindowRendererFactory 'Falagard/Scrollbar' added. (08BE0D40)
+28/09/2011 21:05:39 (Std) 	Created WindowRendererFactory for 'Falagard/Slider' WindowRenderers.
+28/09/2011 21:05:39 (Std) 	WindowRendererFactory 'Falagard/Slider' added. (08BE3DF8)
+28/09/2011 21:05:39 (Std) 	Created WindowRendererFactory for 'Falagard/Static' WindowRenderers.
+28/09/2011 21:05:39 (Std) 	WindowRendererFactory 'Falagard/Static' added. (08BE3FB8)
+28/09/2011 21:05:39 (Std) 	Created WindowRendererFactory for 'Falagard/StaticImage' WindowRenderers.
+28/09/2011 21:05:39 (Std) 	WindowRendererFactory 'Falagard/StaticImage' added. (08BE4178)
+28/09/2011 21:05:39 (Std) 	Created WindowRendererFactory for 'Falagard/StaticText' WindowRenderers.
+28/09/2011 21:05:39 (Std) 	WindowRendererFactory 'Falagard/StaticText' added. (08BE4338)
+28/09/2011 21:05:39 (Std) 	Created WindowRendererFactory for 'Falagard/SystemButton' WindowRenderers.
+28/09/2011 21:05:39 (Std) 	WindowRendererFactory 'Falagard/SystemButton' added. (07400478)
+28/09/2011 21:05:39 (Std) 	Created WindowRendererFactory for 'Falagard/TabButton' WindowRenderers.
+28/09/2011 21:05:39 (Std) 	WindowRendererFactory 'Falagard/TabButton' added. (07400638)
+28/09/2011 21:05:39 (Std) 	Created WindowRendererFactory for 'Falagard/TabControl' WindowRenderers.
+28/09/2011 21:05:39 (Std) 	WindowRendererFactory 'Falagard/TabControl' added. (074007F8)
+28/09/2011 21:05:39 (Std) 	Created WindowRendererFactory for 'Falagard/Titlebar' WindowRenderers.
+28/09/2011 21:05:39 (Std) 	WindowRendererFactory 'Falagard/Titlebar' added. (074009B8)
+28/09/2011 21:05:39 (Std) 	Created WindowRendererFactory for 'Falagard/ToggleButton' WindowRenderers.
+28/09/2011 21:05:39 (Std) 	WindowRendererFactory 'Falagard/ToggleButton' added. (07400B78)
+28/09/2011 21:05:39 (Std) 	Created WindowRendererFactory for 'Falagard/Tooltip' WindowRenderers.
+28/09/2011 21:05:39 (Std) 	WindowRendererFactory 'Falagard/Tooltip' added. (07400D38)
+28/09/2011 21:05:39 (Std) 	Created WindowRendererFactory for 'Falagard/ItemListbox' WindowRenderers.
+28/09/2011 21:05:39 (Std) 	WindowRendererFactory 'Falagard/ItemListbox' added. (07455DA0)
+28/09/2011 21:05:39 (Std) 	Created WindowRendererFactory for 'Falagard/Tree' WindowRenderers.
+28/09/2011 21:05:39 (Std) 	WindowRendererFactory 'Falagard/Tree' added. (07455F60)
+28/09/2011 21:05:39 (Std) 	Creating falagard mapping for type 'TaharezLook/Button' using base type 'CEGUI/PushButton', window renderer 'Falagard/Button' Look'N'Feel 'TaharezLook/Button' and RenderEffect ''. (0051B360)
+28/09/2011 21:05:39 (Std) 	Creating falagard mapping for type 'TaharezLook/Checkbox' using base type 'CEGUI/Checkbox', window renderer 'Falagard/ToggleButton' Look'N'Feel 'TaharezLook/Checkbox' and RenderEffect ''. (0051B360)
+28/09/2011 21:05:39 (Std) 	Creating falagard mapping for type 'TaharezLook/ImageButton' using base type 'CEGUI/PushButton', window renderer 'Falagard/Button' Look'N'Feel 'TaharezLook/ImageButton' and RenderEffect ''. (0051B360)
+28/09/2011 21:05:39 (Std) 	Creating falagard mapping for type 'TaharezLook/RadioButton' using base type 'CEGUI/RadioButton', window renderer 'Falagard/ToggleButton' Look'N'Feel 'TaharezLook/RadioButton' and RenderEffect ''. (0051B360)
+28/09/2011 21:05:39 (Std) 	Creating falagard mapping for type 'TaharezLook/FrameWindow' using base type 'CEGUI/FrameWindow', window renderer 'Falagard/FrameWindow' Look'N'Feel 'TaharezLook/FrameWindow' and RenderEffect ''. (0051B360)
+28/09/2011 21:05:39 (Std) 	Creating falagard mapping for type 'TaharezLook/Titlebar' using base type 'CEGUI/Titlebar', window renderer 'Falagard/Titlebar' Look'N'Feel 'TaharezLook/Titlebar' and RenderEffect ''. (0051B360)
+28/09/2011 21:05:39 (Std) 	Creating falagard mapping for type 'TaharezLook/SystemButton' using base type 'CEGUI/PushButton', window renderer 'Falagard/Button' Look'N'Feel 'TaharezLook/Button' and RenderEffect ''. (0051B360)
+28/09/2011 21:05:39 (Std) 	Creating falagard mapping for type 'TaharezLook/Editbox' using base type 'CEGUI/Editbox', window renderer 'Falagard/Editbox' Look'N'Feel 'TaharezLook/Editbox' and RenderEffect ''. (0051B360)
+28/09/2011 21:05:39 (Std) 	Creating falagard mapping for type 'TaharezLook/MultiLineEditbox' using base type 'CEGUI/MultiLineEditbox', window renderer 'Falagard/MultiLineEditbox' Look'N'Feel 'TaharezLook/MultiLineEditbox' and RenderEffect ''. (0051B360)
+28/09/2011 21:05:39 (Std) 	Creating falagard mapping for type 'TaharezLook/Menubar' using base type 'CEGUI/Menubar', window renderer 'Falagard/Menubar' Look'N'Feel 'TaharezLook/Menubar' and RenderEffect ''. (0051B360)
+28/09/2011 21:05:39 (Std) 	Creating falagard mapping for type 'TaharezLook/PopupMenu' using base type 'CEGUI/PopupMenu', window renderer 'Falagard/PopupMenu' Look'N'Feel 'TaharezLook/PopupMenu' and RenderEffect ''. (0051B360)
+28/09/2011 21:05:39 (Std) 	Creating falagard mapping for type 'TaharezLook/MenuItem' using base type 'CEGUI/MenuItem', window renderer 'Falagard/MenuItem' Look'N'Feel 'TaharezLook/MenuItem' and RenderEffect ''. (0051B360)
+28/09/2011 21:05:39 (Std) 	Creating falagard mapping for type 'TaharezLook/AlternateProgressBar' using base type 'CEGUI/ProgressBar', window renderer 'Falagard/ProgressBar' Look'N'Feel 'TaharezLook/AltProgressBar' and RenderEffect ''. (0051B360)
+28/09/2011 21:05:39 (Std) 	Creating falagard mapping for type 'TaharezLook/ProgressBar' using base type 'CEGUI/ProgressBar', window renderer 'Falagard/ProgressBar' Look'N'Feel 'TaharezLook/ProgressBar' and RenderEffect ''. (0051B360)
+28/09/2011 21:05:39 (Std) 	Creating falagard mapping for type 'TaharezLook/VUMeter' using base type 'CEGUI/ProgressBar', window renderer 'Falagard/ProgressBar' Look'N'Feel 'TaharezLook/VUMeter' and RenderEffect ''. (0051B360)
+28/09/2011 21:05:39 (Std) 	Creating falagard mapping for type 'TaharezLook/VerticalScrollbar' using base type 'CEGUI/Scrollbar', window renderer 'Falagard/Scrollbar' Look'N'Feel 'TaharezLook/VerticalScrollbar' and RenderEffect ''. (0051B360)
+28/09/2011 21:05:39 (Std) 	Creating falagard mapping for type 'TaharezLook/HorizontalScrollbar' using base type 'CEGUI/Scrollbar', window renderer 'Falagard/Scrollbar' Look'N'Feel 'TaharezLook/HorizontalScrollbar' and RenderEffect ''. (0051B360)
+28/09/2011 21:05:39 (Std) 	Creating falagard mapping for type 'TaharezLook/VerticalScrollbarThumb' using base type 'CEGUI/Thumb', window renderer 'Falagard/Button' Look'N'Feel 'TaharezLook/VerticalScrollbarThumb' and RenderEffect ''. (0051B360)
+28/09/2011 21:05:39 (Std) 	Creating falagard mapping for type 'TaharezLook/HorizontalScrollbarThumb' using base type 'CEGUI/Thumb', window renderer 'Falagard/Button' Look'N'Feel 'TaharezLook/HorizontalScrollbarThumb' and RenderEffect ''. (0051B360)
+28/09/2011 21:05:39 (Std) 	Creating falagard mapping for type 'TaharezLook/LargeVerticalScrollbar' using base type 'CEGUI/Scrollbar', window renderer 'Falagard/Scrollbar' Look'N'Feel 'TaharezLook/LargeVerticalScrollbar' and RenderEffect ''. (0051B360)
+28/09/2011 21:05:39 (Std) 	Creating falagard mapping for type 'TaharezLook/LargeVerticalScrollbarThumb' using base type 'CEGUI/Thumb', window renderer 'Falagard/Button' Look'N'Feel 'TaharezLook/LargeVerticalScrollbarThumb' and RenderEffect ''. (0051B360)
+28/09/2011 21:05:39 (Std) 	Creating falagard mapping for type 'TaharezLook/TabButton' using base type 'CEGUI/TabButton', window renderer 'Falagard/TabButton' Look'N'Feel 'TaharezLook/TabButton' and RenderEffect ''. (0051B360)
+28/09/2011 21:05:39 (Std) 	Creating falagard mapping for type 'TaharezLook/TabControl' using base type 'CEGUI/TabControl', window renderer 'Falagard/TabControl' Look'N'Feel 'TaharezLook/TabControl' and RenderEffect ''. (0051B360)
+28/09/2011 21:05:39 (Std) 	Creating falagard mapping for type 'TaharezLook/TabContentPane' using base type 'DefaultWindow', window renderer 'Falagard/Default' Look'N'Feel 'TaharezLook/TabContentPane' and RenderEffect ''. (0051B360)
+28/09/2011 21:05:39 (Std) 	Creating falagard mapping for type 'TaharezLook/TabButtonPane' using base type 'DefaultWindow', window renderer 'Falagard/Default' Look'N'Feel 'TaharezLook/TabButtonPane' and RenderEffect ''. (0051B360)
+28/09/2011 21:05:39 (Std) 	Creating falagard mapping for type 'TaharezLook/ComboDropList' using base type 'CEGUI/ComboDropList', window renderer 'Falagard/Listbox' Look'N'Feel 'TaharezLook/ComboDropList' and RenderEffect ''. (0051B360)
+28/09/2011 21:05:39 (Std) 	Creating falagard mapping for type 'TaharezLook/ComboEditbox' using base type 'CEGUI/Editbox', window renderer 'Falagard/Editbox' Look'N'Feel 'TaharezLook/ComboEditbox' and RenderEffect ''. (0051B360)
+28/09/2011 21:05:39 (Std) 	Creating falagard mapping for type 'TaharezLook/Combobox' using base type 'CEGUI/Combobox', window renderer 'Falagard/Default' Look'N'Feel 'TaharezLook/Combobox' and RenderEffect ''. (0051B360)
+28/09/2011 21:05:39 (Std) 	Creating falagard mapping for type 'TaharezLook/Listbox' using base type 'CEGUI/Listbox', window renderer 'Falagard/Listbox' Look'N'Feel 'TaharezLook/Listbox' and RenderEffect ''. (0051B360)
+28/09/2011 21:05:39 (Std) 	Creating falagard mapping for type 'TaharezLook/ListHeader' using base type 'CEGUI/ListHeader', window renderer 'Falagard/ListHeader' Look'N'Feel 'TaharezLook/ListHeader' and RenderEffect ''. (0051B360)
+28/09/2011 21:05:39 (Std) 	Creating falagard mapping for type 'TaharezLook/ListHeaderSegment' using base type 'CEGUI/ListHeaderSegment', window renderer 'Falagard/ListHeaderSegment' Look'N'Feel 'TaharezLook/ListHeaderSegment' and RenderEffect ''. (0051B360)
+28/09/2011 21:05:39 (Std) 	Creating falagard mapping for type 'TaharezLook/MultiColumnList' using base type 'CEGUI/MultiColumnList', window renderer 'Falagard/MultiColumnList' Look'N'Feel 'TaharezLook/MultiColumnList' and RenderEffect ''. (0051B360)
+28/09/2011 21:05:39 (Std) 	Creating falagard mapping for type 'TaharezLook/Slider' using base type 'CEGUI/Slider', window renderer 'Falagard/Slider' Look'N'Feel 'TaharezLook/Slider' and RenderEffect ''. (0051B360)
+28/09/2011 21:05:39 (Std) 	Creating falagard mapping for type 'TaharezLook/SliderThumb' using base type 'CEGUI/Thumb', window renderer 'Falagard/Button' Look'N'Feel 'TaharezLook/SliderThumb' and RenderEffect ''. (0051B360)
+28/09/2011 21:05:39 (Std) 	Creating falagard mapping for type 'TaharezLook/ScrollablePane' using base type 'CEGUI/ScrollablePane', window renderer 'Falagard/ScrollablePane' Look'N'Feel 'TaharezLook/ScrollablePane' and RenderEffect ''. (0051B360)
+28/09/2011 21:05:39 (Std) 	Creating falagard mapping for type 'TaharezLook/Spinner' using base type 'CEGUI/Spinner', window renderer 'Falagard/Default' Look'N'Feel 'TaharezLook/Spinner' and RenderEffect ''. (0051B360)
+28/09/2011 21:05:39 (Std) 	Creating falagard mapping for type 'TaharezLook/Tooltip' using base type 'CEGUI/Tooltip', window renderer 'Falagard/Tooltip' Look'N'Feel 'TaharezLook/Tooltip' and RenderEffect ''. (0051B360)
+28/09/2011 21:05:39 (Std) 	Creating falagard mapping for type 'TaharezLook/StaticImage' using base type 'DefaultWindow', window renderer 'Falagard/StaticImage' Look'N'Feel 'TaharezLook/StaticImage' and RenderEffect ''. (0051B360)
+28/09/2011 21:05:39 (Std) 	Creating falagard mapping for type 'TaharezLook/StaticText' using base type 'DefaultWindow', window renderer 'Falagard/StaticText' Look'N'Feel 'TaharezLook/StaticText' and RenderEffect ''. (0051B360)
+28/09/2011 21:05:39 (Std) 	Creating falagard mapping for type 'TaharezLook/ItemListbox' using base type 'CEGUI/ItemListbox', window renderer 'Falagard/ItemListbox' Look'N'Feel 'TaharezLook/ItemListbox' and RenderEffect ''. (0051B360)
+28/09/2011 21:05:39 (Std) 	Creating falagard mapping for type 'TaharezLook/ListboxItem' using base type 'CEGUI/ItemEntry', window renderer 'Falagard/ItemEntry' Look'N'Feel 'TaharezLook/ListboxItem' and RenderEffect ''. (0051B360)
+28/09/2011 21:05:39 (Std) 	Creating falagard mapping for type 'TaharezLook/GroupBox' using base type 'CEGUI/GroupBox', window renderer 'Falagard/Default' Look'N'Feel 'TaharezLook/GroupBox' and RenderEffect ''. (0051B360)
+28/09/2011 21:05:39 (Std) 	Creating falagard mapping for type 'TaharezLook/Tree' using base type 'CEGUI/Tree', window renderer 'Falagard/Tree' Look'N'Feel 'TaharezLook/Tree' and RenderEffect ''. (0051B360)
+28/09/2011 21:05:39 (Std) 	Attempting to create Imageset 'DejaVuSans-10_auto_glyph_images_ ' with texture only.
