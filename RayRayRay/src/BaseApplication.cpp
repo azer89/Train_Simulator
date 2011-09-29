@@ -64,7 +64,7 @@ bool BaseApplication::configure(void)
     {
         // If returned true, user clicked OK so initialise
         // Here we choose to let the system create a default rendering window by passing 'true'
-        mWindow = mRoot->initialise(true, "InterfaceExample Render Window");
+        mWindow = mRoot->initialise(true, "Ray~Ray~Ray");
 
         // Let's add a nice window icon
 #if OGRE_PLATFORM == OGRE_PLATFORM_WIN32
@@ -126,6 +126,7 @@ void BaseApplication::createFrameListener(void)
     //Register as a Window listener
     Ogre::WindowEventUtilities::addWindowEventListener(mWindow, this);
 
+	
     mTrayMgr = new OgreBites::SdkTrayManager("InterfaceName", mWindow, mMouse, this);
     mTrayMgr->showFrameStats(OgreBites::TL_BOTTOMLEFT);
     mTrayMgr->showLogo(OgreBites::TL_BOTTOMRIGHT);
@@ -386,7 +387,7 @@ bool BaseApplication::keyReleased( const OIS::KeyEvent &arg )
 bool BaseApplication::mouseMoved( const OIS::MouseEvent &arg )
 {
     if (mTrayMgr->injectMouseMove(arg)) return true;
-   // mCameraMan->injectMouseMove(arg);
+    // mCameraMan->injectMouseMove(arg);
     return true;
 }
 
