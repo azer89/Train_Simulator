@@ -6,7 +6,6 @@
 Rail::Rail(void)
 {
 	this->num = 0;
-	//num = OGRE_NEW Ogre::int32();
 }
 //-------------------------------------------------------------------------------------
 Rail::~Rail(void)
@@ -25,9 +24,10 @@ Ogre::SceneNode* Rail::addPoint(Ogre::SceneManager* mSceneMgr, Ogre::Vector3 pos
 
 	Ogre::Entity* ent;
 	ent = mSceneMgr->createEntity(name, "cube.mesh");
+	ent->setCastShadows(true);
 	
-	std::cout << "name = " << ent->getName() << "\n"; // debug
-	std::cout << "number = " << this->num << "\n"; // debug
+	// std::cout << "name = " << ent->getName() << "\n"; // debug
+	// std::cout << "number = " << this->num << "\n"; // debug
 
 	// attach the object to a scene node
 	Ogre::SceneNode* mNode = mSceneMgr->getRootSceneNode()->createChildSceneNode(std::string(name) + "Node", pos);

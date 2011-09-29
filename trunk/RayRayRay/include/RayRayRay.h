@@ -62,8 +62,8 @@ protected:
 
 	// OIS::KeyListener
 	virtual bool keyPressed(const OIS::KeyEvent& arg);
-	//virtual bool keyReleased( const OIS::KeyEvent &arg );
 
+	//virtual bool keyReleased( const OIS::KeyEvent &arg );
 	//bool quit(const CEGUI::EventArgs &e);
  
 	Ogre::SceneNode *mCurrentObject;	//pointer to our currently selected object
@@ -81,10 +81,6 @@ private:
 	RayTerrain* rayTerrain;
 
     OgreBites::Label* mInfoLabel;
-
-	
-
-
 };
 
 #endif // #ifndef __RayRayRay_h_

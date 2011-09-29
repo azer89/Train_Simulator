@@ -125,12 +125,11 @@ void BaseApplication::createFrameListener(void)
 
     //Register as a Window listener
     Ogre::WindowEventUtilities::addWindowEventListener(mWindow, this);
-
 	
     mTrayMgr = new OgreBites::SdkTrayManager("InterfaceName", mWindow, mMouse, this);
     mTrayMgr->showFrameStats(OgreBites::TL_BOTTOMLEFT);
     mTrayMgr->showLogo(OgreBites::TL_BOTTOMRIGHT);
-   // mTrayMgr->hideCursor();
+    // mTrayMgr->hideCursor();
 
     // create a params panel for displaying sample details
     Ogre::StringVector items;
@@ -241,6 +240,7 @@ bool BaseApplication::setup(void)
 
     // Create any resource listeners (for loading screens)
     createResourceListener();
+
     // Load resources
     loadResources();
 
