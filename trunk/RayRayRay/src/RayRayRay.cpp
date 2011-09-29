@@ -42,6 +42,7 @@ void RayRayRay::destroyScene(void)
 {
 	if(rail) delete rail;
 	if(rayTerrain) delete rayTerrain;
+	if(menu) delete menu;
 }
 
 
@@ -95,13 +96,6 @@ void RayRayRay::createScene(void)
  
     //mSceneMgr->setSkyDome(true, "Examples/CloudySky", 5, 8, 500);
 	mSceneMgr->setSkyPlane(true, plane, "Examples/CloudySky", 50, 10 , true, 0.7, 10, 10); 
-	
-	//CEGUI setup
-	//mGUIRenderer = &CEGUI::OgreRenderer::bootstrapSystem();
-
-	//show the CEGUI cursor
-	//CEGUI::SchemeManager::getSingleton().create((CEGUI::utf8*)"WindowsLook.scheme");
-	//CEGUI::MouseCursor::getSingleton().setImage("WindowsLook", "MouseArrow");
 }
  
 //-------------------------------------------------------------------------------------
@@ -150,6 +144,7 @@ bool RayRayRay::frameRenderingQueued(const Ogre::FrameEvent& arg)
 		mTrayMgr->hideLogo();
 		mTrayMgr->toggleAdvancedFrameStats();
 		hideTray = true;
+		
 	}
 
 	// This next big chunk basically sends a raycast straight down from the camera's position
@@ -202,7 +197,7 @@ bool RayRayRay::frameRenderingQueued(const Ogre::FrameEvent& arg)
     }
 
 	// update Hikari
-	menu->hikariMgr->update();
+	menu->update(this->mWindow);
 
 	return true;
 }
@@ -220,15 +215,6 @@ bool RayRayRay::mouseMoved(const OIS::MouseEvent& arg)
 
 	Ogre::Real offsetX = (float)arg.state.X.abs / (float)arg.state.width;
 	Ogre::Real offsetY = (float)arg.state.Y.abs / (float)arg.state.height;
-	
-	//std::cout << "mouseX" << offsetX << "\n";
-	//std::cout << "mouseY" << offsetY << "\n";
-
-	//mTrayMgr->getCursorImage()->setPosition(offsetX, offsetY);
-	//mTrayMgr->getCursorContainer()->setPosition(offsetX, offsetY);
-
-	//updates CEGUI with mouse movement
-	//CEGUI::System::getSingleton().injectMouseMove(arg.state.X.rel, arg.state.Y.rel);
 
 	//using namespace Hikari;
 	bool val = menu->hikariMgr->injectMouseMove(arg.state.X.abs, arg.state.Y.abs) ||  menu->hikariMgr->injectMouseWheel(arg.state.Z.rel);
@@ -323,7 +309,6 @@ bool RayRayRay::mousePressed(const OIS::MouseEvent& arg, OIS::MouseButtonID id)
 	}
 	else if(id == OIS::MB_Right)	// if the right mouse button is held we hide the mouse cursor for view mode
 	{
-		//CEGUI::MouseCursor::getSingleton().hide();
 		bRMouseDown = true;
 	}
 
