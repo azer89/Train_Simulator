@@ -49,12 +49,12 @@ void RayRayRay::destroyScene(void)
 //-------------------------------------------------------------------------------------
 void RayRayRay::createScene(void)
 {
+	// Water
+
 	// Set Hikari
 	hViewPort = mCamera->getViewport();
 	menu = new RayFlashInterface(this);
 	menu->setupHikari();
-
-	
 
 	// set Rail
 	rail = new Rail();
@@ -76,6 +76,7 @@ void RayRayRay::createScene(void)
 	//  Ogre::MaterialManager::getSingleton().setDefaultTextureFiltering(Ogre::TFO_ANISOTROPIC);
 	//  Ogre::MaterialManager::getSingleton().setDefaultAnisotropy(7);
  
+	
     Ogre::Vector3 lightdir(0.55, -0.3, 0.75);
     lightdir.normalise();
  
@@ -84,9 +85,9 @@ void RayRayRay::createScene(void)
     light->setDirection(lightdir);
     light->setDiffuseColour(Ogre::ColourValue::White);
     light->setSpecularColour(Ogre::ColourValue(0.4, 0.4, 0.4));
- 
-    mSceneMgr->setAmbientLight(Ogre::ColourValue(0.2, 0.2, 0.2));
-
+	mSceneMgr->setAmbientLight(Ogre::ColourValue(0.4, 0.4, 0.4));
+    mSceneMgr->setShadowTechnique(Ogre::SHADOWTYPE_STENCIL_ADDITIVE);
+	
 	// set up Terrain
 	rayTerrain->createTerrain(this->mSceneMgr, light);
 
@@ -164,8 +165,6 @@ bool RayRayRay::frameRenderingQueued(const Ogre::FrameEvent& arg)
 			mCamera->setPosition(camPos.x, terrainHeight + 10.0f, camPos.z);
 		}			
 	}
-
-
 	
 	if (rayTerrain->getTerrainGroup()->isDerivedDataUpdateInProgress())
     {
@@ -226,13 +225,13 @@ bool RayRayRay::mouseMoved(const OIS::MouseEvent& arg)
 		Ogre::Ray mouseRay = mCamera->getCameraToViewportRay(offsetX, offsetY);
 
 		Ogre::Vector3 camPos = mCamera->getPosition();
-		Ogre::Terrain* pTerrain = rayTerrain->getTerrainGroup()->getTerrain(0, 0);
+		Ogre::Terrain* pTerrain = rayTerrain->getTerrainGroup()->getTerrain(0, 0); 
 		std::pair <bool, Ogre::Vector3> test;
 		test = pTerrain->rayIntersects(mouseRay, true, 0);
 
 		if (mCurrentObject && test.first) 
 		{
-			mCurrentObject->setPosition(test.second + Ogre::Vector3(0, 10, 0));
+			mCurrentObject->setPosition(test.second);
 		}
 	}
 	else if(bRMouseDown)	//if the right mouse button is held down, be rotate the camera with the mouse
@@ -265,7 +264,7 @@ bool RayRayRay::mousePressed(const OIS::MouseEvent& arg, OIS::MouseButtonID id)
 		mRayScnQuery->setRay(mouseRay);
 		mRayScnQuery->setSortByDistance(true);
 
-		// create rayIntersect fro TerrainGroup
+		// create rayIntersect fro TerrainGroup		
 		Ogre::Terrain* pTerrain = rayTerrain->getTerrainGroup()->getTerrain(0, 0);
 		std::pair <bool, Ogre::Vector3> test;
 		test = pTerrain->rayIntersects(mouseRay, true, 0);
@@ -283,7 +282,7 @@ bool RayRayRay::mousePressed(const OIS::MouseEvent& arg, OIS::MouseButtonID id)
 			if(iter->movable && iter->movable->getName().substr(0, 5) != "tile[")
 			{
 				Ogre::SceneNode* tempNode = iter->movable->getParentSceneNode();
-				std::cout << tempNode->getName() << "\n";
+				//std::cout << tempNode->getName() << "\n";
 				if(tempNode->getName() == "Unnamed_3") continue;
 			
 				mCurrentObject = tempNode;
@@ -295,7 +294,7 @@ bool RayRayRay::mousePressed(const OIS::MouseEvent& arg, OIS::MouseButtonID id)
 
 		if(test.first && !getObject)
 		{
-			mCurrentObject = rail->addPoint(mSceneMgr, test.second + Ogre::Vector3(0, 10, 0));
+			mCurrentObject = rail->addPoint(mSceneMgr, test.second);
 		}
  
 		//now we show the bounding box so the user can see that this object is selected

@@ -18,6 +18,11 @@ void RayTerrain::createTerrain(Ogre::SceneManager* mSceneMgr, Ogre::Light* light
 	this->mSceneMgr = mSceneMgr;
 
 	mTerrainGlobals = OGRE_NEW Ogre::TerrainGlobalOptions();
+
+	// still not work
+	//mTerrainGlobals->setCastsDynamicShadows(true);
+	//mTerrainGlobals->setLightMapDirection(light->getDirection());
+
 	mTerrainGroup = OGRE_NEW Ogre::TerrainGroup(this->mSceneMgr, Ogre::Terrain::ALIGN_X_Z, 65, 1000.f);
 	
     mTerrainGroup->setFilenameConvention(Ogre::String("RayRayRay"), Ogre::String("dat"));
@@ -38,6 +43,9 @@ void RayTerrain::createTerrain(Ogre::SceneManager* mSceneMgr, Ogre::Light* light
         while(ti.hasMoreElements())
         {
             Ogre::Terrain* t = ti.getNext()->instance;
+			
+			t->getMaterial()->setReceiveShadows(true);
+
             initBlendMaps(t);
         }
     }
@@ -98,6 +106,7 @@ void RayTerrain::defineTerrain(long x, long y)
 //-------------------------------------------------------------------------------------
 void RayTerrain::initBlendMaps(Ogre::Terrain* terrain)
 {
+	
 	Ogre::TerrainLayerBlendMap* blendMap0 = terrain->getLayerBlendMap(1);
     Ogre::TerrainLayerBlendMap* blendMap1 = terrain->getLayerBlendMap(2);
     Ogre::Real minHeight0 = 40;
@@ -134,6 +143,7 @@ void RayTerrain::configureTerrainDefaults(Ogre::Light* light)
     mTerrainGlobals->setMaxPixelError(8);
     // testing composite map
     mTerrainGlobals->setCompositeMapDistance(3000);
+	//mTerrainGlobals->setCastsDynamicShadows(true);
 	
     // Important to set these so that the terrain knows what to use for derived (non-realtime) data
     mTerrainGlobals->setLightMapDirection(light->getDerivedDirection());
