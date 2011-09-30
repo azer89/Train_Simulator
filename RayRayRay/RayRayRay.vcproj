@@ -201,6 +201,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\DynamicLines.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\DynamicRenderable.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\Rail.cpp"
 				>
 			</File>
@@ -228,6 +236,14 @@
 			</File>
 			<File
 				RelativePath=".\include\ClassDefine.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\DynamicLines.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\DynamicRenderable.h"
 				>
 			</File>
 			<File
