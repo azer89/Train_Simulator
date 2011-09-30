@@ -12,15 +12,18 @@
 class Rail
 {
 public:
-	Rail(void);
+	Rail(Ogre::SceneManager* mSceneMgr);
     virtual ~Rail(void);
 
-	Ogre::list<Ogre::Entity*>::type getRailPoints();
-	Ogre::SceneNode* addPoint(Ogre::SceneManager* mSceneMgr, Ogre::Vector3 pos);
-	
+	std::vector<Ogre::Entity*> getRailPoints();
+	Ogre::SceneNode* addPoint(Ogre::Vector3 pos);
+	void updateTrack(void);
 
 private:
 	int num;
-	Ogre::list<Ogre::Entity*>::type railPoints;
-	Ogre::list<Ogre::SceneNode*>::type railNodes;
+	Ogre::SceneManager* mSceneMgr;
+	//Ogre::SimpleSpline* splineLine;
+	Ogre::SceneNode* trackNode;
+	std::vector<Ogre::Entity*> railPoints;
+	std::vector<Ogre::SceneNode*> railNodes;
 };

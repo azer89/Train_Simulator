@@ -1,4 +1,4 @@
-
+#include "Stdafx.h"
 
 #include "RayFlashInterface.h"
 #include "RayRayRay.h"

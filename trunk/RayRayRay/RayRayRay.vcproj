@@ -39,8 +39,9 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="-Zm256"
 				Optimization="0"
-				AdditionalIncludeDirectories="include;&quot;$(OGRE_HOME)\include&quot;;&quot;$(OGRE_HOME)\include\OIS&quot;;&quot;$(OGRE_HOME)\include\OGRE&quot;;&quot;$(OGRE_HOME)\Samples\Common\include&quot;;&quot;$(OGRE_HOME)\boost_1_44&quot;;&quot;C:\CEGUI-SDK-0.7.5-vc9\cegui\include&quot;;&quot;C:\CEGUI-SDK-0.7.5-vc9\cegui\include\RendererModules\Ogre&quot;"
+				AdditionalIncludeDirectories="include;&quot;$(OGRE_HOME)\include&quot;;&quot;$(OGRE_HOME)\include\OIS&quot;;&quot;$(OGRE_HOME)\include\OGRE&quot;;&quot;$(OGRE_HOME)\Samples\Common\include&quot;;&quot;$(OGRE_HOME)\boost_1_44&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS"
 				MinimalRebuild="true"
 				ExceptionHandling="1"
@@ -49,7 +50,7 @@
 				EnableFunctionLevelLinking="true"
 				FloatingPointModel="2"
 				RuntimeTypeInfo="true"
-				UsePrecompiledHeader="0"
+				UsePrecompiledHeader="1"
 				WarningLevel="3"
 				DebugInformationFormat="4"
 			/>
@@ -67,7 +68,7 @@
 				AdditionalDependencies="OgreMain_d.lib OIS_d.lib CEGUIOgreRenderer_d.lib CEGUIBase_d.lib OgreTerrain_d.lib Hikari_d.lib"
 				OutputFile="$(OutDir)\$(ProjectName).exe"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories="&quot;$(OGRE_HOME)\lib\debug&quot;;&quot;$(OGRE_HOME)\boost_1_44\lib&quot;;&quot;C:\CEGUI-SDK-0.7.5-vc9\lib&quot;;bin\Debug"
+				AdditionalLibraryDirectories="&quot;$(OGRE_HOME)\lib\debug&quot;;&quot;$(OGRE_HOME)\boost_1_44\lib&quot;;&quot;C:\CEGUI-SDK-0.7.5-vc9\lib&quot;;bin\Debug;lib"
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile="$(OutDir)/RayRayRay.pdb"
 				SubSystem="1"
@@ -247,6 +248,10 @@
 			</File>
 			<File
 				RelativePath=".\res\Resource.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\Stdafx.h"
 				>
 			</File>
 		</Filter>
