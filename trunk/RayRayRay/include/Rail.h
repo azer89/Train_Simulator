@@ -9,6 +9,8 @@
 #include <OgreRenderWindow.h>
 #include <OgreConfigFile.h>
 
+#include "DynamicLines.h"
+
 class Rail
 {
 public:
@@ -21,7 +23,10 @@ public:
 
 private:
 	int num;
+	bool initiated;
 	Ogre::SceneManager* mSceneMgr;
+	Ogre::SceneNode* linesNode;
+	DynamicLines *lines;
 	//Ogre::SimpleSpline* splineLine;
 	Ogre::SceneNode* trackNode;
 	std::vector<Ogre::Entity*> railPoints;
