@@ -9,8 +9,8 @@
 			Name="Debug|Win32"
 			>
 			<DebugSettings
-				Command="$(OGRE_HOME)\Bin\$(ConfigurationName)\$(ProjectName).exe"
-				WorkingDirectory="bin\Debug"
+				Command="$(TargetPath)"
+				WorkingDirectory="bin\$(ConfigurationName)"
 				CommandArguments=""
 				Attach="false"
 				DebuggerType="3"
