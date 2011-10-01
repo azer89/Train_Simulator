@@ -36,7 +36,8 @@ RayRayRay::RayRayRay(void):
 //-------------------------------------------------------------------------------------
 RayRayRay::~RayRayRay(void)
 {
-	mSceneMgr->destroyQuery(mRayScnQuery);
+	if(mSceneMgr != NULL)
+		mSceneMgr->destroyQuery(mRayScnQuery);
 }
 
 //-------------------------------------------------------------------------------------
@@ -234,6 +235,7 @@ bool RayRayRay::mouseMoved(const OIS::MouseEvent& arg)
 		if (mCurrentObject && test.first) 
 		{
 			mCurrentObject->setPosition(test.second);
+			rail->updateTrack();
 		}
 	}
 	else if(bRMouseDown)	//if the right mouse button is held down, be rotate the camera with the mouse
