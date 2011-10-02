@@ -19,6 +19,7 @@ public:
 
 	//std::vector<Ogre::Entity*> getRailPoints();
 	Ogre::SceneNode* addPoint(Ogre::Vector3 pos);
+	void deleteRailPoint(std::string name);
 	void updateTrack(void);
 
 private:
@@ -31,11 +32,11 @@ private:
 	Ogre::SceneNode* linesNode;
 	DynamicLines *lines;
 	Ogre::SceneNode* trackNode;
-	//std::vector<Ogre::Entity*> railPoints;
+
 	std::vector<Ogre::SceneNode*> railNodes;
 	std::vector<Ogre::Vector3> points;
 	std::vector<Ogre::Vector3> curvePoints;
-
+	
 	void createBezierCurve(void);
 	Ogre::Real getBezierPoint(Ogre::Real p0, Ogre::Real p1, Ogre::Real p2, Ogre::Real p3, Ogre::Real t);
 	void calculateControlPoints(Ogre::Vector3 v0, Ogre::Vector3 v1, Ogre::Vector3 v2, Ogre::Vector3 v3);

@@ -346,9 +346,17 @@ bool RayRayRay::keyPressed(const OIS::KeyEvent& arg)
 { 
 	//then we return the base app keyPressed function so that we get all of the functionality
 	//and the return value in one line
-	return BaseApplication::keyPressed(arg);
+	if(!BaseApplication::keyPressed(arg))
+	{
+		return false;
+	}
 
-	//return true;
+	if(arg.key == OIS::KC_DELETE && mCurrentObject)
+	{
+		this->rail->deleteRailPoint(mCurrentObject->getName());
+	}
+
+	return true;
 }
 
 
