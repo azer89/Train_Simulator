@@ -80,7 +80,7 @@ package
 			ExternalInterface.call("Exit", "exit");
 		}
 		
-		function setFPS(fps:Number)
+		private function setFPS(fps:Number):void
 		{
 			//fps_txt.text = fps.toString();
 		}
