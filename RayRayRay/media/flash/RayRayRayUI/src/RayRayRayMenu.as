@@ -21,6 +21,7 @@ package
 		public function RayRayRayMenu()
 		{
 			this.setButton();
+			this.setObjects();
 			
 			ExternalInterface.addCallback("setFPS", setFPS);
 		}
@@ -76,12 +77,12 @@ package
 			this.stopButton.enabled = false;
 			this.stopButton.visible = false;
 			
-			//ExternalInterface.call("Stop", "stop");
+			ExternalInterface.call("Stop", "stop");
 		}
 		
 		private function onExitClick( event:MouseEvent ):void
 		{
-			//ExternalInterface.call("Exit", "exit");
+			ExternalInterface.call("Exit", "exit");
 		}
 		
 		private function setObjects():void
@@ -95,7 +96,7 @@ package
 					if (c.name == "fpsText")
 					{
 						fpsText = (TextField)(c);
-						fpsText.text = "fps: XXX";
+						fpsText.text = "fps: -";
 					}
 				}
 			}
