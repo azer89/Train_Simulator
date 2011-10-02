@@ -3,6 +3,9 @@ package
 	import flash.display.MovieClip;
 	import flash.events.MouseEvent;
 	import flash.external.ExternalInterface;
+	import flash.text.TextField;
+	import flash.text.TextFormat;
+	import flash.display.DisplayObject;
 	/**
 	 * ...
 	 * @author Azer
@@ -13,6 +16,7 @@ package
 		private var stopButton:StopButton;
 		private var exitButton:ExitButton;
 		private var fpsInfo:FPSInfo;
+		private var fpsText:TextField;
 		
 		public function RayRayRayMenu()
 		{
@@ -72,17 +76,34 @@ package
 			this.stopButton.enabled = false;
 			this.stopButton.visible = false;
 			
-			ExternalInterface.call("Stop", "stop");
+			//ExternalInterface.call("Stop", "stop");
 		}
 		
 		private function onExitClick( event:MouseEvent ):void
 		{
-			ExternalInterface.call("Exit", "exit");
+			//ExternalInterface.call("Exit", "exit");
+		}
+		
+		private function setObjects():void
+		{
+			var c:DisplayObject = null;
+			
+			for (var a:int = 0; a < this.fpsInfo.numChildren; a++)
+			{
+				c = this.fpsInfo.getChildAt(a);
+				{
+					if (c.name == "fpsText")
+					{
+						fpsText = (TextField)(c);
+						fpsText.text = "fps: XXX";
+					}
+				}
+			}
 		}
 		
 		private function setFPS(fps:Number):void
 		{
-			//fps_txt.text = fps.toString();
+			fpsText.text = "fps: " + fps.toString();
 		}
 		
 	}
