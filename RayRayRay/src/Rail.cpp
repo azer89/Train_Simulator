@@ -3,11 +3,9 @@
 
 
 //-------------------------------------------------------------------------------------
-Rail::Rail(Ogre::SceneManager* mSceneMgr)
+Rail::Rail(Ogre::SceneManager* mSceneMgr): initiated(false), num(0)
 {
-	this->initiated = false;
 	this->mSceneMgr = mSceneMgr;
-	this->num = 0;
 
 	lines = new DynamicLines(Ogre::RenderOperation::OT_LINE_LIST);
 	linesNode = mSceneMgr->getRootSceneNode()->createChildSceneNode("TrackLines");
@@ -17,13 +15,6 @@ Rail::Rail(Ogre::SceneManager* mSceneMgr)
 Rail::~Rail(void)
 {
 }
-
-//std::vector<Ogre::Entity*> Rail::getRailPoints()
-//{
-//	return this->railPoints;
-
-	
-//}
 
 Ogre::SceneNode* Rail::addPoint(Ogre::Vector3 pos)
 {
@@ -77,6 +68,25 @@ void Rail::updateTrack(void)
 	lines->addPoint(f.x, f.y + 10, f.z);
 	lines->addPoint(s.x, s.y + 10, s.z);
 
+	
+	for(int a = 0; a < tiesPoints.size()-1; a++)
+	{
+		Ogre::Vector3 f = tiesPoints[a];
+		Ogre::Vector3 s = tiesPoints[a + 1];
+
+		Ogre::Vector3 vect = s - f;
+
+		Ogre::Vector3 rv = Ogre::Quaternion(Ogre::Degree(90), Ogre::Vector3::UNIT_Y) * vect;
+		Ogre::Vector3 lv = Ogre::Quaternion(Ogre::Degree(-90), Ogre::Vector3::UNIT_Y) * vect;
+
+		rv += f;
+		lv += f;
+
+		lines->addPoint(rv.x, rv.y + 10, rv.z);
+		lines->addPoint(lv.x, lv.y + 10, lv.z);
+	}
+	
+
 	lines->update();
 	
 	linesNode->detachAllObjects();
@@ -87,6 +97,8 @@ void Rail::createBezierCurve(void)
 {
 	points.clear();
 	curvePoints.clear();
+	tiesPoints.clear();
+
 	int cSize = railNodes.size();
 
 	for(int a = 0; a < cSize; a++)
@@ -120,6 +132,16 @@ void Rail::createBezierCurve(void)
 
 			curvePoints.push_back(newV);
 		}
+		
+		for(Ogre::Real t = 0.0f; t < 1.0f; t += 0.05f)
+		{
+			Ogre::Real xPoint = this->getBezierPoint(one.x, two.x, three.x, four.x, t);
+			Ogre::Real yPoint = this->getBezierPoint(one.y, two.y, three.y, four.y, t);
+			Ogre::Real zPoint = this->getBezierPoint(one.z, two.z, three.z, four.z, t);
+
+			Ogre::Vector3 newV = Ogre::Vector3(xPoint, yPoint, zPoint);
+			tiesPoints.push_back(newV);
+		}
 	}
 
 }
@@ -140,18 +162,10 @@ Ogre::Real Rail::getBezierPoint(Ogre::Real p0, Ogre::Real p1, Ogre::Real p2, Ogr
 }
 
 void Rail::calculateControlPoints(Ogre::Vector3 v0, Ogre::Vector3 v1, Ogre::Vector3 v2, Ogre::Vector3 v3)
-{	
-	Ogre::Vector3 c1, c2, c3;
-
-	c1.x = (v0.x + v1.x) / 2.0f;
-	c1.y = (v0.y + v1.y) / 2.0f;
-	c1.z = (v0.z + v1.z) / 2.0f;
-	c2.x = (v1.x + v2.x) / 2.0f;
-	c2.y = (v1.y + v2.y) / 2.0f;
-	c2.z = (v1.z + v2.z) / 2.0f;
-	c3.x = (v2.x + v3.x) / 2.0f;
-	c3.y = (v2.y + v3.y) / 2.0f;
-	c3.z = (v2.z + v3.z) / 2.0f;
+{		
+	Ogre::Vector3 c1 = (v0 + v1) / 2.0f;
+	Ogre::Vector3 c2 = (v1 + v2) / 2.0f;
+	Ogre::Vector3 c3 = (v2 + v3) / 2.0f;
 
 	Ogre::Real len1 = v0.distance(v1);
 	Ogre::Real len2 = v1.distance(v2);
@@ -160,24 +174,11 @@ void Rail::calculateControlPoints(Ogre::Vector3 v0, Ogre::Vector3 v1, Ogre::Vect
 	Ogre::Real k1 = len1 / (len1 + len2);
 	Ogre::Real k2 = len2 / (len2 + len3);
 
-	Ogre::Vector3 m1, m2;
-	m1.x = c1.x + (c2.x - c1.x) * k1;
-	m1.y = c1.y + (c2.y - c1.y) * k1;
-	m1.z = c1.z + (c2.z - c1.z) * k1;
+	Ogre::Vector3 m1 = c1 + (c2 - c1) * k1;
+	Ogre::Vector3 m2 = c2 + (c3 - c2) * k2;
 
-	m2.x = c2.x + (c3.x - c2.x) * k2;
-	m2.y = c2.y + (c3.y - c2.y) * k2;
-	m2.z = c2.z + (c3.z - c2.z) * k2;
-
-	Ogre::Vector3 ctrl1, ctrl2;
-
-	ctrl1.x = m1.x + (c2.x - m1.x) * 0.5f + v1.x - m1.x;
-	ctrl1.y = m1.y + (c2.y - m1.y) * 0.5f + v1.y - m1.y;
-	ctrl1.z = m1.z + (c2.z - m1.z) * 0.5f + v1.z - m1.z;
-
-	ctrl2.x = m2.x + (c2.x - m2.x) * 0.5f + v2.x - m2.x;
-	ctrl2.y = m2.y + (c2.y - m2.y) * 0.5f + v2.y - m2.y;
-	ctrl2.z = m2.z + (c2.z - m2.z) * 0.5f + v2.z - m2.z;
+	Ogre::Vector3 ctrl1 = m1 + (c2 - m1) * 0.5f + v1 - m1;
+	Ogre::Vector3 ctrl2 = m2 + (c2 - m2) * 0.5f + v2 - m2;
 
 	points.push_back(v1);
 	points.push_back(ctrl1);
