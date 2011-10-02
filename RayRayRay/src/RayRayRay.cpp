@@ -52,16 +52,15 @@ void RayRayRay::destroyScene(void)
 //-------------------------------------------------------------------------------------
 void RayRayRay::createScene(void)
 {
-	// Water
+	// set Terrain
+	rayTerrain = new RayTerrain();
+
+	
 
 	// Set Hikari
 	hViewPort = mCamera->getViewport();
 	menu = new RayFlashInterface(this);
-	menu->setupHikari();
-
-	// set Rail
-	rail = new Rail(this->mSceneMgr);
-	rayTerrain = new RayTerrain();
+	menu->setupHikari();	
 
 	// set camera
 	mCamera->setPosition(Ogre::Vector3(357, 70, 171));
@@ -99,7 +98,11 @@ void RayRayRay::createScene(void)
     plane.normal = Ogre::Vector3::NEGATIVE_UNIT_Y;
  
     //mSceneMgr->setSkyDome(true, "Examples/CloudySky", 5, 8, 500);
-	mSceneMgr->setSkyPlane(true, plane, "Examples/CloudySky", 50, 10 , true, 0.7, 10, 10); 
+	mSceneMgr->setSkyPlane(true, plane, "Examples/CloudySky", 50, 10 , true, 0.7, 10, 10);
+
+	// set Rail
+	rail = new Rail(this->mSceneMgr, rayTerrain->getTerrainGroup()->getTerrain(0, 0));
+	
 }
  
 //-------------------------------------------------------------------------------------
@@ -115,7 +118,7 @@ void RayRayRay::createFrameListener(void)
 	//we still want to create the frame listener from the base app
 	BaseApplication::createFrameListener();
 	
-	//mInfoLabel = mTrayMgr->createLabel(OgreBites::TL_TOP, "TInfo", "", 350);
+	mInfoLabel = mTrayMgr->createLabel(OgreBites::TL_TOP, "TInfo", "", 350);
  
 	// Set up our raySceneQuery after everything has been initialized
 	mRayScnQuery = mSceneMgr->createRayQuery(Ogre::Ray());
@@ -187,8 +190,8 @@ bool RayRayRay::frameRenderingQueued(const Ogre::FrameEvent& arg)
     else
     {
 		
-        //mTrayMgr->removeWidgetFromTray(mInfoLabel);
-        //mInfoLabel->hide();
+        mTrayMgr->removeWidgetFromTray(mInfoLabel);
+        mInfoLabel->hide();
         if (rayTerrain->getTerrainsImported())
         {
             rayTerrain->getTerrainGroup()->saveAllTerrains(true);
