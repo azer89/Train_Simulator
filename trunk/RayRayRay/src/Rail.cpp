@@ -16,6 +16,19 @@ Rail::~Rail(void)
 {
 }
 
+void Rail::deleteRailPoint(std::string name)
+{
+	for(int a = 0; a < railNodes.size(); a++)
+	{
+		if(railNodes[a]->getName() == name)
+		{
+			this->mSceneMgr->getRootSceneNode()->removeChild(name);
+			railNodes.erase(railNodes.begin() + a);
+			this->updateTrack();
+		}
+	}
+}
+
 Ogre::SceneNode* Rail::addPoint(Ogre::Vector3 pos)
 {
 	char name[16];
@@ -25,18 +38,14 @@ Ogre::SceneNode* Rail::addPoint(Ogre::Vector3 pos)
 	ent = mSceneMgr->createEntity(name, "cube.mesh");
 	ent->setQueryFlags(1 << 0);
 	ent->setCastShadows(true);
-	
-	// std::cout << "name = " << ent->getName() << "\n"; // debug
-	// std::cout << "number = " << this->num << "\n"; // debug
+
 
 	// attach the object to a scene node
 	Ogre::SceneNode* mNode = mSceneMgr->getRootSceneNode()->createChildSceneNode(std::string(name) + "Node", pos);
 	mNode->attachObject(ent);
 
-	// attach to list
-	
+	// attach to list	
 	this->railNodes.push_back(mNode);
-	//this->railPoints.push_back(ent);
 
 	//lets shrink the object, only because the terrain is pretty small
 	mNode->setScale(0.03f, 0.07f, 0.03f);
@@ -48,9 +57,14 @@ Ogre::SceneNode* Rail::addPoint(Ogre::Vector3 pos)
 
 void Rail::updateTrack(void)
 {	
-	if(railNodes.size() < 3) return; // not enough point
-
 	lines->clear();
+
+	if(railNodes.size() < 3) 
+	{	
+		lines->update();
+		return; // not enough point
+	}
+
 	this->createBezierCurve();
 	
 	for(int a = 0; a < curvePoints.size()-1; a++)
@@ -73,15 +87,16 @@ void Rail::updateTrack(void)
 	{
 		Ogre::Vector3 f = tiesPoints[a];
 		Ogre::Vector3 s = tiesPoints[a + 1];
-
-		Ogre::Vector3 vect = s - f;
+		
+		Ogre::Real prefRatio = 2.0f / f.distance(s);
+		Ogre::Vector3 vect = (s - f) * prefRatio;
 
 		Ogre::Vector3 rv = Ogre::Quaternion(Ogre::Degree(90), Ogre::Vector3::UNIT_Y) * vect;
 		Ogre::Vector3 lv = Ogre::Quaternion(Ogre::Degree(-90), Ogre::Vector3::UNIT_Y) * vect;
 
 		rv += f;
 		lv += f;
-
+		
 		lines->addPoint(rv.x, rv.y + 10, rv.z);
 		lines->addPoint(lv.x, lv.y + 10, lv.z);
 	}
@@ -166,7 +181,7 @@ void Rail::calculateControlPoints(Ogre::Vector3 v0, Ogre::Vector3 v1, Ogre::Vect
 	Ogre::Vector3 c1 = (v0 + v1) / 2.0f;
 	Ogre::Vector3 c2 = (v1 + v2) / 2.0f;
 	Ogre::Vector3 c3 = (v2 + v3) / 2.0f;
-
+	
 	Ogre::Real len1 = v0.distance(v1);
 	Ogre::Real len2 = v1.distance(v2);
 	Ogre::Real len3 = v2.distance(v3);
