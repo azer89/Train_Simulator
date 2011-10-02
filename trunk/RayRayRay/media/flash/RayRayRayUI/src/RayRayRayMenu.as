@@ -17,6 +17,8 @@ package
 		public function RayRayRayMenu()
 		{
 			this.setButton();
+			
+			ExternalInterface.addCallback("setFPS", setFPS);
 		}
 		
 		private function setButton():void
@@ -76,6 +78,11 @@ package
 		private function onExitClick( event:MouseEvent ):void
 		{
 			ExternalInterface.call("Exit", "exit");
+		}
+		
+		function setFPS(fps:Number)
+		{
+			//fps_txt.text = fps.toString();
 		}
 		
 	}

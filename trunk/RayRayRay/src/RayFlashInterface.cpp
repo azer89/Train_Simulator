@@ -13,9 +13,8 @@ RayFlashInterface::~RayFlashInterface(void)
 void RayFlashInterface::update(Ogre::RenderWindow* mWindow)
 {
 	hikariMgr->update();
-	
-	//const Ogre::RenderTarget::FrameStats& stats =  mWindow->getAverageFPS();
-	//controls->callFunction("setFPS", Args((int)stats.lastFPS));
+
+	controls->callFunction("setFPS", Hikari::Args((int)mWindow->getAverageFPS()));
 
 	//std::cout << (int)mWindow->getAverageFPS() << "\n";
 }
