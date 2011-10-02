@@ -24,6 +24,9 @@ public:
 private:
 	int num;
 	bool initiated;
+	//Ogre::Real tiesDist;
+	std::vector<Ogre::Vector3> tiesPoints;
+
 	Ogre::SceneManager* mSceneMgr;
 	Ogre::SceneNode* linesNode;
 	DynamicLines *lines;
