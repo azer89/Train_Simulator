@@ -51,6 +51,14 @@ void RayTerrain::createTerrain(Ogre::SceneManager* mSceneMgr, Ogre::Light* light
     }
  
     mTerrainGroup->freeTemporaryResources();
+	
+	/*
+	Ogre::Terrain*terrain = mTerrainGroup->getTerrain(0,0); //0,0 is where my terrain was created
+	terrain->getTerrainNormalMap()->convertToImage(image);
+
+	image.save("normalMap.png");
+	image.load("normalMap.png", "General");
+	*/
 }
 
 //-------------------------------------------------------------------------------------

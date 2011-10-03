@@ -27,9 +27,12 @@ public:
 
 private:
 	int num;
+	int tieNum;
 	bool initiated;
 	//Ogre::Real tiesDist;
 	std::vector<Ogre::Vector3> tiesPoints;
+	//Ogre::Entity* cubeEntity;
+	Ogre::Entity* tieEntity;
 
 	Ogre::SceneManager* mSceneMgr;
 	Ogre::Terrain* pTerrain;
@@ -38,6 +41,7 @@ private:
 	Ogre::SceneNode* trackNode;
 
 	std::vector<Ogre::SceneNode*> railNodes;
+	std::vector<Ogre::SceneNode*> tiesNodes;
 	std::vector<Ogre::Vector3> points;
 	std::vector<Ogre::Vector3> curvePoints;
 
@@ -45,6 +49,9 @@ private:
 	Ogre::Real getBezierPoint(Ogre::Real p0, Ogre::Real p1, Ogre::Real p2, Ogre::Real p3, Ogre::Real t);
 	Ogre::Real getHeight(Ogre::Vector3 vect);
 	void calculateControlPoints(Ogre::Vector3 v0, Ogre::Vector3 v1, Ogre::Vector3 v2, Ogre::Vector3 v3);
+	void addTie(Ogre::Vector3 pos, Ogre::Quaternion rot);
+	void deleteTieCube();
+	void initTieCube();
 	//Ogre::Real getHeight(Ogre:Vector3 vect);
 
 	
