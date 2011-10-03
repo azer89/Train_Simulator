@@ -20,6 +20,7 @@ private:
     Ogre::TerrainGroup* mTerrainGroup;
 	Ogre::SceneManager* mSceneMgr;
     bool mTerrainsImported;
+	Ogre::Image image;
  
     void defineTerrain(long x, long y);
     void initBlendMaps(Ogre::Terrain* terrain);
