@@ -119,14 +119,12 @@ void Rail::updateTrack(void)
 
 			rv += f;
 			lv += f;
-			//std::cout << f.getRotationTo(lv) << "\n";
-			Ogre::Vector3 g = s -f;
-
-			//this->addTie(f, g.getRotationTo(rv));
-
+			
+			//this->addTie(f, lv.getRotationTo(rv));
+			
 			rPoints.push_back(rv);
 			lPoints.push_back(lv);
-
+			
 			lines->addPoint(rv.x, rv.y + 10, rv.z);
 			lines->addPoint(lv.x, lv.y + 10, lv.z);
 
@@ -275,6 +273,7 @@ void Rail::addTie(Ogre::Vector3 pos, Ogre::Quaternion rot)
 	sprintf(name, "TiesPoint%d", tieNum);
 	tieNum++;
 
+
 	Ogre::Entity* ent;
 	ent = mSceneMgr->createEntity(name, "cube.mesh");
 	ent->setCastShadows(true);	
@@ -285,13 +284,16 @@ void Rail::addTie(Ogre::Vector3 pos, Ogre::Quaternion rot)
 
 	// attach to list	
 	this->tiesNodes.push_back(mNode);
-	//std::cout << rot << "\n";
+	std::cout << rot << "\n";
 	
 	
-	mNode->setScale(0.002f, 0.002f, 1000.13f);
+	
+	mNode->setScale(500.002f, 0.002f, 0.002f);
+	mNode->rotate(rot * Ogre::Quaternion(Ogre::Degree(90), Ogre::Vector3::UNIT_Z));
 	//mNode->rotate(Ogre::Quaternion(Ogre::Degree(90), Ogre::Vector3::UNIT_X));
 	
 	//mNode->translate(pos + Ogre::Vector3(0, 10, 0));
+	
 	
 }
 

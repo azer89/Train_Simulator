@@ -213,6 +213,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\RailTriangle.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\RayFlashInterface.cpp"
 				>
 			</File>
@@ -248,6 +252,10 @@
 			</File>
 			<File
 				RelativePath=".\include\Rail.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\RailTriangle.h"
 				>
 			</File>
 			<File
