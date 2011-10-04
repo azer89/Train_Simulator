@@ -37,7 +37,6 @@ Ogre::SceneNode* Rail::addPoint(Ogre::Vector3 pos)
 {
 	char name[16];
 	sprintf(name, "RailPoint%d", num++);
-
 	
 	Ogre::Entity* ent;
 	ent = mSceneMgr->createEntity(name, "cube.mesh");
@@ -101,27 +100,38 @@ void Rail::updateTrack(void)
 	//}	
 	
 	int tiesPointsSize = tiesPoints.size();
+	Ogre::Real gap = 2.0f;
+	Ogre::Real count = 0.0f;
+
 	for(int a = 0; a < tiesPointsSize; a++)
 	{
 		Ogre::Vector3 f = tiesPoints[a];
 		Ogre::Vector3 s = tiesPoints[(a + 1) % tiesPointsSize];
-		
-		Ogre::Real prefRatio = 2.0f / f.distance(s);
-		Ogre::Vector3 vect = (s - f) * prefRatio;
+		count += f.distance(s);
 
-		Ogre::Vector3 rv = Ogre::Quaternion(Ogre::Degree(90), Ogre::Vector3::UNIT_Y) * vect;
-		Ogre::Vector3 lv = Ogre::Quaternion(Ogre::Degree(-90), Ogre::Vector3::UNIT_Y) * vect;
+		if(count >= gap)
+		{
+			Ogre::Real prefRatio = 2.0f / f.distance(s);
+			Ogre::Vector3 vect = (s - f) * prefRatio;
 
-		rv += f;
-		lv += f;
+			Ogre::Vector3 rv = Ogre::Quaternion(Ogre::Degree(90), Ogre::Vector3::UNIT_Y) * vect;
+			Ogre::Vector3 lv = Ogre::Quaternion(Ogre::Degree(-90), Ogre::Vector3::UNIT_Y) * vect;
 
-		//this->addTie(f, f.getRotationTo(lv));
+			rv += f;
+			lv += f;
+			//std::cout << f.getRotationTo(lv) << "\n";
+			Ogre::Vector3 g = s -f;
 
-		rPoints.push_back(rv);
-		lPoints.push_back(lv);
+			//this->addTie(f, g.getRotationTo(rv));
 
-		lines->addPoint(rv.x, rv.y + 10, rv.z);
-		lines->addPoint(lv.x, lv.y + 10, lv.z);
+			rPoints.push_back(rv);
+			lPoints.push_back(lv);
+
+			lines->addPoint(rv.x, rv.y + 10, rv.z);
+			lines->addPoint(lv.x, lv.y + 10, lv.z);
+
+			count = 0.0f;
+		}
 	}
 
 	int parSize = rPoints.size();
@@ -182,11 +192,10 @@ void Rail::createBezierCurve(void)
 			Ogre::Real zPoint = this->getBezierPoint(one.z, two.z, three.z, four.z, t);
 
 			Ogre::Vector3 newV = Ogre::Vector3(xPoint, yPoint, zPoint);
-
 			curvePoints.push_back(Ogre::Vector3(newV.x, getHeight(newV), newV.z));
 		}
 
-		Ogre::Real inc = 1.0f / (one.distance(two) * 2.0f);
+		//Ogre::Real inc = 1.0f / (one.distance(two) * 2.0f);
 		
 		for(Ogre::Real t = 0.0f; t < 1.0f; t += inc)
 		{
@@ -252,9 +261,7 @@ Ogre::Real Rail::getHeight(Ogre::Vector3 vect)
 	if (test.first) 
 	{
 		Ogre::Real terrainHeight = test.second.y;
-
-		if(terrainHeight <= vect.y) return vect.y;
-		
+		if(terrainHeight <= vect.y) return vect.y;		
 		return terrainHeight;
 	}
 	
@@ -273,15 +280,18 @@ void Rail::addTie(Ogre::Vector3 pos, Ogre::Quaternion rot)
 	ent->setCastShadows(true);	
 
 	// attach the object to a scene node
-	Ogre::SceneNode* mNode = mSceneMgr->getRootSceneNode()->createChildSceneNode(std::string(name) + "Node", pos);
+	Ogre::SceneNode* mNode = mSceneMgr->getRootSceneNode()->createChildSceneNode(std::string(name) + "Node");
 	mNode->attachObject(ent);
 
 	// attach to list	
 	this->tiesNodes.push_back(mNode);
-
-	mNode->setScale(0.002f, 0.03f, 0.002f);
-	mNode->rotate(Ogre::Quaternion(Ogre::Degree(90), Ogre::Vector3::UNIT_X) * rot);
-	mNode->translate(Ogre::Vector3(0, 10, 0));
+	//std::cout << rot << "\n";
+	
+	
+	mNode->setScale(0.002f, 0.002f, 1000.13f);
+	//mNode->rotate(Ogre::Quaternion(Ogre::Degree(90), Ogre::Vector3::UNIT_X));
+	
+	//mNode->translate(pos + Ogre::Vector3(0, 10, 0));
 	
 }
 
