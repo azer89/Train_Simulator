@@ -1,4 +1,7 @@
 
+/*
+http://www.ogre3d.org/tikiwiki/DynamicLineDrawing&structure=Cookbook
+*/
 
 #include "Stdafx.h"
 #include "DynamicLines.h"

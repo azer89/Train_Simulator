@@ -20,39 +20,37 @@ public:
 	Rail(Ogre::SceneManager* mSceneMgr, Ogre::Terrain* pTerrain);
     virtual ~Rail(void);
 
-	//std::vector<Ogre::Entity*> getRailPoints();
 	Ogre::SceneNode* addPoint(Ogre::Vector3 pos);
 	void deleteRailPoint(std::string name);
 	void updateTrack(void);
+	void setCurve(int num);
 
 private:
-	int num;
-	int tieNum;
-	bool initiated;
-	//Ogre::Real tiesDist;
-	std::vector<Ogre::Vector3> tiesPoints;
-	//Ogre::Entity* cubeEntity;
-	Ogre::Entity* tieEntity;
+	int num;			// number of rail point
+	int tieNum;			// number of tie
+	bool initiated;		// is initiated
+	int curveType;		// type of curve: bezier of b-spline
 
-	Ogre::SceneManager* mSceneMgr;
-	Ogre::Terrain* pTerrain;
-	Ogre::SceneNode* linesNode;
-	DynamicLines *lines;
-	Ogre::SceneNode* trackNode;
+	Ogre::Entity* tieEntity;				// tie entity
+
+	Ogre::SceneManager* mSceneMgr;		// scene manager
+	Ogre::Terrain* pTerrain;			// terrain, for calculate height
+	Ogre::SceneNode* linesNode;			// node of lines
+	DynamicLines *lines;				// dynamic lines
+	Ogre::SceneNode* trackNode;			// for track node
 
 	std::vector<Ogre::SceneNode*> railNodes;
 	std::vector<Ogre::SceneNode*> tiesNodes;
 	std::vector<Ogre::Vector3> points;
 	std::vector<Ogre::Vector3> curvePoints;
-
-	void createBezierCurve(void);
+	
 	Ogre::Real getBezierPoint(Ogre::Real p0, Ogre::Real p1, Ogre::Real p2, Ogre::Real p3, Ogre::Real t);
 	Ogre::Real getHeight(Ogre::Vector3 vect);
+	void createBezierCurve(void);
+	void createBSplineCurve(void);
 	void calculateControlPoints(Ogre::Vector3 v0, Ogre::Vector3 v1, Ogre::Vector3 v2, Ogre::Vector3 v3);
 	void addTie(Ogre::Vector3 pos, Ogre::Quaternion rot);
-	void deleteTieCube();
-	void initTieCube();
-	//Ogre::Real getHeight(Ogre:Vector3 vect);
-
+	void deleteTieCube(void);
+	void initTieCube(void);
 	
 };

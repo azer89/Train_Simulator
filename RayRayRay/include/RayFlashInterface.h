@@ -33,4 +33,5 @@ private:
 	Hikari::FlashValue onStartClick(Hikari::FlashControl* caller, const Hikari::Arguments& args);
 	Hikari::FlashValue onStopClick(Hikari::FlashControl* caller, const Hikari::Arguments& args);
 	Hikari::FlashValue onExitClick(Hikari::FlashControl* caller, const Hikari::Arguments& args);
+	Hikari::FlashValue onCurveChange(Hikari::FlashControl* caller, const Hikari::Arguments& args);
 };

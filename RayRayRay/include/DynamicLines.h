@@ -1,3 +1,8 @@
+
+/*
+http://www.ogre3d.org/tikiwiki/DynamicLineDrawing&structure=Cookbook
+*/
+
 #ifndef _DYNAMIC_LINES_H_
 #define _DYNAMIC_LINES_H_
  
