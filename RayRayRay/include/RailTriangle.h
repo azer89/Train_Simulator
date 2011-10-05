@@ -1,5 +1,5 @@
 
-
+/*
 #include <OgreCamera.h>
 #include <OgreEntity.h>
 #include <OgreRoot.h>
@@ -17,3 +17,4 @@ private:
 	Ogre::SceneManager* mSceneMgr;
 	Ogre::SceneNode* tNode;
 };
+*/

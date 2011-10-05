@@ -25,6 +25,7 @@ void RayFlashInterface::setupHikari(void)
 	using namespace Hikari;
 	
 	hikariMgr = new HikariManager("..\\..\\media\\flash\\RayRayRayUI\\bin");
+	//objectHikariMgr = new HikariManager("..\\..\\media\\flash\\ObjectUI\\bin");
 	
 	controls = hikariMgr->createFlashOverlay("Menu", rayApp->hViewPort, 300, 300, Position(TopLeft));
 	controls->load("RayRayRayUI.swf");
@@ -35,6 +36,18 @@ void RayFlashInterface::setupHikari(void)
 	controls->bind("Stop", FlashDelegate(this, &RayFlashInterface::onStopClick));
 	controls->bind("Exit", FlashDelegate(this, &RayFlashInterface::onExitClick));
 	
+}
+
+void RayFlashInterface::showObjectControl(int xMPos, int yMPos)
+{
+	using namespace Hikari;
+
+	//if(this->objectControls) delete objectControls;
+
+	objectControls = objectHikariMgr->createFlashOverlay("ObjectMenu", rayApp->hViewPort, xMPos, yMPos, Position(TopLeft));
+	objectControls->load("ObjectUI.swf");
+	objectControls->setDraggable(false);
+	objectControls->setTransparent(true, true);
 }
 
 Hikari::FlashValue RayFlashInterface::onStartClick(Hikari::FlashControl* caller, const Hikari::Arguments& args)
