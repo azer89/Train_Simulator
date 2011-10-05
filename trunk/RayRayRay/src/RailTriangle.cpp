@@ -1,5 +1,9 @@
 
+
+#include "Stdafx.h"
+/*
 #include "RailTriangle.h"
+#include "Stdafx.h"
 
 //-------------------------------------------------------------------------------------
 RailTriangle::RailTriangle(Ogre::SceneManager* mSceneMgr)
@@ -34,3 +38,4 @@ void RailTriangle::addTriangleStrip((std::vector<Ogre::Vector3> rPoints, std::ve
 	manual->end();
 	//mSceneMgr->getRootSceneNode()->createChildSceneNode()->attachObject(manual);
 }
+*/

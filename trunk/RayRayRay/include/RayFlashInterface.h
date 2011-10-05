@@ -19,12 +19,15 @@ public:
 	
 	void setupHikari();
 	void update(Ogre::RenderWindow* mWindow);
+	void showObjectControl(int xMPos, int yMPos);
 
 	Hikari::HikariManager* hikariMgr;
+	Hikari::HikariManager* objectHikariMgr;
 
 private:
 	
 	Hikari::FlashControl* controls;
+	Hikari::FlashControl* objectControls;
 	RayRayRay* rayApp;
 
 	Hikari::FlashValue onStartClick(Hikari::FlashControl* caller, const Hikari::Arguments& args);

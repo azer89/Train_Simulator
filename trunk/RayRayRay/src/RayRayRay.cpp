@@ -308,6 +308,7 @@ bool RayRayRay::mousePressed(const OIS::MouseEvent& arg, OIS::MouseButtonID id)
 		if(mCurrentObject)
 		{
 			mCurrentObject->showBoundingBox(true);
+			menu->showObjectControl((int)arg.state.X.abs, (int)arg.state.Y.abs);
 		}
 		
 		bLMouseDown = true;
