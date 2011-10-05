@@ -1,5 +1,5 @@
 
-/*
+
 #include <OgreCamera.h>
 #include <OgreEntity.h>
 #include <OgreRoot.h>
@@ -8,7 +8,10 @@
 class RailTriangle
 {
 public:
-	RailTriangle(Ogre::SceneManager* mSceneMgr);
+	RailTriangle(Ogre::SceneManager* mSceneMgr)
+	{
+		this->mSceneMgr = mSceneMgr;
+	}
 	virtual ~RailTriangle(void);
 
 	void addTriangleStrip(std::vector<Ogre::Vector3> rPoints, std::vector<Ogre::Vector3> lPoints);
@@ -17,4 +20,3 @@ private:
 	Ogre::SceneManager* mSceneMgr;
 	Ogre::SceneNode* tNode;
 };
-*/

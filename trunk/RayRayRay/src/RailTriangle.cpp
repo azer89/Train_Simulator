@@ -1,27 +1,24 @@
 
 
 #include "Stdafx.h"
-/*
-#include "RailTriangle.h"
-#include "Stdafx.h"
 
-//-------------------------------------------------------------------------------------
-RailTriangle::RailTriangle(Ogre::SceneManager* mSceneMgr)
-{	
-	this->mSceneMgr = mSceneMgr;
-}
+#include "RailTriangle.h"
 
 //-------------------------------------------------------------------------------------
 RailTriangle::~RailTriangle(void)
 {
 
 }
-//-------------------------------------------------------------------------------------
-void RailTriangle::addTriangleStrip((std::vector<Ogre::Vector3> rPoints, std::vector<Ogre::Vector3> lPoints))
-{
-	ManualObject* manual = mSceneMgr->createManualObject("manual");
-	manual->begin("BaseWhiteNoLighting", RenderOperation::OT_LINE_STRIP);
 
+//-------------------------------------------------------------------------------------
+void RailTriangle::addTriangleStrip(std::vector<Ogre::Vector3> rPoints, std::vector<Ogre::Vector3> lPoints)
+{
+
+	Ogre::ManualObject* manual = mSceneMgr->createManualObject("manual");
+	manual->begin("BaseWhiteNoLighting", Ogre::RenderOperation::OT_TRIANGLE_STRIP);
+
+
+	/*
 	// define vertex position of index 0..3
 	manual->position(-100.0, -100.0, 0.0);
 	manual->position( 100.0, -100.0, 0.0);
@@ -34,8 +31,7 @@ void RailTriangle::addTriangleStrip((std::vector<Ogre::Vector3> rPoints, std::ve
 	manual->index(2);
 	manual->index(3);
 	manual->index(0);
-
+	*/
 	manual->end();
 	//mSceneMgr->getRootSceneNode()->createChildSceneNode()->attachObject(manual);
 }
-*/
