@@ -31,23 +31,24 @@ void RayFlashInterface::setupHikari(void)
 	controls->load("RayRayRayUI.swf");
 	controls->setDraggable(false);
 	controls->setTransparent(true, true);
-
 	controls->bind("Start", FlashDelegate(this, &RayFlashInterface::onStartClick));
 	controls->bind("Stop", FlashDelegate(this, &RayFlashInterface::onStopClick));
 	controls->bind("Exit", FlashDelegate(this, &RayFlashInterface::onExitClick));
+	controls->bind("Curve", FlashDelegate(this, &RayFlashInterface::onCurveChange));
 	
 }
 
 void RayFlashInterface::showObjectControl(int xMPos, int yMPos)
 {
+	/*
 	using namespace Hikari;
-
 	//if(this->objectControls) delete objectControls;
 
 	objectControls = objectHikariMgr->createFlashOverlay("ObjectMenu", rayApp->hViewPort, xMPos, yMPos, Position(TopLeft));
 	objectControls->load("ObjectUI.swf");
 	objectControls->setDraggable(false);
 	objectControls->setTransparent(true, true);
+	*/
 }
 
 Hikari::FlashValue RayFlashInterface::onStartClick(Hikari::FlashControl* caller, const Hikari::Arguments& args)
@@ -76,6 +77,23 @@ Hikari::FlashValue RayFlashInterface::onExitClick(Hikari::FlashControl* caller, 
 	std::string text = args.at(0).getString(); 
 
 	std::cout << "exit" << "\n";
+	
+	return FLASH_VOID;
+}
+
+Hikari::FlashValue RayFlashInterface::onCurveChange(Hikari::FlashControl* caller, const Hikari::Arguments& args)
+{
+	using namespace Hikari;
+	std::string text = args.at(0).getString(); 
+
+	if(text == "bezier")
+	{
+		this->rayApp->rail->setCurve(0);
+	}
+	else if(text == "bspline")
+	{
+		this->rayApp->rail->setCurve(1);
+	}
 	
 	return FLASH_VOID;
 }

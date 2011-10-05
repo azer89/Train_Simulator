@@ -45,6 +45,7 @@ public:
 	// Hikari
 	RayFlashInterface* menu;
 	Ogre::Viewport* hViewPort;
+	Rail* rail;
 
 protected:
     virtual void createScene(void);
@@ -72,9 +73,8 @@ protected:
 	bool hideTray;
 
 private:
-	Rail* rail;
+	
 	RayTerrain* rayTerrain;
-
     OgreBites::Label* mInfoLabel;
 };
 

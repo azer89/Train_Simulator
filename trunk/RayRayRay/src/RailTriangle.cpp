@@ -13,7 +13,6 @@ RailTriangle::~RailTriangle(void)
 //-------------------------------------------------------------------------------------
 void RailTriangle::addTriangleStrip(std::vector<Ogre::Vector3> rPoints, std::vector<Ogre::Vector3> lPoints)
 {
-
 	Ogre::ManualObject* manual = mSceneMgr->createManualObject("manual");
 	manual->begin("BaseWhiteNoLighting", Ogre::RenderOperation::OT_TRIANGLE_STRIP);
 

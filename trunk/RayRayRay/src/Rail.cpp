@@ -3,7 +3,11 @@
 
 
 //-------------------------------------------------------------------------------------
-Rail::Rail(Ogre::SceneManager* mSceneMgr, Ogre::Terrain* pTerrain): initiated(false), num(0), tieNum(0)
+Rail::Rail(Ogre::SceneManager* mSceneMgr, Ogre::Terrain* pTerrain): 
+	initiated(false), 
+	num(0), 
+	tieNum(0),
+	curveType(0)
 {
 	this->mSceneMgr = mSceneMgr;
 	this->pTerrain = pTerrain;
@@ -41,8 +45,7 @@ Ogre::SceneNode* Rail::addPoint(Ogre::Vector3 pos)
 	Ogre::Entity* ent;
 	ent = mSceneMgr->createEntity(name, "cube.mesh");
 	ent->setQueryFlags(1 << 0);
-	ent->setCastShadows(true);
-	
+	ent->setCastShadows(true);	
 
 	// attach the object to a scene node
 	Ogre::SceneNode* mNode = mSceneMgr->getRootSceneNode()->createChildSceneNode(std::string(name) + "Node", pos);
@@ -51,7 +54,7 @@ Ogre::SceneNode* Rail::addPoint(Ogre::Vector3 pos)
 	// attach to list	
 	this->railNodes.push_back(mNode);
 
-	//lets shrink the object, only because the terrain is pretty small
+	//lets shrink the object
 	mNode->setScale(0.03f, 0.10f, 0.03f);
 
 	this->updateTrack();
@@ -71,7 +74,10 @@ void Rail::updateTrack(void)
 		return;
 	}
 
-	this->createBezierCurve();
+	if(curveType == 0)
+		this->createBezierCurve();
+	else if (curveType == 1)
+		this->createBSplineCurve();
 	
 	/*
 	for(int a = 0; a < curvePoints.size()-1; a++)
@@ -87,8 +93,8 @@ void Rail::updateTrack(void)
 	Ogre::Vector3 f = curvePoints[curvePoints.size() - 1];
 	Ogre::Vector3 s = curvePoints[0];
 
-	lines->addPoint(f.x, f.y + 10, f.z);
-	lines->addPoint(s.x, s.y + 10, s.z);
+	//lines->addPoint(f.x, f.y + 10, f.z);
+	//lines->addPoint(s.x, s.y + 10, s.z);
 
 	std::vector<Ogre::Vector3> rPoints;
 	std::vector<Ogre::Vector3> lPoints;
@@ -99,14 +105,14 @@ void Rail::updateTrack(void)
 	//	this->addTie(f);
 	//}	
 	
-	int tiesPointsSize = tiesPoints.size();
+	int cSize = curvePoints.size();
 	Ogre::Real gap = 2.0f;
 	Ogre::Real count = 0.0f;
 
-	for(int a = 0; a < tiesPointsSize; a++)
+	for(int a = 0; a < cSize; a++)
 	{
-		Ogre::Vector3 f = tiesPoints[a];
-		Ogre::Vector3 s = tiesPoints[(a + 1) % tiesPointsSize];
+		Ogre::Vector3 f = curvePoints[a];
+		Ogre::Vector3 s = curvePoints[(a + 1) % cSize];
 		count += f.distance(s);
 
 		if(count >= gap)
@@ -154,11 +160,19 @@ void Rail::updateTrack(void)
 }
 
 //-------------------------------------------------------------------------------------
+void Rail::setCurve(int num)
+{
+	if(num == curveType) return;
+
+	curveType = num;
+	this->updateTrack();
+}
+
+//-------------------------------------------------------------------------------------
 void Rail::createBezierCurve(void)
 {
 	points.clear();
 	curvePoints.clear();
-	tiesPoints.clear();
 
 	int cSize = railNodes.size();
 
@@ -172,6 +186,64 @@ void Rail::createBezierCurve(void)
 		this->calculateControlPoints(one, two, three, four);
 	}
 
+	Ogre::Real inc = 1.0f / 100.0f;
+	int size = points.size();
+
+	for(int a = 0; a < size; a+=3)
+	{		
+		Ogre::Vector3 one = points[(a + 0)%size];
+		Ogre::Vector3 two = points[(a + 1)%size];
+		Ogre::Vector3 three = points[(a + 2)%size];
+		Ogre::Vector3 four = points[(a + 3)%size];
+
+		for(Ogre::Real t = 0.0f; t < 1.0f; t += inc)
+		{
+			Ogre::Real xPoint = this->getBezierPoint(one.x, two.x, three.x, four.x, t);
+			Ogre::Real yPoint = this->getBezierPoint(one.y, two.y, three.y, four.y, t);
+			Ogre::Real zPoint = this->getBezierPoint(one.z, two.z, three.z, four.z, t);
+
+			Ogre::Vector3 newV = Ogre::Vector3(xPoint, yPoint, zPoint);
+			curvePoints.push_back(Ogre::Vector3(newV.x, getHeight(newV), newV.z));
+		}
+	}
+}
+
+//-------------------------------------------------------------------------------------
+void Rail::createBSplineCurve(void)
+{
+	points.clear();
+	curvePoints.clear();
+
+	int cSize = railNodes.size();
+
+	for(int a = 0; a < cSize; a++)
+	{
+		Ogre::Vector3 one = railNodes[(a + 0)%cSize]->getPosition();
+		Ogre::Vector3 two = railNodes[(a + 1)%cSize]->getPosition();
+		Ogre::Vector3 three = railNodes[(a + 2)%cSize]->getPosition();
+		Ogre::Vector3 four = railNodes[(a + 3)%cSize]->getPosition();
+
+		Ogre::Real inc = 1.0f / 100.0f;
+
+		for(Ogre::Real t = 0.0f; t < 1.0f; t += inc)
+		{
+			Ogre::Real it = 1.0f - t;
+
+			Ogre::Real b0 = it*it*it / 6.0f;
+			Ogre::Real b1 = (3*t*t*t - 6*t*t + 4) / 6.0f;
+			Ogre::Real b2 = (-3*t*t*t +3*t*t + 3*t + 1) / 6.0f;
+			Ogre::Real b3 =  t*t*t / 6.0f;
+
+			Ogre::Real x = (b0 * one.x) + (b1 * two.x) + (b2 * three.x) + (b3 * four.x);
+			Ogre::Real y = (b0 * one.y) + (b1 * two.y) + (b2 * three.y) + (b3 * four.y);
+			Ogre::Real z = (b0 * one.z) + (b1 * two.z) + (b2 * three.z) + (b3 * four.z);
+
+			Ogre::Vector3 newV = Ogre::Vector3(x, y, z);
+			curvePoints.push_back(Ogre::Vector3(newV.x, getHeight(newV), newV.z));
+		}
+	}
+
+	/*
 	Ogre::Real inc = 1.0f / 100.0f;
 
 	int size = points.size();
@@ -192,19 +264,8 @@ void Rail::createBezierCurve(void)
 			Ogre::Vector3 newV = Ogre::Vector3(xPoint, yPoint, zPoint);
 			curvePoints.push_back(Ogre::Vector3(newV.x, getHeight(newV), newV.z));
 		}
-
-		//Ogre::Real inc = 1.0f / (one.distance(two) * 2.0f);
-		
-		for(Ogre::Real t = 0.0f; t < 1.0f; t += inc)
-		{
-			Ogre::Real xPoint = this->getBezierPoint(one.x, two.x, three.x, four.x, t);
-			Ogre::Real yPoint = this->getBezierPoint(one.y, two.y, three.y, four.y, t);
-			Ogre::Real zPoint = this->getBezierPoint(one.z, two.z, three.z, four.z, t);
-
-			Ogre::Vector3 newV = Ogre::Vector3(xPoint, yPoint, zPoint);
-			tiesPoints.push_back(Ogre::Vector3(newV.x, getHeight(newV), newV.z));
-		}		
 	}
+	*/
 }
 
 //-------------------------------------------------------------------------------------
@@ -250,8 +311,7 @@ void Rail::calculateControlPoints(Ogre::Vector3 v0, Ogre::Vector3 v1, Ogre::Vect
 
 //-------------------------------------------------------------------------------------
 Ogre::Real Rail::getHeight(Ogre::Vector3 vect)
-{
-	
+{	
 	Ogre::Ray mouseRay(Ogre::Vector3(vect.x, 5000.0f, vect.z), Ogre::Vector3::NEGATIVE_UNIT_Y);
 	std::pair <bool, Ogre::Vector3> test;
 	test = pTerrain->rayIntersects(mouseRay, true, 0);
@@ -273,7 +333,6 @@ void Rail::addTie(Ogre::Vector3 pos, Ogre::Quaternion rot)
 	sprintf(name, "TiesPoint%d", tieNum);
 	tieNum++;
 
-
 	Ogre::Entity* ent;
 	ent = mSceneMgr->createEntity(name, "cube.mesh");
 	ent->setCastShadows(true);	
@@ -284,17 +343,12 @@ void Rail::addTie(Ogre::Vector3 pos, Ogre::Quaternion rot)
 
 	// attach to list	
 	this->tiesNodes.push_back(mNode);
-	std::cout << rot << "\n";
-	
-	
+	std::cout << rot << "\n";	
 	
 	mNode->setScale(500.002f, 0.002f, 0.002f);
 	mNode->rotate(rot * Ogre::Quaternion(Ogre::Degree(90), Ogre::Vector3::UNIT_Z));
-	//mNode->rotate(Ogre::Quaternion(Ogre::Degree(90), Ogre::Vector3::UNIT_X));
-	
-	//mNode->translate(pos + Ogre::Vector3(0, 10, 0));
-	
-	
+	//mNode->rotate(Ogre::Quaternion(Ogre::Degree(90), Ogre::Vector3::UNIT_X));	
+	//mNode->translate(pos + Ogre::Vector3(0, 10, 0));	
 }
 
 //-------------------------------------------------------------------------------------
@@ -304,6 +358,5 @@ void Rail::deleteTieCube()
 	{
 		this->mSceneMgr->getRootSceneNode()->removeAndDestroyChild(tiesNodes[a]->getName());
 		tiesNodes.erase(tiesNodes.begin() + a);
-	}
-	
+	}	
 }

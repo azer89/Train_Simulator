@@ -60,8 +60,8 @@ void RayRayRay::createScene(void)
 	menu->setupHikari();	
 
 	// set camera
-	mCamera->setPosition(Ogre::Vector3(357, 70, 171));
-    mCamera->lookAt(Ogre::Vector3(357, 80, 200));
+	mCamera->setPosition(Ogre::Vector3(400, 226, -166));
+	mCamera->lookAt(Ogre::Vector3(176, 25, -23));
     mCamera->setNearClipDistance(5);
     mCamera->setFarClipDistance(50000);
  
@@ -99,6 +99,7 @@ void RayRayRay::createScene(void)
 	// set Rail
 	rail = new Rail(this->mSceneMgr, rayTerrain->getTerrainGroup()->getTerrain(0, 0));
 
+	/*
 	Ogre::Plane plane(Ogre::Vector3::UNIT_Y, 0);
 
 	Ogre::MeshManager::getSingleton().createPlane("ground", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
@@ -108,7 +109,8 @@ void RayRayRay::createScene(void)
 	mSceneMgr->getRootSceneNode()->createChildSceneNode("Water", Ogre::Vector3(0, 12.5, 0))->attachObject(entWater);
 
 	entWater->setMaterialName("Examples/WaterStream");
-	entWater->setCastShadows(false);	
+	entWater->setCastShadows(false);
+	*/
 }
  
 //-------------------------------------------------------------------------------------

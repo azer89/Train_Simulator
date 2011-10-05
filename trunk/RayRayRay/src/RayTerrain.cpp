@@ -162,7 +162,7 @@ void RayTerrain::configureTerrainDefaults(Ogre::Light* light)
     Ogre::Terrain::ImportData& defaultimp = mTerrainGroup->getDefaultImportSettings();
     defaultimp.terrainSize = 65;
     defaultimp.worldSize = 1000.0f;
-	defaultimp.inputScale = 100;
+	defaultimp.inputScale = 50;
     defaultimp.minBatchSize = 33;
     defaultimp.maxBatchSize = 65;
 	
