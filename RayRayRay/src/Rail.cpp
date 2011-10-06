@@ -43,7 +43,9 @@ Ogre::SceneNode* Rail::addPoint(Ogre::Vector3 pos)
 	sprintf(name, "RailPoint%d", num++);
 	
 	Ogre::Entity* ent;
-	ent = mSceneMgr->createEntity(name, "cube.mesh");
+	ent = mSceneMgr->createEntity(name, "pillar.mesh");
+	//Ogre::Material mat = 
+	ent->setMaterialName("woodmat");
 	ent->setQueryFlags(1 << 0);
 	ent->setCastShadows(true);	
 
@@ -55,7 +57,7 @@ Ogre::SceneNode* Rail::addPoint(Ogre::Vector3 pos)
 	this->railNodes.push_back(mNode);
 
 	//lets shrink the object
-	mNode->setScale(0.03f, 0.10f, 0.03f);
+	mNode->setScale(5.0f, 7.0f, 5.0f);
 
 	this->updateTrack();
 
@@ -175,13 +177,14 @@ void Rail::createBezierCurve(void)
 	curvePoints.clear();
 
 	int cSize = railNodes.size();
+	Ogre::Vector3 yAdd = Ogre::Vector3(0, 20, 0);
 
 	for(int a = 0; a < cSize; a++)
 	{
-		Ogre::Vector3 one = railNodes[(a + 0)%cSize]->getPosition();
-		Ogre::Vector3 two = railNodes[(a + 1)%cSize]->getPosition();
-		Ogre::Vector3 three = railNodes[(a + 2)%cSize]->getPosition();
-		Ogre::Vector3 four = railNodes[(a + 3)%cSize]->getPosition();
+		Ogre::Vector3 one = railNodes[(a + 0)%cSize]->getPosition() + yAdd;
+		Ogre::Vector3 two = railNodes[(a + 1)%cSize]->getPosition() + yAdd;
+		Ogre::Vector3 three = railNodes[(a + 2)%cSize]->getPosition() + yAdd;
+		Ogre::Vector3 four = railNodes[(a + 3)%cSize]->getPosition() + yAdd;
 
 		this->calculateControlPoints(one, two, three, four);
 	}
@@ -215,13 +218,14 @@ void Rail::createBSplineCurve(void)
 	curvePoints.clear();
 
 	int cSize = railNodes.size();
+	Ogre::Vector3 yAdd = Ogre::Vector3(0, 20, 0);
 
 	for(int a = 0; a < cSize; a++)
 	{
-		Ogre::Vector3 one = railNodes[(a + 0)%cSize]->getPosition();
-		Ogre::Vector3 two = railNodes[(a + 1)%cSize]->getPosition();
-		Ogre::Vector3 three = railNodes[(a + 2)%cSize]->getPosition();
-		Ogre::Vector3 four = railNodes[(a + 3)%cSize]->getPosition();
+		Ogre::Vector3 one = railNodes[(a + 0)%cSize]->getPosition() + yAdd;
+		Ogre::Vector3 two = railNodes[(a + 1)%cSize]->getPosition() + yAdd;
+		Ogre::Vector3 three = railNodes[(a + 2)%cSize]->getPosition() + yAdd;
+		Ogre::Vector3 four = railNodes[(a + 3)%cSize]->getPosition() + yAdd;
 
 		Ogre::Real inc = 1.0f / 100.0f;
 
