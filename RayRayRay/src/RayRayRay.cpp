@@ -368,6 +368,12 @@ bool RayRayRay::keyPressed(const OIS::KeyEvent& arg)
 	return true;
 }
 
+//-------------------------------------------------------------------------------------
+void RayRayRay::shutdownApp(void)
+{
+	this->mShutDown = true;
+}
+
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_WIN32
 #define WIN32_LEAN_AND_MEAN
