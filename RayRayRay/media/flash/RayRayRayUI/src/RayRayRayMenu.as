@@ -91,10 +91,16 @@ package
 		
 		private function onGearClick( event:MouseEvent ):void
 		{
-			if(isDown)
+			if (isDown)
+			{
 				TweenMax.to(menu, 0.5, { x:0, y:50, ease:Circ.easeOut, alpha:1 } );
+				ExternalInterface.call("MenuState", "open");
+			}
 			else
-				TweenMax.to(menu, 0.5, { x:0, y:-200, ease:Circ.easeIn, alpha:0 } );
+			{
+				TweenMax.to(menu, 0.5, { x:0, y: -200, ease:Circ.easeIn, alpha:0 } );
+				ExternalInterface.call("MenuState", "close");
+			}
 				
 			isDown = !isDown;
 		}
@@ -135,8 +141,9 @@ package
 		
 		private function setCurve():void
 		{
-			curveVal = Math.abs(curveVal);			
-			if (curveVal > 1) curveVal = 0;
+			//curveVal = Math.abs(curveVal);			
+			if (curveVal > 2) curveVal = 0;
+			else if (curveVal < 0) curveVal = 2;
 			
 			if (curveVal == 0) 
 			{
@@ -147,6 +154,11 @@ package
 			{
 				curveText.text = "B-SPLINE";
 				ExternalInterface.call("Curve", "bspline");
+			}
+			else if (curveVal == 2) 
+			{
+				curveText.text = "LINEAR";
+				ExternalInterface.call("Curve", "linear");
 			}
 		}
 		

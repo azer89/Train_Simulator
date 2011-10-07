@@ -39,13 +39,12 @@ using namespace Ogre;
 class RayRayRay : public BaseApplication
 {
 public:
-    RayRayRay(void);
-    virtual ~RayRayRay(void);
+    RayRayRay(void);			// constructor
+    virtual ~RayRayRay(void);	// destructor
 
-	// Hikari
-	RayFlashInterface* menu;
-	Ogre::Viewport* hViewPort;
-	Rail* rail;
+	RayFlashInterface* menu;	// hikari
+	Ogre::Viewport* hViewPort;	// necessary for hikari
+	Rail* rail;					// track
 
 protected:
     virtual void createScene(void);
@@ -70,12 +69,12 @@ protected:
 	int mCount;							//number of objects created
 	float mRotateSpeed;					//the rotation speed for the camera
 
-	bool hideTray;
+	bool hideTray;						// necessary for hiding tray
 
 private:
 	
-	RayTerrain* rayTerrain;
-    OgreBites::Label* mInfoLabel;
+	RayTerrain* rayTerrain;			// responsible to draw tracks
+    OgreBites::Label* mInfoLabel;	// message info
 };
 
 #endif // #ifndef __RayRayRay_h_

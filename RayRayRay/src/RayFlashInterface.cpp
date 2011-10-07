@@ -7,6 +7,7 @@
 //-------------------------------------------------------------------------------------
 RayFlashInterface::~RayFlashInterface(void)
 {
+	isMenuOpen = false;
 }
 
 //-------------------------------------------------------------------------------------
@@ -34,6 +35,7 @@ void RayFlashInterface::setupHikari(void)
 	controls->bind("Stop", FlashDelegate(this, &RayFlashInterface::onStopClick));
 	controls->bind("Exit", FlashDelegate(this, &RayFlashInterface::onExitClick));
 	controls->bind("Curve", FlashDelegate(this, &RayFlashInterface::onCurveChange));
+	controls->bind("MenuState", FlashDelegate(this, &RayFlashInterface::onMenuStateChange));
 	
 }
 
@@ -48,6 +50,20 @@ void RayFlashInterface::showObjectControl(int xMPos, int yMPos)
 	objectControls->setDraggable(false);
 	objectControls->setTransparent(true, true);
 	*/
+}
+
+bool RayFlashInterface::isInsideMenu(int mouseX, int mouseY)
+{
+	if(isMenuOpen && mouseX >= 0 && mouseX <= 170 && mouseY >= 0 && mouseY <= 220)
+	{
+		return true;
+	}
+	else if (!isMenuOpen && mouseX >= 0 && mouseX <= 60 && mouseY >= 0 && mouseY <= 60)
+	{
+		return true;
+	}
+
+	return false;
 }
 
 Hikari::FlashValue RayFlashInterface::onStartClick(Hikari::FlashControl* caller, const Hikari::Arguments& args)
@@ -93,6 +109,27 @@ Hikari::FlashValue RayFlashInterface::onCurveChange(Hikari::FlashControl* caller
 	{
 		this->rayApp->rail->setCurve(1);
 	}
+	else if(text == "linear")
+	{
+		this->rayApp->rail->setCurve(2);
+	}
 	
+	return FLASH_VOID;
+}
+
+Hikari::FlashValue RayFlashInterface::onMenuStateChange(Hikari::FlashControl* caller, const Hikari::Arguments& args)
+{
+	using namespace Hikari;
+	std::string text = args.at(0).getString(); 
+
+	if(text == "open")
+	{
+		isMenuOpen = true;
+	}
+	else if(text == "close")
+	{
+		isMenuOpen = false;
+	}
+
 	return FLASH_VOID;
 }
