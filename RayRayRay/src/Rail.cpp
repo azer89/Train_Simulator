@@ -25,7 +25,10 @@ Rail::~Rail(void)
 //-------------------------------------------------------------------------------------
 void Rail::deleteRailPoint(std::string name)
 {
-	for(int a = 0; a < railNodes.size(); a++)
+	int rSize = railNodes.size();
+	if(rSize == 3) return; // prevent to delete
+
+	for(int a = 0; a < rSize; a++)
 	{
 		if(railNodes[a]->getName() == name)
 		{
