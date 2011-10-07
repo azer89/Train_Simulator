@@ -1,4 +1,8 @@
 
+/*
+http://www.projectxenocide.com/public/docs/xenoui/html/classDynamicRenderable.html
+*/
+
 #ifndef DYNAMIC_RENDERABLE_H
 #define DYNAMIC_RENDERABLE_H
  
