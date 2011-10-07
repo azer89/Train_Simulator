@@ -19,6 +19,7 @@ Rail::Rail(Ogre::SceneManager* mSceneMgr, Ogre::Terrain* pTerrain):
 //-------------------------------------------------------------------------------------
 Rail::~Rail(void)
 {
+	if(lines) delete lines;
 }
 
 //-------------------------------------------------------------------------------------
@@ -52,11 +53,9 @@ Ogre::SceneNode* Rail::addPoint(Ogre::Vector3 pos)
 	Ogre::SceneNode* mNode = mSceneMgr->getRootSceneNode()->createChildSceneNode(std::string(name) + "Node", pos);
 	mNode->attachObject(ent);
 
-	// attach to list	
-	this->railNodes.push_back(mNode);
-
-	//lets shrink the object
-	mNode->setScale(5.0f, 7.0f, 5.0f);
+	
+	this->railNodes.push_back(mNode);		// attach to list		
+	mNode->setScale(5.0f, 7.0f, 5.0f);		//lets shrink the object
 
 	this->updateTrack();
 
@@ -163,6 +162,7 @@ void Rail::updateTrack(void)
 }
 
 //-------------------------------------------------------------------------------------
+// Set curve interpolation type
 void Rail::setCurve(int num)
 {
 	if(num == curveType) return;
@@ -172,6 +172,7 @@ void Rail::setCurve(int num)
 }
 
 //-------------------------------------------------------------------------------------
+// Main function for Linear Interpolation, nothing special
 void Rail::createLinearCurve(void)
 {
 	points.clear();
@@ -207,6 +208,7 @@ void Rail::createLinearCurve(void)
 }
 
 //-------------------------------------------------------------------------------------
+// // Main function for Cubic Bezier Interpolation
 void Rail::createBezierCurve(void)
 {
 	points.clear();
@@ -248,6 +250,7 @@ void Rail::createBezierCurve(void)
 }
 
 //-------------------------------------------------------------------------------------
+// Main function for Cubic B-Spline Interpolation
 void Rail::createBSplineCurve(void)
 {
 	points.clear();
@@ -285,7 +288,12 @@ void Rail::createBSplineCurve(void)
 }
 
 //-------------------------------------------------------------------------------------
-Ogre::Real Rail::getBezierPoint(Ogre::Real p0, Ogre::Real p1, Ogre::Real p2, Ogre::Real p3, Ogre::Real t)
+// Implementation of bezier formula
+Ogre::Real Rail::getBezierPoint(Ogre::Real p0, 
+								Ogre::Real p1, 
+								Ogre::Real p2, 
+								Ogre::Real p3, 
+								Ogre::Real t)
 {
 	Ogre::Real oneMinT = 1.0f - t;
 	
@@ -301,7 +309,12 @@ Ogre::Real Rail::getBezierPoint(Ogre::Real p0, Ogre::Real p1, Ogre::Real p2, Ogr
 }
 
 //-------------------------------------------------------------------------------------
-void Rail::calculateControlPoints(Ogre::Vector3 v0, Ogre::Vector3 v1, Ogre::Vector3 v2, Ogre::Vector3 v3, Ogre::Real weight)
+// Function to add additional control points, necessary for bezier interpolation
+void Rail::calculateControlPoints(Ogre::Vector3 v0, 
+								  Ogre::Vector3 v1, 
+								  Ogre::Vector3 v2, 
+								  Ogre::Vector3 v3, 
+								  Ogre::Real weight)
 {		
 	Ogre::Vector3 c1 = (v0 + v1) / 2.0f;
 	Ogre::Vector3 c2 = (v1 + v2) / 2.0f;
@@ -329,6 +342,7 @@ void Rail::calculateControlPoints(Ogre::Vector3 v0, Ogre::Vector3 v1, Ogre::Vect
 }
 
 //-------------------------------------------------------------------------------------
+// Function to get terrain height at a point vect
 Ogre::Real Rail::getHeight(Ogre::Vector3 vect)
 {	
 	Ogre::Ray mouseRay(Ogre::Vector3(vect.x, 5000.0f, vect.z), Ogre::Vector3::NEGATIVE_UNIT_Y);
@@ -346,6 +360,7 @@ Ogre::Real Rail::getHeight(Ogre::Vector3 vect)
 }
 
 //-------------------------------------------------------------------------------------
+// Function to add tie
 void Rail::addTie(Ogre::Vector3 pos, Ogre::Quaternion rot)
 {
 	char name[20];

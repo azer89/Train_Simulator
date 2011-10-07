@@ -16,11 +16,10 @@ public:
 
 private:
 	
-	Ogre::TerrainGlobalOptions* mTerrainGlobals;
-    Ogre::TerrainGroup* mTerrainGroup;
-	Ogre::SceneManager* mSceneMgr;
-    bool mTerrainsImported;
-	Ogre::Image image;
+	Ogre::TerrainGlobalOptions* mTerrainGlobals;	// terrain options
+    Ogre::TerrainGroup* mTerrainGroup;				// terrain group
+	Ogre::SceneManager* mSceneMgr;					// scene manager
+    bool mTerrainsImported;							// is already imported
  
     void defineTerrain(long x, long y);
     void initBlendMaps(Ogre::Terrain* terrain);

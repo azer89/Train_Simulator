@@ -24,24 +24,23 @@ public:
 	void updateTrack(void);
 	void setCurve(int num);
 
+	std::vector<Ogre::SceneNode*> railNodes;	// contains pole positions
+	std::vector<Ogre::SceneNode*> tiesNodes;	// contains tie positions
+	std::vector<Ogre::Vector3> points;			// pole positions + control points
+	std::vector<Ogre::Vector3> curvePoints;		// interpolated points
+
 private:
 	int num;			// number of rail point
 	int tieNum;			// number of tie
 	bool initiated;		// is initiated
 	int curveType;		// type of curve: bezier of b-spline
 
-	Ogre::Entity* tieEntity;				// tie entity
-
+	Ogre::Entity* tieEntity;			// tie entity
 	Ogre::SceneManager* mSceneMgr;		// scene manager
 	Ogre::Terrain* pTerrain;			// terrain, for calculate height
 	Ogre::SceneNode* linesNode;			// node of lines
 	DynamicLines *lines;				// dynamic lines
 	Ogre::SceneNode* trackNode;			// for track node
-
-	std::vector<Ogre::SceneNode*> railNodes;
-	std::vector<Ogre::SceneNode*> tiesNodes;
-	std::vector<Ogre::Vector3> points;
-	std::vector<Ogre::Vector3> curvePoints;
 	
 	Ogre::Real getBezierPoint(Ogre::Real p0, Ogre::Real p1, Ogre::Real p2, Ogre::Real p3, Ogre::Real t);
 	Ogre::Real getHeight(Ogre::Vector3 vect);
