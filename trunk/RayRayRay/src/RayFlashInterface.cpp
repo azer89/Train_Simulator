@@ -76,9 +76,7 @@ bool RayFlashInterface::isInsideMenu(int mouseX, int mouseY)
 Hikari::FlashValue RayFlashInterface::onStartClick(Hikari::FlashControl* caller, const Hikari::Arguments& args)
 {
 	using namespace Hikari;
-	std::string text = args.at(0).getString(); 
-
-	std::cout << "start" << "\n";
+	std::string text = args.at(0).getString();
 	
 	return FLASH_VOID;
 }
@@ -95,6 +93,8 @@ Hikari::FlashValue RayFlashInterface::onExitClick(Hikari::FlashControl* caller, 
 {
 	using namespace Hikari;
 	std::string text = args.at(0).getString(); 
+
+	this->rayApp->shutdownApp();
 	
 	return FLASH_VOID;
 }
