@@ -44,8 +44,7 @@ Ogre::SceneNode* Rail::addPoint(Ogre::Vector3 pos)
 	
 	Ogre::Entity* ent;
 	ent = mSceneMgr->createEntity(name, "pillar.mesh");
-	//Ogre::Material mat = 
-	ent->setMaterialName("woodmat");
+	//ent->setMaterialName("woodmat");
 	ent->setQueryFlags(1 << 0);
 	ent->setCastShadows(true);	
 
@@ -80,6 +79,8 @@ void Rail::updateTrack(void)
 		this->createBezierCurve();
 	else if (curveType == 1)
 		this->createBSplineCurve();
+	else if (curveType == 2)
+		this->createLinearCurve();
 	
 	/*
 	for(int a = 0; a < curvePoints.size()-1; a++)
@@ -171,6 +172,41 @@ void Rail::setCurve(int num)
 }
 
 //-------------------------------------------------------------------------------------
+void Rail::createLinearCurve(void)
+{
+	points.clear();
+	curvePoints.clear();
+
+	int cSize = railNodes.size();
+	Ogre::Vector3 yAdd = Ogre::Vector3(0, 20, 0);
+
+	for(int a = 0; a < cSize; a++)
+	{
+		Ogre::Vector3 one = railNodes[(a + 0)%cSize]->getPosition() + yAdd;
+		Ogre::Vector3 two = railNodes[(a + 1)%cSize]->getPosition() + yAdd;
+		Ogre::Vector3 three = railNodes[(a + 2)%cSize]->getPosition() + yAdd;
+		Ogre::Vector3 four = railNodes[(a + 3)%cSize]->getPosition() + yAdd;
+
+		this->calculateControlPoints(one, two, three, four, 0.3f);
+	}
+
+	Ogre::Real inc = 1.0f / 50.0f;
+	int size = points.size();
+
+	for(int a = 0; a < size; a++)
+	{		
+		Ogre::Vector3 vect01 = points[(a + 0)%size];
+		Ogre::Vector3 vect02 = points[(a + 1)%size];
+
+		for(Ogre::Real t = 0.0f; t < 1.0f; t += inc)
+		{	
+			Ogre::Vector3 vect03 = vect01 + (vect02 - vect01) * t;
+			curvePoints.push_back(Ogre::Vector3(vect03.x, getHeight(vect03), vect03.z));
+		}
+	}
+}
+
+//-------------------------------------------------------------------------------------
 void Rail::createBezierCurve(void)
 {
 	points.clear();
@@ -186,7 +222,7 @@ void Rail::createBezierCurve(void)
 		Ogre::Vector3 three = railNodes[(a + 2)%cSize]->getPosition() + yAdd;
 		Ogre::Vector3 four = railNodes[(a + 3)%cSize]->getPosition() + yAdd;
 
-		this->calculateControlPoints(one, two, three, four);
+		this->calculateControlPoints(one, two, three, four, 0.9f);
 	}
 
 	Ogre::Real inc = 1.0f / 100.0f;
@@ -246,30 +282,6 @@ void Rail::createBSplineCurve(void)
 			curvePoints.push_back(Ogre::Vector3(newV.x, getHeight(newV), newV.z));
 		}
 	}
-
-	/*
-	Ogre::Real inc = 1.0f / 100.0f;
-
-	int size = points.size();
-
-	for(int a = 0; a < size; a+=3)
-	{		
-		Ogre::Vector3 one = points[(a + 0)%size];
-		Ogre::Vector3 two = points[(a + 1)%size];
-		Ogre::Vector3 three = points[(a + 2)%size];
-		Ogre::Vector3 four = points[(a + 3)%size];
-
-		for(Ogre::Real t = 0.0f; t < 1.0f; t += inc)
-		{
-			Ogre::Real xPoint = this->getBezierPoint(one.x, two.x, three.x, four.x, t);
-			Ogre::Real yPoint = this->getBezierPoint(one.y, two.y, three.y, four.y, t);
-			Ogre::Real zPoint = this->getBezierPoint(one.z, two.z, three.z, four.z, t);
-
-			Ogre::Vector3 newV = Ogre::Vector3(xPoint, yPoint, zPoint);
-			curvePoints.push_back(Ogre::Vector3(newV.x, getHeight(newV), newV.z));
-		}
-	}
-	*/
 }
 
 //-------------------------------------------------------------------------------------
@@ -289,7 +301,7 @@ Ogre::Real Rail::getBezierPoint(Ogre::Real p0, Ogre::Real p1, Ogre::Real p2, Ogr
 }
 
 //-------------------------------------------------------------------------------------
-void Rail::calculateControlPoints(Ogre::Vector3 v0, Ogre::Vector3 v1, Ogre::Vector3 v2, Ogre::Vector3 v3)
+void Rail::calculateControlPoints(Ogre::Vector3 v0, Ogre::Vector3 v1, Ogre::Vector3 v2, Ogre::Vector3 v3, Ogre::Real weight)
 {		
 	Ogre::Vector3 c1 = (v0 + v1) / 2.0f;
 	Ogre::Vector3 c2 = (v1 + v2) / 2.0f;
@@ -305,8 +317,11 @@ void Rail::calculateControlPoints(Ogre::Vector3 v0, Ogre::Vector3 v1, Ogre::Vect
 	Ogre::Vector3 m1 = c1 + (c2 - c1) * k1;
 	Ogre::Vector3 m2 = c2 + (c3 - c2) * k2;
 
-	Ogre::Vector3 ctrl1 = m1 + (c2 - m1) * 0.9f + v1 - m1;
-	Ogre::Vector3 ctrl2 = m2 + (c2 - m2) * 0.9f + v2 - m2;
+	// Ogre::Vector3 ctrl1 = m1 + (c2 - m1) * 0.9f + v1 - m1;
+	// Ogre::Vector3 ctrl2 = m2 + (c2 - m2) * 0.9f + v2 - m2;
+
+	Ogre::Vector3 ctrl1 = m1 + (c2 - m1) * weight + v1 - m1;
+	Ogre::Vector3 ctrl2 = m2 + (c2 - m2) * weight + v2 - m2;
 
 	points.push_back(Ogre::Vector3(v1.x, getHeight(v1), v1.z));
 	points.push_back(Ogre::Vector3(ctrl1.x, getHeight(ctrl1), ctrl1.z));

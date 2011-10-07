@@ -1,5 +1,4 @@
 
-
 #include <OgreCamera.h>
 #include <OgreEntity.h>
 #include <OgreLogManager.h>
@@ -48,7 +47,8 @@ private:
 	Ogre::Real getHeight(Ogre::Vector3 vect);
 	void createBezierCurve(void);
 	void createBSplineCurve(void);
-	void calculateControlPoints(Ogre::Vector3 v0, Ogre::Vector3 v1, Ogre::Vector3 v2, Ogre::Vector3 v3);
+	void createLinearCurve(void);
+	void calculateControlPoints(Ogre::Vector3 v0, Ogre::Vector3 v1, Ogre::Vector3 v2, Ogre::Vector3 v3, Ogre::Real weight);
 	void addTie(Ogre::Vector3 pos, Ogre::Quaternion rot);
 	void deleteTieCube(void);
 	void initTieCube(void);
