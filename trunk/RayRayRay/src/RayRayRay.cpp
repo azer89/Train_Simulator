@@ -42,6 +42,7 @@ RayRayRay::~RayRayRay(void)
 //-------------------------------------------------------------------------------------
 void RayRayRay::destroyScene(void)
 {
+	// delete all objects
 	if(rail) delete rail;
 	if(rayTerrain) delete rayTerrain;
 	if(menu) delete menu;
@@ -100,6 +101,7 @@ void RayRayRay::createScene(void)
 	rail = new Rail(this->mSceneMgr, rayTerrain->getTerrainGroup()->getTerrain(0, 0));
 
 	/*
+	// this is to add water pond effect
 	Ogre::Plane plane(Ogre::Vector3::UNIT_Y, 0);
 
 	Ogre::MeshManager::getSingleton().createPlane("ground", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
@@ -123,9 +125,10 @@ void RayRayRay::chooseSceneManager(void)
 //-------------------------------------------------------------------------------------
 void RayRayRay::createFrameListener(void)
 {
-	//we still want to create the frame listener from the base app
+	//create the frame listener from the base app
 	BaseApplication::createFrameListener();
 
+	// create text inf on top of window
 	mInfoLabel = mTrayMgr->createLabel(OgreBites::TL_TOP, "TInfo", "", 350);
 	mInfoLabel->hide();
 
@@ -136,11 +139,8 @@ void RayRayRay::createFrameListener(void)
 //-------------------------------------------------------------------------------------
 bool RayRayRay::frameRenderingQueued(const Ogre::FrameEvent& arg)
 {	
-	if(mWindow->isClosed())
-        return false;
- 
-    if(mShutDown)
-        return false;
+	if(mWindow->isClosed()) return false; 
+    if(mShutDown) return false;
  
     // Need to capture/update each device
     mKeyboard->capture();
@@ -227,10 +227,11 @@ bool RayRayRay::mouseMoved(const OIS::MouseEvent& arg)
 	Ogre::Real offsetX = (float)arg.state.X.abs / (float)arg.state.width;
 	Ogre::Real offsetY = (float)arg.state.Y.abs / (float)arg.state.height;
 
+	//std::cout << arg.state.X.abs << " - " << arg.state.Y.abs << "\n";
+
 	//using namespace Hikari;
 	bool val = menu->hikariMgr->injectMouseMove(arg.state.X.abs, arg.state.Y.abs) ||  menu->hikariMgr->injectMouseWheel(arg.state.Z.rel);
-	
-	
+		
 	//if the left mouse button is held down
 	if(bLMouseDown)
 	{
@@ -261,6 +262,11 @@ bool RayRayRay::mousePressed(const OIS::MouseEvent& arg, OIS::MouseButtonID id)
 {
 	if(id == OIS::MB_Left)
 	{
+		if(menu->isInsideMenu(arg.state.X.abs, arg.state.Y.abs))
+		{
+			return  menu->hikariMgr->injectMouseDown(id);
+		}
+
 		//show that the current object has been deselected by removing the bounding box visual
 		if(mCurrentObject)
 		{
@@ -321,10 +327,9 @@ bool RayRayRay::mousePressed(const OIS::MouseEvent& arg, OIS::MouseButtonID id)
 		bRMouseDown = true;
 	}
 
-	using namespace Hikari;
-	return  menu->hikariMgr->injectMouseDown(id);
- 
-	return true;
+	//using namespace Hikari;
+	return  menu->hikariMgr->injectMouseDown(id); 
+	//return true;
 }
  
 //-------------------------------------------------------------------------------------
@@ -339,7 +344,7 @@ bool RayRayRay::mouseReleased(const OIS::MouseEvent& arg, OIS::MouseButtonID id)
 		bRMouseDown = false;
 	}
 
-	using namespace Hikari;
+	//using namespace Hikari;
 	return  menu->hikariMgr->injectMouseUp(id);
 
 	return true;

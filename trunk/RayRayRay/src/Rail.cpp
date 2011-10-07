@@ -187,7 +187,7 @@ void Rail::createLinearCurve(void)
 		Ogre::Vector3 three = railNodes[(a + 2)%cSize]->getPosition() + yAdd;
 		Ogre::Vector3 four = railNodes[(a + 3)%cSize]->getPosition() + yAdd;
 
-		this->calculateControlPoints(one, two, three, four, 0.3f);
+		this->calculateControlPoints(one, two, three, four, 0.05f);
 	}
 
 	Ogre::Real inc = 1.0f / 50.0f;
