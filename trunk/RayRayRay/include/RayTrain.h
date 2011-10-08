@@ -18,7 +18,7 @@ public:
 	RayTrain(Ogre::SceneManager* mSceneMgr, Rail* rail );
 	virtual ~RayTrain(void);
 	
-	bool isInitialized;
+	bool isInitialized;	
 	
 	void initTrain();
 	void startTrain();
@@ -26,6 +26,7 @@ public:
 	void update(Ogre::Real timeSinceLastFrame);
 
 private:
+	bool isTrainMoving;
 	Ogre::SceneManager* mSceneMgr;
 	std::vector<Ogre::SceneNode*> trainNodes;
 	Rail* rail;
