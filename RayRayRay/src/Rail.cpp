@@ -79,13 +79,11 @@ void Rail::updateTrack(void)
 	
 	points.clear();
 	curvePoints.clear();
+	tiePoints.clear();
 
-	if(curveType == 0)
-		this->createBezierCurve();
-	else if (curveType == 1)
-		this->createBSplineCurve();
-	else if (curveType == 2)
-		this->createLinearCurve();
+	if(curveType == 0) this->createBezierCurve();
+	else if (curveType == 1) this->createBSplineCurve();
+	else if (curveType == 2) this->createLinearCurve();
 	
 	/*
 	for(int a = 0; a < curvePoints.size()-1; a++)
@@ -134,6 +132,7 @@ void Rail::updateTrack(void)
 			rv += f;
 			lv += f;
 			
+			this->tiePoints.push_back(f);
 			//this->addTie(f, lv.getRotationTo(rv));
 			
 			rPoints.push_back(rv);

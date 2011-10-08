@@ -77,7 +77,8 @@ Hikari::FlashValue RayFlashInterface::onStartClick(Hikari::FlashControl* caller,
 {
 	using namespace Hikari;
 	std::string text = args.at(0).getString();
-	
+	this->rayApp->train->startTrain();
+
 	return FLASH_VOID;
 }
 
@@ -85,7 +86,8 @@ Hikari::FlashValue RayFlashInterface::onStopClick(Hikari::FlashControl* caller, 
 {
 	using namespace Hikari;
 	std::string text = args.at(0).getString();
-	
+	this->rayApp->train->stopTrain();
+
 	return FLASH_VOID;
 }
 

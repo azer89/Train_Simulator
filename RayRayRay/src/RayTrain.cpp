@@ -10,6 +10,7 @@ RayTrain::RayTrain(Ogre::SceneManager* mSceneMgr, Rail* rail ): numTrain(0)
 	this->mSceneMgr = mSceneMgr;
 	this->rail = rail;
 	this->isInitialized = false;
+	this->isTrainMoving = false;
 	counterPoint = 0;
 }
 
@@ -24,6 +25,8 @@ void RayTrain::update(Ogre::Real timeSinceLastFrame)
 {
 	using namespace Ogre;
 
+	if(!this->isTrainMoving) return;
+
 	this->timeSinceLastFrame += timeSinceLastFrame;
 	if(this->timeSinceLastFrame >= 0.02f)
 	{
@@ -31,23 +34,18 @@ void RayTrain::update(Ogre::Real timeSinceLastFrame)
 		
 		for(int a = 0; a < trainNodes.size(); a++)
 		{
-			int cSize = rail->curvePoints.size();
-			if(counterPoint >= cSize) counterPoint = 0;
+			int tSize = rail->tiePoints.size();
+			if(counterPoint >= tSize) counterPoint = 0;
 			
-			Ogre::Vector3 v01 = rail->curvePoints[counterPoint];
-			Ogre::Vector3 v02 = rail->curvePoints[(counterPoint + 1) % cSize];
+			Ogre::Vector3 v01 = rail->tiePoints[counterPoint];
+			Ogre::Vector3 v02 = rail->tiePoints[(counterPoint + 1) % tSize];
 			Ogre::Vector3 v03 = (v02 - v01);
 			v03.normalise();
+
 			trainNodes[a]->setDirection(v03, SceneNode::TS_PARENT);
-			//Ogre::Quaternion q01 = v01.getRotationTo(v02);
-			//Ogre::Quaternion q01 = Ogre::Vector3::ZERO.getRotationTo(v03);
-			
-			//Ogre::Radian r1 = q01.getYaw();
-			//Ogre::Radian r0 = trainNodes[a]->getOrientation().getYaw();
-			//trainNodes[a]->yaw(-r0);
-			//trainNodes[a]->yaw(r1);
 			trainNodes[a]->setPosition(v01);
-			counterPoint += 2;
+			
+			counterPoint += 1;
 		}
 	}
 }
@@ -56,7 +54,7 @@ void RayTrain::update(Ogre::Real timeSinceLastFrame)
 void RayTrain::initTrain()
 {
 	this->isInitialized = true;
-	Ogre::Vector3 initPos = rail->curvePoints[counterPoint];
+	Ogre::Vector3 initPos = rail->tiePoints[counterPoint];
 	
 	char name[16];
 	sprintf(name, "Train%d", numTrain++);
@@ -77,13 +75,13 @@ void RayTrain::initTrain()
 //-------------------------------------------------------------------------------------
 void RayTrain::startTrain()
 {
-
+	this->isTrainMoving = true;
 }
 
 //-------------------------------------------------------------------------------------
 void RayTrain::stopTrain()
 {
-
+	this->isTrainMoving = false;
 }
 
 
