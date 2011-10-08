@@ -1,6 +1,6 @@
+
 #include "Stdafx.h"
 #include "Rail.h"
-
 
 //-------------------------------------------------------------------------------------
 Rail::Rail(Ogre::SceneManager* mSceneMgr, Ogre::Terrain* pTerrain): 
@@ -76,6 +76,9 @@ void Rail::updateTrack(void)
 		lines->update();
 		return;
 	}
+	
+	points.clear();
+	curvePoints.clear();
 
 	if(curveType == 0)
 		this->createBezierCurve();
@@ -90,8 +93,8 @@ void Rail::updateTrack(void)
 		Ogre::Vector3 first = curvePoints[a];
 		Ogre::Vector3 second = curvePoints[a + 1];
 
-		lines->addPoint(first.x, first.y + 10, first.z);
-		lines->addPoint(second.x, second.y + 10, second.z);		
+		lines->addPoint(first.x, first.y, first.z);
+		lines->addPoint(second.x, second.y, second.z);		
 	}
 	*/
 
@@ -136,8 +139,8 @@ void Rail::updateTrack(void)
 			rPoints.push_back(rv);
 			lPoints.push_back(lv);
 			
-			lines->addPoint(rv.x, rv.y + 10, rv.z);
-			lines->addPoint(lv.x, lv.y + 10, lv.z);
+			lines->addPoint(rv.x, rv.y, rv.z);
+			lines->addPoint(lv.x, lv.y, lv.z);
 
 			count = 0.0f;
 		}
@@ -151,11 +154,11 @@ void Rail::updateTrack(void)
 		Ogre::Vector3 fl = lPoints[a%parSize];
 		Ogre::Vector3 sl = lPoints[(a + 1)%parSize];
 
-		lines->addPoint(fr.x, fr.y + 10, fr.z);
-		lines->addPoint(sr.x, sr.y + 10, sr.z);
+		lines->addPoint(fr.x, fr.y, fr.z);
+		lines->addPoint(sr.x, sr.y, sr.z);
 
-		lines->addPoint(fl.x, fl.y + 10, fl.z);
-		lines->addPoint(sl.x, sl.y + 10, sl.z);
+		lines->addPoint(fl.x, fl.y, fl.z);
+		lines->addPoint(sl.x, sl.y, sl.z);
 	}	
 
 	lines->update();
@@ -178,11 +181,8 @@ void Rail::setCurve(int num)
 // Main function for Linear Interpolation, nothing special
 void Rail::createLinearCurve(void)
 {
-	points.clear();
-	curvePoints.clear();
-
 	int cSize = railNodes.size();
-	Ogre::Vector3 yAdd = Ogre::Vector3(0, 20, 0);
+	Ogre::Vector3 yAdd = Ogre::Vector3(0, 30, 0);
 
 	for(int a = 0; a < cSize; a++)
 	{
@@ -214,11 +214,9 @@ void Rail::createLinearCurve(void)
 // // Main function for Cubic Bezier Interpolation
 void Rail::createBezierCurve(void)
 {
-	points.clear();
-	curvePoints.clear();
 
 	int cSize = railNodes.size();
-	Ogre::Vector3 yAdd = Ogre::Vector3(0, 20, 0);
+	Ogre::Vector3 yAdd = Ogre::Vector3(0, 30, 0);
 
 	for(int a = 0; a < cSize; a++)
 	{
@@ -256,11 +254,8 @@ void Rail::createBezierCurve(void)
 // Main function for Cubic B-Spline Interpolation
 void Rail::createBSplineCurve(void)
 {
-	points.clear();
-	curvePoints.clear();
-
 	int cSize = railNodes.size();
-	Ogre::Vector3 yAdd = Ogre::Vector3(0, 20, 0);
+	Ogre::Vector3 yAdd = Ogre::Vector3(0, 30, 0);
 
 	for(int a = 0; a < cSize; a++)
 	{
@@ -366,6 +361,7 @@ Ogre::Real Rail::getHeight(Ogre::Vector3 vect)
 // Function to add tie
 void Rail::addTie(Ogre::Vector3 pos, Ogre::Quaternion rot)
 {
+	/*
 	char name[20];
 	sprintf(name, "TiesPoint%d", tieNum);
 	tieNum++;
@@ -384,6 +380,7 @@ void Rail::addTie(Ogre::Vector3 pos, Ogre::Quaternion rot)
 	
 	mNode->setScale(500.002f, 0.002f, 0.002f);
 	mNode->rotate(rot * Ogre::Quaternion(Ogre::Degree(90), Ogre::Vector3::UNIT_Z));
+	*/
 	//mNode->rotate(Ogre::Quaternion(Ogre::Degree(90), Ogre::Vector3::UNIT_X));	
 	//mNode->translate(pos + Ogre::Vector3(0, 10, 0));	
 }
@@ -391,9 +388,11 @@ void Rail::addTie(Ogre::Vector3 pos, Ogre::Quaternion rot)
 //-------------------------------------------------------------------------------------
 void Rail::deleteTieCube()
 {
+	/*
 	for(int a = tiesNodes.size() - 1; a >= 0; a--)
 	{
 		this->mSceneMgr->getRootSceneNode()->removeAndDestroyChild(tiesNodes[a]->getName());
 		tiesNodes.erase(tiesNodes.begin() + a);
-	}	
+	}
+	*/
 }

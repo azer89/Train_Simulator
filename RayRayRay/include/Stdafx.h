@@ -1,3 +1,4 @@
+#include <Ogre.h>
 #include <OgreCamera.h>
 #include <OgreEntity.h>
 #include <OgreLogManager.h>
