@@ -43,9 +43,11 @@ void RayTrain::update(Ogre::Real timeSinceLastFrame)
 			Ogre::Vector3 v01 = rail->tiePoints[aCPoint];
 			Ogre::Vector3 v02 = rail->tiePoints[(aCPoint + 1) % tSize];
 			Ogre::Vector3 v03 = (v02 - v01);
+			v03.y = 0;
 			v03.normalise();
+			
 
-			trainNodes[a]->setDirection(v03, SceneNode::TS_WORLD);
+			trainNodes[a]->setDirection(v03, SceneNode::TS_PARENT);
 			//trainNodes[a]->
 			trainNodes[a]->setPosition(v01);			
 		}
@@ -74,7 +76,7 @@ void RayTrain::initTrain()
 	// attach the object to a scene node
 	Ogre::SceneNode* mNode = mSceneMgr->getRootSceneNode()->createChildSceneNode(std::string(name) + "Node", initPos);
 	mNode->attachObject(ent);
-	mNode->setDirection(thiPos, Ogre::SceneNode::TS_WORLD);
+	mNode->setDirection(thiPos, Ogre::SceneNode::TS_PARENT);
 	mNode->scale(10.0f, 10.0f, 10.0f);
 
 	this->trainNodes.push_back(mNode);
@@ -104,11 +106,12 @@ void RayTrain::repositionTrain(void)
 			if(aCPoint < 0) aCPoint = tSize + aCPoint;
 
 			Ogre::Vector3 v01 = rail->tiePoints[aCPoint];
-			Ogre::Vector3 v02 = rail->tiePoints[(aCPoint + 1) % tSize];
+			Ogre::Vector3 v02 = rail->tiePoints[(aCPoint + 10) % tSize];
 			Ogre::Vector3 v03 = (v02 - v01);
+			v03.y = 0;
 			v03.normalise();
 
-			trainNodes[a]->setDirection(v03, Ogre::SceneNode::TS_WORLD);
+			trainNodes[a]->setDirection(v03, Ogre::SceneNode::TS_PARENT);
 			trainNodes[a]->setPosition(v01);
 		}
 	}
@@ -126,6 +129,7 @@ void RayTrain::addTrain()
 	Ogre::Vector3 initPos = rail->tiePoints[aCPoint];
 	Ogre::Vector3 secPos = rail->tiePoints[(aCPoint + 1) % rail->tiePoints.size()];
 	Ogre::Vector3 thiPos = secPos - initPos;
+	thiPos.y = 0;
 	thiPos.normalise();
 
 	char name[16];
