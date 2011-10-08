@@ -106,15 +106,18 @@ Hikari::FlashValue RayFlashInterface::onCurveChange(Hikari::FlashControl* caller
 
 	if(text == "bezier")
 	{
-		this->rayApp->rail->setCurve(0);
+		//this->rayApp->rail->setCurve(0);
+		this->rayApp->setCurve(0);
 	}
 	else if(text == "bspline")
 	{
-		this->rayApp->rail->setCurve(1);
+		//this->rayApp->rail->setCurve(1);
+		this->rayApp->setCurve(1);
 	}
 	else if(text == "linear")
 	{
-		this->rayApp->rail->setCurve(2);
+		//this->rayApp->rail->setCurve(2);
+		this->rayApp->setCurve(2);
 	}
 	
 	return FLASH_VOID;

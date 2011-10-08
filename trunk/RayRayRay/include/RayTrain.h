@@ -6,7 +6,10 @@
 #include <OgreSceneManager.h>
 
 #include "Stdafx.h"
-#include "Rail.h"
+#include "ClassDefine.h"
+//#include "RayRayRay.h"
+//#include "Rail.h"
+//#include "Rail.h"
 
 
 class RayTrain
@@ -14,7 +17,19 @@ class RayTrain
 public:
 	RayTrain(Ogre::SceneManager* mSceneMgr, Rail* rail );
 	virtual ~RayTrain(void);
+	
+	bool isInitialized;
+	
+	void initTrain();
+	void startTrain();
+	void stopTrain();
+	void update(Ogre::Real timeSinceLastFrame);
 
+private:
 	Ogre::SceneManager* mSceneMgr;
+	std::vector<Ogre::SceneNode*> trainNodes;
 	Rail* rail;
+	Ogre::Real timeSinceLastFrame;
+	int numTrain;
+	int counterPoint;
 };

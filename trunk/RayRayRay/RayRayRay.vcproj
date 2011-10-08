@@ -228,6 +228,10 @@
 				RelativePath=".\src\RayTerrain.cpp"
 				>
 			</File>
+			<File
+				RelativePath=".\src\RayTrain.cpp"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -268,6 +272,10 @@
 			</File>
 			<File
 				RelativePath=".\include\RayTerrain.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\RayTrain.h"
 				>
 			</File>
 			<File

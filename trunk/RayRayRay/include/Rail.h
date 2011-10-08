@@ -11,6 +11,7 @@
 #include <Terrain/OgreTerrain.h>
 #include <Terrain/OgreTerrainGroup.h>
 
+#include "ClassDefine.h"
 #include "DynamicLines.h"
 
 class Rail
@@ -25,10 +26,11 @@ public:
 	void setCurve(int num);
 
 	std::vector<Ogre::SceneNode*> railNodes;	// contains pole positions
-	std::vector<Ogre::SceneNode*> tiesNodes;	// contains tie positions
+	//std::vector<Ogre::SceneNode*> tiesNodes;	// contains tie nodes
+	std::vector<Ogre::Vector3> tiePoints;		// contains tie position
 	std::vector<Ogre::Vector3> points;			// pole positions + control points
 	std::vector<Ogre::Vector3> curvePoints;		// interpolated points
-
+	
 private:
 	int num;			// number of rail point
 	int tieNum;			// number of tie

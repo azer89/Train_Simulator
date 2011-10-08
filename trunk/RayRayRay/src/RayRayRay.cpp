@@ -58,7 +58,7 @@ void RayRayRay::createScene(void)
 	// Set Hikari
 	hViewPort = mCamera->getViewport();
 	menu = new RayFlashInterface(this);
-	menu->setupHikari();	
+	menu->setupHikari();
 
 	// set camera
 	mCamera->setPosition(Ogre::Vector3(400, 226, -166));
@@ -99,6 +99,9 @@ void RayRayRay::createScene(void)
 
 	// set Rail
 	rail = new Rail(this->mSceneMgr, rayTerrain->getTerrainGroup()->getTerrain(0, 0));
+
+	// set train
+	train = new RayTrain(this->mSceneMgr, rail);
 
 	/*
 	// this is to add water pond effect
@@ -152,6 +155,8 @@ bool RayRayRay::frameRenderingQueued(const Ogre::FrameEvent& arg)
 	{
 		return false;
 	}
+
+	train->update(arg.timeSinceLastFrame);
 
 	// hide 
 	if(!hideTray)
@@ -310,6 +315,10 @@ bool RayRayRay::mousePressed(const OIS::MouseEvent& arg, OIS::MouseButtonID id)
 		if(test.first && !getObject)
 		{
 			mCurrentObject = rail->addPoint(test.second);
+			if(rail->railNodes.size() == 3)
+			{
+				train->initTrain();
+			}
 		}
  
 		//now we show the bounding box so the user can see that this object is selected
@@ -374,6 +383,11 @@ void RayRayRay::shutdownApp(void)
 	this->mShutDown = true;
 }
 
+//-------------------------------------------------------------------------------------
+void RayRayRay::setCurve(int num)
+{
+	this->rail->setCurve(num);
+}
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_WIN32
 #define WIN32_LEAN_AND_MEAN
