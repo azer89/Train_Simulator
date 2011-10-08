@@ -7,10 +7,6 @@
 
 #include "Stdafx.h"
 #include "ClassDefine.h"
-//#include "RayRayRay.h"
-//#include "Rail.h"
-//#include "Rail.h"
-
 
 class RayTrain
 {
@@ -20,10 +16,13 @@ public:
 	
 	bool isInitialized;	
 	
-	void initTrain();
-	void startTrain();
-	void stopTrain();
-	void update(Ogre::Real timeSinceLastFrame);
+	void initTrain(void);							// create main train
+	void startTrain(void);							// start train
+	void stopTrain(void);							// stop terrain
+	void update(Ogre::Real timeSinceLastFrame);		// update the train per milisecond
+	void addTrain(void);							// add train
+	void deleteTrain(void);							// add train
+	void repositionTrain(void);						// necessary when updating the track so the train won't out of track
 
 private:
 	bool isTrainMoving;

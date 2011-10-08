@@ -35,7 +35,8 @@ void RayFlashInterface::setupHikari(void)
 	controls->bind("Stop", FlashDelegate(this, &RayFlashInterface::onStopClick));
 	controls->bind("Exit", FlashDelegate(this, &RayFlashInterface::onExitClick));
 	controls->bind("Curve", FlashDelegate(this, &RayFlashInterface::onCurveChange));
-	controls->bind("MenuState", FlashDelegate(this, &RayFlashInterface::onMenuStateChange));	
+	controls->bind("MenuState", FlashDelegate(this, &RayFlashInterface::onMenuStateChange));
+	controls->bind("NumTrain", FlashDelegate(this, &RayFlashInterface::onNumTrainChange));
 }
 
 void RayFlashInterface::showObjectControl(int xMPos, int yMPos)
@@ -137,6 +138,23 @@ Hikari::FlashValue RayFlashInterface::onMenuStateChange(Hikari::FlashControl* ca
 	else if(text == "close")
 	{
 		isMenuOpen = false;
+	}
+
+	return FLASH_VOID;
+}
+
+Hikari::FlashValue RayFlashInterface::onNumTrainChange(Hikari::FlashControl* caller, const Hikari::Arguments& args)
+{
+	using namespace Hikari;
+	std::string text = args.at(0).getString(); 
+
+	if(text == "deletetrain")
+	{
+		std::cout << "delete train" << "\n";
+	}
+	else if(text == "addtrain")
+	{
+		std::cout << "add train" << "\n";
 	}
 
 	return FLASH_VOID;
