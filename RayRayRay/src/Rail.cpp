@@ -99,17 +99,8 @@ void Rail::updateTrack(void)
 	Ogre::Vector3 f = curvePoints[curvePoints.size() - 1];
 	Ogre::Vector3 s = curvePoints[0];
 
-	//lines->addPoint(f.x, f.y + 10, f.z);
-	//lines->addPoint(s.x, s.y + 10, s.z);
-
 	std::vector<Ogre::Vector3> rPoints;
 	std::vector<Ogre::Vector3> lPoints;
-
-	//for(int a = 0; a < tiesPoints.size(); a++)
-	//{
-	//	Ogre::Vector3 f = tiesPoints[a];
-	//	this->addTie(f);
-	//}	
 	
 	int cSize = curvePoints.size();
 	Ogre::Real gap = 2.0f;
@@ -133,7 +124,6 @@ void Rail::updateTrack(void)
 			lv += f;
 			
 			this->tiePoints.push_back(f);
-			//this->addTie(f, lv.getRotationTo(rv));
 			
 			rPoints.push_back(rv);
 			lPoints.push_back(lv);
@@ -193,7 +183,7 @@ void Rail::createLinearCurve(void)
 		this->calculateControlPoints(one, two, three, four, 0.05f);
 	}
 
-	Ogre::Real inc = 1.0f / 150.0f;
+	Ogre::Real inc = 1.0f / 100.0f;
 	int size = points.size();
 
 	for(int a = 0; a < size; a++)
@@ -226,7 +216,7 @@ void Rail::createBezierCurve(void)
 		this->calculateControlPoints(one, two, three, four, 0.9f);
 	}
 
-	Ogre::Real inc = 1.0f / 150.0f;
+	Ogre::Real inc = 1.0f / 100.0f;
 	int size = points.size();
 
 	for(int a = 0; a < size; a+=3)
@@ -262,7 +252,7 @@ void Rail::createBSplineCurve(void)
 		Ogre::Vector3 three = railNodes[(a + 2)%cSize]->getPosition() + yAdd;
 		Ogre::Vector3 four = railNodes[(a + 3)%cSize]->getPosition() + yAdd;
 
-		Ogre::Real inc = 1.0f / 150.0f;
+		Ogre::Real inc = 1.0f / 100.0f;
 
 		for(Ogre::Real t = 0.0f; t < 1.0f; t += inc)
 		{
