@@ -193,7 +193,7 @@ void Rail::createLinearCurve(void)
 		this->calculateControlPoints(one, two, three, four, 0.05f);
 	}
 
-	Ogre::Real inc = 1.0f / 50.0f;
+	Ogre::Real inc = 1.0f / 150.0f;
 	int size = points.size();
 
 	for(int a = 0; a < size; a++)
@@ -213,7 +213,6 @@ void Rail::createLinearCurve(void)
 // // Main function for Cubic Bezier Interpolation
 void Rail::createBezierCurve(void)
 {
-
 	int cSize = railNodes.size();
 	Ogre::Vector3 yAdd = Ogre::Vector3(0, 30, 0);
 
@@ -227,7 +226,7 @@ void Rail::createBezierCurve(void)
 		this->calculateControlPoints(one, two, three, four, 0.9f);
 	}
 
-	Ogre::Real inc = 1.0f / 100.0f;
+	Ogre::Real inc = 1.0f / 150.0f;
 	int size = points.size();
 
 	for(int a = 0; a < size; a+=3)
@@ -263,7 +262,7 @@ void Rail::createBSplineCurve(void)
 		Ogre::Vector3 three = railNodes[(a + 2)%cSize]->getPosition() + yAdd;
 		Ogre::Vector3 four = railNodes[(a + 3)%cSize]->getPosition() + yAdd;
 
-		Ogre::Real inc = 1.0f / 100.0f;
+		Ogre::Real inc = 1.0f / 150.0f;
 
 		for(Ogre::Real t = 0.0f; t < 1.0f; t += inc)
 		{
@@ -326,9 +325,6 @@ void Rail::calculateControlPoints(Ogre::Vector3 v0,
 
 	Ogre::Vector3 m1 = c1 + (c2 - c1) * k1;
 	Ogre::Vector3 m2 = c2 + (c3 - c2) * k2;
-
-	// Ogre::Vector3 ctrl1 = m1 + (c2 - m1) * 0.9f + v1 - m1;
-	// Ogre::Vector3 ctrl2 = m2 + (c2 - m2) * 0.9f + v2 - m2;
 
 	Ogre::Vector3 ctrl1 = m1 + (c2 - m1) * weight + v1 - m1;
 	Ogre::Vector3 ctrl2 = m2 + (c2 - m2) * weight + v2 - m2;
