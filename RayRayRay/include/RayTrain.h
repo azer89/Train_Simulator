@@ -25,6 +25,7 @@ public:
 	void repositionTrain(void);						// necessary when updating the track so the train won't out of track
 
 private:
+	int trainDistance;
 	bool isTrainMoving;
 	Ogre::SceneManager* mSceneMgr;
 	std::vector<Ogre::SceneNode*> trainNodes;
