@@ -150,11 +150,11 @@ Hikari::FlashValue RayFlashInterface::onNumTrainChange(Hikari::FlashControl* cal
 
 	if(text == "deletetrain")
 	{
-		std::cout << "delete train" << "\n";
+		this->rayApp->train->deleteTrain();
 	}
 	else if(text == "addtrain")
 	{
-		std::cout << "add train" << "\n";
+		this->rayApp->train->addTrain();
 	}
 
 	return FLASH_VOID;
