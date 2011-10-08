@@ -58,7 +58,7 @@ Ogre::SceneNode* Rail::addPoint(Ogre::Vector3 pos)
 
 	
 	this->railNodes.push_back(mNode);		// attach to list		
-	mNode->setScale(5.0f, 7.0f, 5.0f);		//lets shrink the object
+	mNode->setScale(5.0f, 8.0f, 5.0f);		//lets shrink the object
 
 	this->updateTrack();
 

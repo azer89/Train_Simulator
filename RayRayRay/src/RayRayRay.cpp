@@ -251,6 +251,7 @@ bool RayRayRay::mouseMoved(const OIS::MouseEvent& arg)
 		{
 			mCurrentObject->setPosition(test.second);
 			rail->updateTrack();
+			if(train->isInitialized) this->train->repositionTrain();
 		}
 	}
 	else if(bRMouseDown)	//if the right mouse button is held down, be rotate the camera with the mouse
@@ -319,6 +320,8 @@ bool RayRayRay::mousePressed(const OIS::MouseEvent& arg, OIS::MouseButtonID id)
 			{
 				train->initTrain();
 			}
+
+			if(train->isInitialized) this->train->repositionTrain();
 		}
  
 		//now we show the bounding box so the user can see that this object is selected
@@ -372,6 +375,7 @@ bool RayRayRay::keyPressed(const OIS::KeyEvent& arg)
 	if(arg.key == OIS::KC_DELETE && mCurrentObject)
 	{
 		this->rail->deleteRailPoint(mCurrentObject->getName());
+		if(train->isInitialized) this->train->repositionTrain();
 	}
 
 	return true;
@@ -387,6 +391,7 @@ void RayRayRay::shutdownApp(void)
 void RayRayRay::setCurve(int num)
 {
 	this->rail->setCurve(num);
+	if(train->isInitialized) this->train->repositionTrain();
 }
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_WIN32

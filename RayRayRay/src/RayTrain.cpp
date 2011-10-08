@@ -55,18 +55,22 @@ void RayTrain::initTrain()
 {
 	this->isInitialized = true;
 	Ogre::Vector3 initPos = rail->tiePoints[counterPoint];
+	Ogre::Vector3 secPos = rail->tiePoints[(counterPoint + 1) % rail->tiePoints.size()];
+	Ogre::Vector3 thiPos = secPos - initPos;
+	thiPos.normalise();
 	
 	char name[16];
 	sprintf(name, "Train%d", numTrain++);
 
 	Ogre::Entity* ent;
-	ent = mSceneMgr->createEntity(name, "front_train.mesh");
+	ent = mSceneMgr->createEntity(name, "back_train.mesh");
 	ent->setQueryFlags(1 << 0);
 	ent->setCastShadows(true);	
 	
 	// attach the object to a scene node
 	Ogre::SceneNode* mNode = mSceneMgr->getRootSceneNode()->createChildSceneNode(std::string(name) + "Node", initPos);
 	mNode->attachObject(ent);
+	mNode->setDirection(thiPos, Ogre::SceneNode::TS_PARENT);
 	mNode->scale(10.0f, 10.0f, 10.0f);
 
 	this->trainNodes.push_back(mNode);
@@ -82,6 +86,38 @@ void RayTrain::startTrain()
 void RayTrain::stopTrain()
 {
 	this->isTrainMoving = false;
+}
+
+void RayTrain::repositionTrain(void)
+{
+	if(!this->isTrainMoving)
+	{
+		for(int a = 0; a < trainNodes.size(); a++)
+		{
+			int tSize = rail->tiePoints.size();
+			if(counterPoint >= tSize) counterPoint = 0;
+
+			Ogre::Vector3 v01 = rail->tiePoints[counterPoint];
+			Ogre::Vector3 v02 = rail->tiePoints[(counterPoint + 1) % tSize];
+			Ogre::Vector3 v03 = (v02 - v01);
+			v03.normalise();
+
+			trainNodes[a]->setDirection(v03, Ogre::SceneNode::TS_PARENT);
+			trainNodes[a]->setPosition(v01);
+		}
+	}
+}
+
+//-------------------------------------------------------------------------------------
+void addTrain()
+{
+	
+}
+
+//-------------------------------------------------------------------------------------
+void deleteTrain()
+{
+	
 }
 
 

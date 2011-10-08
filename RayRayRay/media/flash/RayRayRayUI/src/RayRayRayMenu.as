@@ -30,11 +30,18 @@ package
 		private var curveText:TextField;
 		private var curveVal:int;
 		
+		private var numTrainOpt:NumTrainOption;
+		private var prevTrain:PrevButton;
+		private var nextTrain:NextButton;
+		private var trainText:TextField;
+		private var trainVal:int;
+		
 		public function RayRayRayMenu()
 		{
 			this.setButton();
 			this.setObjects();
 			curveVal = 0;
+			trainVal = 1;
 			ExternalInterface.addCallback("setFPS", setFPS);
 		}
 		
@@ -74,9 +81,14 @@ package
 			curveOption.y = 110;
 			menu.addChild(curveOption);
 			
+			numTrainOpt = new NumTrainOption();
+			numTrainOpt.x = 90;
+			numTrainOpt.y = 150;
+			menu.addChild(numTrainOpt);
+			
 			exitButton = new ExitButton();
 			exitButton.x = 90;
-			exitButton.y = 150;
+			exitButton.y = 190;
 			exitButton.addEventListener(MouseEvent.CLICK, onExitClick, false, 0, true);
 			menu.addChild(exitButton);
 			
@@ -127,21 +139,44 @@ package
 			ExternalInterface.call("Stop", "stop");
 		}
 		
-		private function onNextClick( event:MouseEvent ):void
-		{
-			curveVal++;
-			setCurve();
-		}
-		
 		private function onPrevClick( event:MouseEvent ):void
 		{
 			curveVal--;
 			setCurve();
 		}
 		
-		private function setCurve():void
+		private function onNextClick( event:MouseEvent ):void
 		{
-			//curveVal = Math.abs(curveVal);			
+			curveVal++;
+			setCurve();
+		}
+		
+		private function onPrevTrainClick( event:MouseEvent ):void
+		{
+			trainVal--;
+			if (trainVal < 1) 
+			{
+				trainVal = 1;
+				return;
+			}
+			ExternalInterface.call("NumTrain", "deletetrain");
+			trainText.text = "TRAIN: " + trainVal;
+		}
+		
+		private function onNextTrainClick( event:MouseEvent ):void
+		{
+			trainVal++;
+			if (trainVal > 10) 
+			{
+				trainVal = 10;
+				return;
+			}
+			ExternalInterface.call("NumTrain", "addtrain");
+			trainText.text = "TRAIN: " + trainVal;
+		}
+		
+		private function setCurve():void
+		{	
 			if (curveVal > 2) curveVal = 0;
 			else if (curveVal < 0) curveVal = 2;
 			
@@ -169,37 +204,58 @@ package
 		
 		private function setObjects():void
 		{
-			var c:DisplayObject = null;
+			var child:DisplayObject = null;
 			
 			for (var a:int = 0; a < this.fpsInfo.numChildren; a++)
 			{
-				c = this.fpsInfo.getChildAt(a);
+				child = this.fpsInfo.getChildAt(a);
 				
-				if (c.name == "FpsText")
+				if (child.name == "FpsText")
 				{
-					fpsText = (TextField)(c);
+					fpsText = (TextField)(child);
 					fpsText.text = "FPS: -";
 				}
 			}
 			
 			for (var b:int = 0; b < this.curveOption.numChildren; b++ )
 			{
-				c = this.curveOption.getChildAt(b);
+				child = this.curveOption.getChildAt(b);
 				
-				if (c.name == "curveText")
+				if (child.name == "curveText")
 				{
-					curveText = (TextField)(c);
+					curveText = (TextField)(child);
 					//curveText.text = "B-SPLINE";
 				}
-				else if (c.name == "next")
+				else if (child.name == "next")
 				{
-					next = (NextButton)(c);
+					next = (NextButton)(child);
 					next.addEventListener(MouseEvent.CLICK, onNextClick, false, 0, true);
 				}
-				else if (c.name == "prev")
+				else if (child.name == "prev")
 				{
-					prev = (PrevButton)(c);
+					prev = (PrevButton)(child);
 					prev.addEventListener(MouseEvent.CLICK, onPrevClick, false, 0, true);
+				}
+			}
+			
+			for (var c:int = 0; c < this.numTrainOpt.numChildren; c++ )
+			{
+				child = this.numTrainOpt.getChildAt(c);
+				
+				if (child.name == "trainText")
+				{
+					trainText = (TextField)(child);
+					trainText.text = "TRAIN: 1";
+				}
+				else if (child.name == "nextTrain")
+				{
+					nextTrain = (NextButton)(child);
+					nextTrain.addEventListener(MouseEvent.CLICK, onNextTrainClick, false, 0, true);
+				}
+				else if (child.name == "prevTrain")
+				{
+					prevTrain = (PrevButton)(child);
+					prevTrain.addEventListener(MouseEvent.CLICK, onPrevTrainClick, false, 0, true);
 				}
 			}
 		}
