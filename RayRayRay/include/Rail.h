@@ -24,6 +24,7 @@ public:
 	void deleteRailPoint(std::string name);
 	void updateTrack(void);
 	void setCurve(int num);
+	Ogre::Vector3 defScale;
 
 	std::vector<Ogre::SceneNode*> railNodes;	// contains pole positions
 	//std::vector<Ogre::SceneNode*> tiesNodes;	// contains tie nodes
@@ -32,11 +33,11 @@ public:
 	std::vector<Ogre::Vector3> curvePoints;		// interpolated points
 	
 private:
-	int num;			// number of rail point
-	int tieNum;			// number of tie
-	bool initiated;		// is initiated
-	int curveType;		// type of curve: bezier of b-spline
-	Ogre::Real dist;	// for interpolation
+	int num;				// number of rail point
+	int tieNum;				// number of tie
+	bool initiated;			// is initiated
+	int curveType;			// type of curve: bezier of b-spline
+	Ogre::Real dist;		// for interpolation
 
 	Ogre::Entity* tieEntity;			// tie entity
 	Ogre::SceneManager* mSceneMgr;		// scene manager

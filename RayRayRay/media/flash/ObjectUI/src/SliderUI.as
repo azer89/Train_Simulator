@@ -7,6 +7,7 @@ package
 	import flash.geom.Rectangle;
 	import flash.utils.Timer;
 	import flash.utils.getQualifiedClassName;	
+	import flash.external.ExternalInterface;
 
 	/**
 	 * The SliderUI is a class that allows you to quickly create sliders with tracks without the need to use components.
@@ -185,7 +186,9 @@ package
 		{
 			this._percent = Math.abs((this._slider[this._axis] - this._track[this._axis]) / this._track[this._changeProp]);
 			this._currentVal = (this._lowVal + (this._range * this._percent));
-			trace(this._currentVal);
+			
+			//trace(this._currentVal);
+			ExternalInterface.call("Height", this._currentVal);
 		}
 
 //- GETTERS & SETTERS -------------------------------------------------------------------------------------

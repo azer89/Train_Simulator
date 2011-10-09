@@ -50,6 +50,7 @@ public:
 
 	void shutdownApp(void);
 	void setCurve(int num);
+	void setPoleHeight(Ogre::Real h);
 
 protected:
     virtual void createScene(void);
