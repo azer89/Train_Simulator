@@ -2,6 +2,7 @@
 #include "Stdafx.h"
 #include "RayTrain.h"
 #include "Rail.h"
+#include "OgreMath.h"
 
 //-------------------------------------------------------------------------------------
 RayTrain::RayTrain(Ogre::SceneManager* mSceneMgr, Rail* rail ): numTrain(0)
@@ -46,8 +47,12 @@ void RayTrain::update(Ogre::Real timeSinceLastFrame)
 			Ogre::Vector3 v01 = rail->tiePoints[aCPoint];
 			Ogre::Vector3 v02 = rail->tiePoints[(aCPoint + 1) % tSize];
 			Ogre::Vector3 v03 = (v02 - v01);
-			//Ogre::Vector3 v04 = v03;
+			
+			//Ogre::Real yRot = -v01.getRotationTo(v02).getYaw().valueDegrees() / Ogre::Math.PI;
 			v03.y = 0;
+
+			//std::cout << yRot << "\n";
+
 			v03.normalise();		
 			//v04.normalise();
 

@@ -36,6 +36,7 @@ private:
 	int tieNum;			// number of tie
 	bool initiated;		// is initiated
 	int curveType;		// type of curve: bezier of b-spline
+	Ogre::Real dist;	// for interpolation
 
 	Ogre::Entity* tieEntity;			// tie entity
 	Ogre::SceneManager* mSceneMgr;		// scene manager
