@@ -20,17 +20,20 @@ public:
 	void setupHikari();
 	void update(Ogre::RenderWindow* mWindow);
 	void showObjectControl(int xMPos, int yMPos);
+	void hideObjectControl();
 	bool isInsideMenu(int mouseX, int mouseY);
 
 	Hikari::HikariManager* hikariMgr;
 	Hikari::HikariManager* objectHikariMgr;
 
+private:
+
 	Hikari::FlashControl* mainMenuControl;
 	Hikari::FlashControl* objectControls;
 
-private:
 	RayRayRay* rayApp;
 	bool isMenuOpen;
+	Ogre::Vector2 oCPos;
 
 	Hikari::FlashValue onStartClick(Hikari::FlashControl* caller, const Hikari::Arguments& args);
 	Hikari::FlashValue onStopClick(Hikari::FlashControl* caller, const Hikari::Arguments& args);

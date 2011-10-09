@@ -80,6 +80,8 @@ private:
 	
 	RayTerrain* rayTerrain;			// responsible to draw tracks
     OgreBites::Label* mInfoLabel;	// message info
+
+	void repositionObjectMenu();
 };
 
 #endif // #ifndef __RayRayRay_h_

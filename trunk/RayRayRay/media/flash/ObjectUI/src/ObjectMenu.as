@@ -17,14 +17,19 @@ package
 		
 		public function setSlider():void
 		{
+			var heightText:HeightText = new HeightText();
+			heightText.x = 20;
+			heightText.y = 0;
+			this.addChild(heightText);
+			
 			var track:TrackMc = new TrackMc();
 			track.x = 20;
-			track.y = 10;
+			track.y = 30;
 			this.addChild(track);
 			
 			var slider:SliderMc = new SliderMc();
 			slider.x = 20;
-			slider.y = 10;
+			slider.y = 30;
 			this.addChild(slider);
 			
 			var sui:SliderUI = new SliderUI(this._stage, "x", track, slider, 0, 100, 50);

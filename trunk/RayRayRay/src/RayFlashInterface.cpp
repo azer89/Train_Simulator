@@ -23,7 +23,6 @@ void RayFlashInterface::setupHikari(void)
 	using namespace Hikari;
 	
 	hikariMgr = new HikariManager("..\\..\\media\\flash\\RayRayRayUI\\bin");
-	//objectHikariMgr = new HikariManager("..\\..\\media\\flash\\ObjectUI\\bin");
 	
 	mainMenuControl = hikariMgr->createFlashOverlay("Menu", rayApp->hViewPort, 300, 300, Position(TopLeft));
 	
@@ -37,20 +36,29 @@ void RayFlashInterface::setupHikari(void)
 	mainMenuControl->bind("Curve", FlashDelegate(this, &RayFlashInterface::onCurveChange));
 	mainMenuControl->bind("MenuState", FlashDelegate(this, &RayFlashInterface::onMenuStateChange));
 	mainMenuControl->bind("NumTrain", FlashDelegate(this, &RayFlashInterface::onNumTrainChange));
-}
 
-void RayFlashInterface::showObjectControl(int xMPos, int yMPos)
-{
-	/*
-	using namespace Hikari;
-	
-	if(this->objectControls) hikariMgr->destroyFlashControl(objectControls->getName());
-	objectControls = hikariMgr->createFlashOverlay("OControl", rayApp->hViewPort, 300, 100, Position(TopLeft, xMPos, yMPos));
+	objectControls = hikariMgr->createFlashOverlay("OControl", rayApp->hViewPort, 300, 100, Position(TopLeft));
 
 	objectControls->load("ObjectUI.swf");
 	objectControls->setDraggable(false);
 	objectControls->setTransparent(true, true);
-	*/
+	objectControls->hide();
+}
+
+void RayFlashInterface::showObjectControl(int xMPos, int yMPos)
+{
+	using namespace Hikari;
+
+	objectControls->show();
+	objectControls->setPosition(Position(TopLeft, xMPos, yMPos));
+
+	oCPos.x = xMPos;
+	oCPos.y = yMPos;
+}
+
+void RayFlashInterface::hideObjectControl()
+{
+	objectControls->hide();
 }
 
 bool RayFlashInterface::isInsideMenu(int mouseX, int mouseY)
@@ -68,6 +76,14 @@ bool RayFlashInterface::isInsideMenu(int mouseX, int mouseY)
 		mouseX <= 60 && 
 		mouseY >= 0 && 
 		mouseY <= 60)
+	{
+		return true;
+	}
+	else if(objectControls->getVisibility() &&
+		mouseX >= oCPos.x &&
+		mouseX <= (oCPos.x + 170) &&
+		mouseY >= oCPos.y &&
+		mouseY <= (oCPos.y + 50))
 	{
 		return true;
 	}
