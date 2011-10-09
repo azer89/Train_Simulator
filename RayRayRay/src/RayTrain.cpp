@@ -46,10 +46,13 @@ void RayTrain::update(Ogre::Real timeSinceLastFrame)
 			Ogre::Vector3 v01 = rail->tiePoints[aCPoint];
 			Ogre::Vector3 v02 = rail->tiePoints[(aCPoint + 1) % tSize];
 			Ogre::Vector3 v03 = (v02 - v01);
-			if(v01.y == v02.y) v03.y = 0;
-			v03.normalise();			
+			//Ogre::Vector3 v04 = v03;
+			v03.y = 0;
+			v03.normalise();		
+			//v04.normalise();
 
 			trainNodes[a]->setDirection(v03, Ogre::SceneNode::TS_PARENT);
+			//trainNodes[a]->lookAt(v04, Ogre::SceneNode::TS_PARENT);
 			trainNodes[a]->setPosition(v01);			
 		}
 
@@ -65,7 +68,7 @@ void RayTrain::initTrain()
 	Ogre::Vector3 v01 = rail->tiePoints[counterPoint];
 	Ogre::Vector3 v02 = rail->tiePoints[(counterPoint + 1) % rail->tiePoints.size()];
 	Ogre::Vector3 v03 = v02 - v01;
-	if(v01.y == v02.y) v03.y = 0;
+	v03.y = 0;
 	v03.normalise();
 	
 	char name[16];
@@ -115,7 +118,7 @@ void RayTrain::repositionTrain(void)
 			Ogre::Vector3 v01 = rail->tiePoints[aCPoint];
 			Ogre::Vector3 v02 = rail->tiePoints[(aCPoint + 10) % tSize];
 			Ogre::Vector3 v03 = (v02 - v01);
-			if(v01.y == v02.y) v03.y = 0;
+			v03.y = 0;
 			v03.normalise();
 
 			trainNodes[a]->setDirection(v03, Ogre::SceneNode::TS_PARENT);
@@ -137,7 +140,7 @@ void RayTrain::addTrain()
 	Ogre::Vector3 v01 = rail->tiePoints[aCPoint];
 	Ogre::Vector3 v02 = rail->tiePoints[(aCPoint + 1) % rail->tiePoints.size()];
 	Ogre::Vector3 v03 = v02 - v01;
-	if(v01.y == v02.y) v03.y = 0;
+	v03.y = 0;
 	v03.normalise();
 
 	char name[16];
