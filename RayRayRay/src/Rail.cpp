@@ -7,7 +7,8 @@ Rail::Rail(Ogre::SceneManager* mSceneMgr, Ogre::Terrain* pTerrain):
 	initiated(false), 
 	num(0), 
 	tieNum(0),
-	curveType(0)
+	curveType(0),
+	dist(5.0f)
 {
 	this->mSceneMgr = mSceneMgr;
 	this->pTerrain = pTerrain;
@@ -184,13 +185,14 @@ void Rail::createLinearCurve(void)
 	}
 	
 	int size = points.size();
+	Ogre::Real inc = 1.0f / dist;
 
 	for(int a = 0; a < size; a++)
 	{		
 		Ogre::Vector3 vect01 = points[(a + 0)%size];
 		Ogre::Vector3 vect02 = points[(a + 1)%size];
 		
-		Ogre::Real inc = 1.0f / 100.0f;
+		inc /= vect01.distance(vect02);
 
 		for(Ogre::Real t = 0.0f; t < 1.0f; t += inc)
 		{	
@@ -218,6 +220,7 @@ void Rail::createBezierCurve(void)
 	}
 	
 	int size = points.size();
+	Ogre::Real inc = 1.0f / dist;
 
 	for(int a = 0; a < size; a+=3)
 	{		
@@ -226,7 +229,7 @@ void Rail::createBezierCurve(void)
 		Ogre::Vector3 three = points[(a + 2)%size];
 		Ogre::Vector3 four = points[(a + 3)%size];
 
-		Ogre::Real inc = 1.0f / 100.0f;
+		inc /= two.distance(three);
 
 		for(Ogre::Real t = 0.0f; t < 1.0f; t += inc)
 		{
@@ -247,6 +250,8 @@ void Rail::createBSplineCurve(void)
 	int cSize = railNodes.size();
 	Ogre::Vector3 yAdd = Ogre::Vector3(0, 30, 0);
 
+	Ogre::Real inc = 1.0f / dist;
+
 	for(int a = 0; a < cSize; a++)
 	{
 		Ogre::Vector3 one = railNodes[(a + 0)%cSize]->getPosition() + yAdd;
@@ -254,16 +259,18 @@ void Rail::createBSplineCurve(void)
 		Ogre::Vector3 three = railNodes[(a + 2)%cSize]->getPosition() + yAdd;
 		Ogre::Vector3 four = railNodes[(a + 3)%cSize]->getPosition() + yAdd;
 
-		Ogre::Real inc = 1.0f / 100.0f;
+		inc /= two.distance(three);
 
 		for(Ogre::Real t = 0.0f; t < 1.0f; t += inc)
 		{
 			Ogre::Real it = 1.0f - t;
+			Ogre::Real t2 = t*t;
+			Ogre::Real t3 = t2*t;
 
 			Ogre::Real b0 = it*it*it / 6.0f;
-			Ogre::Real b1 = (3*t*t*t - 6*t*t + 4) / 6.0f;
-			Ogre::Real b2 = (-3*t*t*t +3*t*t + 3*t + 1) / 6.0f;
-			Ogre::Real b3 =  t*t*t / 6.0f;
+			Ogre::Real b1 = (3*t3 - 6*t2 + 4) / 6.0f;
+			Ogre::Real b2 = (-3*t3 +3*t2 + 3*t + 1) / 6.0f;
+			Ogre::Real b3 =  t3 / 6.0f;
 
 			Ogre::Real x = (b0 * one.x) + (b1 * two.x) + (b2 * three.x) + (b3 * four.x);
 			Ogre::Real y = (b0 * one.y) + (b1 * two.y) + (b2 * three.y) + (b3 * four.y);
