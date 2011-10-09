@@ -41,4 +41,6 @@ private:
 	Hikari::FlashValue onCurveChange(Hikari::FlashControl* caller, const Hikari::Arguments& args);
 	Hikari::FlashValue onMenuStateChange(Hikari::FlashControl* caller, const Hikari::Arguments& args);
 	Hikari::FlashValue onNumTrainChange(Hikari::FlashControl* caller, const Hikari::Arguments& args);
+
+	Hikari::FlashValue onHeightChange(Hikari::FlashControl* caller, const Hikari::Arguments& args);
 };

@@ -334,13 +334,14 @@ bool RayRayRay::mousePressed(const OIS::MouseEvent& arg, OIS::MouseButtonID id)
 	else if(id == OIS::MB_Right)	// if the right mouse button is held we hide the mouse cursor for view mode
 	{
 		bRMouseDown = true;
-		
+				
 		if(test.first && getObject)
 		{
 			this->repositionObjectMenu();
 
 			if(mCurrentObject)
 			{
+				
 				mCurrentObject->showBoundingBox(true);
 			}
 		}
@@ -437,6 +438,17 @@ void RayRayRay::setCurve(int num)
 {
 	this->rail->setCurve(num);
 	if(train->isInitialized) this->train->repositionTrain();
+}
+
+//-------------------------------------------------------------------------------------
+void RayRayRay::setPoleHeight(Ogre::Real h)
+{
+	if(mCurrentObject)
+	{
+		//Ogre::Vector3 cScale = mCurrentObject->getScale();
+		mCurrentObject->setScale(rail->defScale + Ogre::Vector3(0, h, 0));
+		rail->updateTrack();
+	}
 }
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_WIN32

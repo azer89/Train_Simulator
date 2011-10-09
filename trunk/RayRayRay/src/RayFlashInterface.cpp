@@ -43,12 +43,15 @@ void RayFlashInterface::setupHikari(void)
 	objectControls->setDraggable(false);
 	objectControls->setTransparent(true, true);
 	objectControls->hide();
+
+	objectControls->bind("Height", FlashDelegate(this, &RayFlashInterface::onHeightChange));
 }
 
 void RayFlashInterface::showObjectControl(int xMPos, int yMPos)
 {
 	using namespace Hikari;
 
+	objectControls->callFunction("setVal", Hikari::Args(0));
 	objectControls->show();
 	objectControls->setPosition(Position(TopLeft, xMPos, yMPos));
 
@@ -173,6 +176,17 @@ Hikari::FlashValue RayFlashInterface::onNumTrainChange(Hikari::FlashControl* cal
 	{
 		this->rayApp->train->addTrain();
 	}
+
+	return FLASH_VOID;
+}
+
+Hikari::FlashValue RayFlashInterface::onHeightChange(Hikari::FlashControl* caller, const Hikari::Arguments& args)
+{
+	using namespace Hikari;
+	std::string text = args.at(0).getString(); 
+	Ogre::Real temp = ::atof(text.c_str());
+
+	rayApp->setPoleHeight(temp);
 
 	return FLASH_VOID;
 }
