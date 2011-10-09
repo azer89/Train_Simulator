@@ -6,13 +6,13 @@
 //-------------------------------------------------------------------------------------
 RayTrain::RayTrain(Ogre::SceneManager* mSceneMgr, Rail* rail ): numTrain(0)
 {
-	this->timeSinceLastFrame = 0.0f;
-	this->mSceneMgr = mSceneMgr;
-	this->rail = rail;
-	this->isInitialized = false;
-	this->isTrainMoving = false;
-	counterPoint = 0;
-	trainDistance = 5;
+	this->timeSinceLastFrame = 0.0f;	// set to 0
+	this->mSceneMgr = mSceneMgr;		// point to mSceneMgr
+	this->rail = rail;					// point to rail
+	this->isInitialized = false;		// init false
+	this->isTrainMoving = false;		// not moving at the first time
+	counterPoint = 0;					// counter 0
+	trainDistance = 5;					// distance between train
 }
 
 
@@ -22,18 +22,21 @@ RayTrain::~RayTrain(void)
 }
 
 //-------------------------------------------------------------------------------------
+// Called every frame rendering
 void RayTrain::update(Ogre::Real timeSinceLastFrame)
 {
-	using namespace Ogre;
-
+	// if not moving don't update anything
 	if(!this->isTrainMoving) return;
 
-	this->timeSinceLastFrame += timeSinceLastFrame;
-	if(this->timeSinceLastFrame >= 0.02f)
+	// accumulate time
+	this->timeSinceLastFrame += timeSinceLastFrame;	
+
+	// update 50 times per second (if the fps don't drop)
+	if(this->timeSinceLastFrame >= 0.02f)	
 	{
-		this->timeSinceLastFrame = 0.0f;
-		int tSize = rail->tiePoints.size();
-		if(counterPoint >= tSize) counterPoint = 0;
+		this->timeSinceLastFrame = 0.0f;				// reset time accumulation
+		int tSize = rail->tiePoints.size();				// get size
+		if(counterPoint >= tSize) counterPoint = 0;		// keep up so won't get overindex 
 
 		for(int a = 0; a < trainNodes.size(); a++)
 		{			
@@ -43,12 +46,10 @@ void RayTrain::update(Ogre::Real timeSinceLastFrame)
 			Ogre::Vector3 v01 = rail->tiePoints[aCPoint];
 			Ogre::Vector3 v02 = rail->tiePoints[(aCPoint + 1) % tSize];
 			Ogre::Vector3 v03 = (v02 - v01);
-			v03.y = 0;
-			v03.normalise();
-			
+			if(v01.y == v02.y) v03.y = 0;
+			v03.normalise();			
 
-			trainNodes[a]->setDirection(v03, SceneNode::TS_PARENT);
-			//trainNodes[a]->
+			trainNodes[a]->setDirection(v03, Ogre::SceneNode::TS_PARENT);
 			trainNodes[a]->setPosition(v01);			
 		}
 
@@ -57,13 +58,15 @@ void RayTrain::update(Ogre::Real timeSinceLastFrame)
 }
 
 //-------------------------------------------------------------------------------------
+// Called once to show up the train
 void RayTrain::initTrain()
 {
 	this->isInitialized = true;
-	Ogre::Vector3 initPos = rail->tiePoints[counterPoint];
-	Ogre::Vector3 secPos = rail->tiePoints[(counterPoint + 1) % rail->tiePoints.size()];
-	Ogre::Vector3 thiPos = secPos - initPos;
-	thiPos.normalise();
+	Ogre::Vector3 v01 = rail->tiePoints[counterPoint];
+	Ogre::Vector3 v02 = rail->tiePoints[(counterPoint + 1) % rail->tiePoints.size()];
+	Ogre::Vector3 v03 = v02 - v01;
+	if(v01.y == v02.y) v03.y = 0;
+	v03.normalise();
 	
 	char name[16];
 	sprintf(name, "Train%d", numTrain++);
@@ -74,26 +77,30 @@ void RayTrain::initTrain()
 	ent->setCastShadows(true);	
 	
 	// attach the object to a scene node
-	Ogre::SceneNode* mNode = mSceneMgr->getRootSceneNode()->createChildSceneNode(std::string(name) + "Node", initPos);
+	Ogre::SceneNode* mNode = mSceneMgr->getRootSceneNode()->createChildSceneNode(std::string(name) + "Node", v01);
 	mNode->attachObject(ent);
-	mNode->setDirection(thiPos, Ogre::SceneNode::TS_PARENT);
+	mNode->setDirection(v03, Ogre::SceneNode::TS_PARENT);
 	mNode->scale(10.0f, 10.0f, 10.0f);
 
 	this->trainNodes.push_back(mNode);
 }
 
 //-------------------------------------------------------------------------------------
+// Start train to move
 void RayTrain::startTrain()
 {
 	this->isTrainMoving = true;
 }
 
 //-------------------------------------------------------------------------------------
+// Stop train movement
 void RayTrain::stopTrain()
 {
 	this->isTrainMoving = false;
 }
 
+//-------------------------------------------------------------------------------------
+// Reposition the trains when they stop
 void RayTrain::repositionTrain(void)
 {
 	if(!this->isTrainMoving)
@@ -108,7 +115,7 @@ void RayTrain::repositionTrain(void)
 			Ogre::Vector3 v01 = rail->tiePoints[aCPoint];
 			Ogre::Vector3 v02 = rail->tiePoints[(aCPoint + 10) % tSize];
 			Ogre::Vector3 v03 = (v02 - v01);
-			v03.y = 0;
+			if(v01.y == v02.y) v03.y = 0;
 			v03.normalise();
 
 			trainNodes[a]->setDirection(v03, Ogre::SceneNode::TS_PARENT);
@@ -118,6 +125,7 @@ void RayTrain::repositionTrain(void)
 }
 
 //-------------------------------------------------------------------------------------
+// Add train, max 10
 void RayTrain::addTrain()
 {
 	int tSize = rail->tiePoints.size();
@@ -126,11 +134,11 @@ void RayTrain::addTrain()
 	int aCPoint = counterPoint - (trainDistance * numTrain);
 	if(aCPoint < 0) aCPoint = tSize + aCPoint;
 
-	Ogre::Vector3 initPos = rail->tiePoints[aCPoint];
-	Ogre::Vector3 secPos = rail->tiePoints[(aCPoint + 1) % rail->tiePoints.size()];
-	Ogre::Vector3 thiPos = secPos - initPos;
-	thiPos.y = 0;
-	thiPos.normalise();
+	Ogre::Vector3 v01 = rail->tiePoints[aCPoint];
+	Ogre::Vector3 v02 = rail->tiePoints[(aCPoint + 1) % rail->tiePoints.size()];
+	Ogre::Vector3 v03 = v02 - v01;
+	if(v01.y == v02.y) v03.y = 0;
+	v03.normalise();
 
 	char name[16];
 	sprintf(name, "Train%d", numTrain++);
@@ -141,20 +149,22 @@ void RayTrain::addTrain()
 	ent->setCastShadows(true);	
 
 	// attach the object to a scene node
-	Ogre::SceneNode* mNode = mSceneMgr->getRootSceneNode()->createChildSceneNode(std::string(name) + "Node", initPos);
+	Ogre::SceneNode* mNode = mSceneMgr->getRootSceneNode()->createChildSceneNode(std::string(name) + "Node", v01);
 	mNode->attachObject(ent);
 	
-	mNode->setDirection(thiPos, Ogre::SceneNode::TS_LOCAL);
+	mNode->setDirection(v03, Ogre::SceneNode::TS_LOCAL);
 	mNode->scale(10.0f, 10.0f, 10.0f);
 
 	this->trainNodes.push_back(mNode);
 }
 
 //-------------------------------------------------------------------------------------
+// Delete train at the end
 void RayTrain::deleteTrain()
 {
-	Ogre::SceneNode* lastNode = trainNodes[trainNodes.size() - 1];
-	this->mSceneMgr->getRootSceneNode()->removeChild(lastNode->getName());
+	Ogre::SceneNode* lastNode = trainNodes[trainNodes.size() - 1];			// find the last node
+	this->mSceneMgr->getRootSceneNode()->removeChild(lastNode->getName());	// delete it by name
+	trainNodes.pop_back();													// remove from list
 }
 
 

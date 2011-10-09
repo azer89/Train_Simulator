@@ -40,6 +40,7 @@ RayRayRay::~RayRayRay(void)
 }
 
 //-------------------------------------------------------------------------------------
+// destroying scene
 void RayRayRay::destroyScene(void)
 {
 	// delete all objects
@@ -50,6 +51,7 @@ void RayRayRay::destroyScene(void)
 
 
 //-------------------------------------------------------------------------------------
+// Create scene mgr
 void RayRayRay::createScene(void)
 {
 	// set Terrain
@@ -119,6 +121,7 @@ void RayRayRay::createScene(void)
 }
  
 //-------------------------------------------------------------------------------------
+// Choose scene mgr
 void RayRayRay::chooseSceneManager(void)
 {
 	//create a scene manager that is meant for handling outdoor scenes
@@ -126,6 +129,7 @@ void RayRayRay::chooseSceneManager(void)
 }
  
 //-------------------------------------------------------------------------------------
+// Creating frame listener
 void RayRayRay::createFrameListener(void)
 {
 	//create the frame listener from the base app
@@ -140,6 +144,7 @@ void RayRayRay::createFrameListener(void)
 }
  
 //-------------------------------------------------------------------------------------
+// Update frame
 bool RayRayRay::frameRenderingQueued(const Ogre::FrameEvent& arg)
 {	
 	if(mWindow->isClosed()) return false; 
@@ -219,6 +224,7 @@ bool RayRayRay::frameRenderingQueued(const Ogre::FrameEvent& arg)
 }
  
 //-------------------------------------------------------------------------------------
+// when mouse dragged
 bool RayRayRay::mouseMoved(const OIS::MouseEvent& arg)
 {
 	if(!BaseApplication::mouseMoved(arg))
@@ -231,8 +237,6 @@ bool RayRayRay::mouseMoved(const OIS::MouseEvent& arg)
 
 	Ogre::Real offsetX = (float)arg.state.X.abs / (float)arg.state.width;
 	Ogre::Real offsetY = (float)arg.state.Y.abs / (float)arg.state.height;
-
-	//std::cout << arg.state.X.abs << " - " << arg.state.Y.abs << "\n";
 
 	//using namespace Hikari;
 	bool val = menu->hikariMgr->injectMouseMove(arg.state.X.abs, arg.state.Y.abs) ||  menu->hikariMgr->injectMouseWheel(arg.state.Z.rel);
@@ -264,6 +268,7 @@ bool RayRayRay::mouseMoved(const OIS::MouseEvent& arg)
 }
  
 //-------------------------------------------------------------------------------------
+// when a mouse button is pressed
 bool RayRayRay::mousePressed(const OIS::MouseEvent& arg, OIS::MouseButtonID id)
 {
 	if(id == OIS::MB_Left)
@@ -339,12 +344,11 @@ bool RayRayRay::mousePressed(const OIS::MouseEvent& arg, OIS::MouseButtonID id)
 		bRMouseDown = true;
 	}
 
-	//using namespace Hikari;
 	return  menu->hikariMgr->injectMouseDown(id); 
-	//return true;
 }
  
 //-------------------------------------------------------------------------------------
+// when a mouse button is released
 bool RayRayRay::mouseReleased(const OIS::MouseEvent& arg, OIS::MouseButtonID id)
 {
 	if(id  == OIS::MB_Left)
@@ -356,13 +360,13 @@ bool RayRayRay::mouseReleased(const OIS::MouseEvent& arg, OIS::MouseButtonID id)
 		bRMouseDown = false;
 	}
 
-	//using namespace Hikari;
 	return  menu->hikariMgr->injectMouseUp(id);
 
 	return true;
 }
 
 //------------------------------------------------------------------------------------- 
+// when keyboard pressed
 bool RayRayRay::keyPressed(const OIS::KeyEvent& arg)
 { 
 	//then we return the base app keyPressed function so that we get all of the functionality
@@ -382,12 +386,14 @@ bool RayRayRay::keyPressed(const OIS::KeyEvent& arg)
 }
 
 //-------------------------------------------------------------------------------------
+// End the application
 void RayRayRay::shutdownApp(void)
 {
 	this->mShutDown = true;
 }
 
 //-------------------------------------------------------------------------------------
+// Pass value to change curve type
 void RayRayRay::setCurve(int num)
 {
 	this->rail->setCurve(num);
