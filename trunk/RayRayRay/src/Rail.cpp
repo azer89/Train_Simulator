@@ -182,14 +182,15 @@ void Rail::createLinearCurve(void)
 
 		this->calculateControlPoints(one, two, three, four, 0.05f);
 	}
-
-	Ogre::Real inc = 1.0f / 100.0f;
+	
 	int size = points.size();
 
 	for(int a = 0; a < size; a++)
 	{		
 		Ogre::Vector3 vect01 = points[(a + 0)%size];
 		Ogre::Vector3 vect02 = points[(a + 1)%size];
+		
+		Ogre::Real inc = 1.0f / 100.0f;
 
 		for(Ogre::Real t = 0.0f; t < 1.0f; t += inc)
 		{	
@@ -215,8 +216,7 @@ void Rail::createBezierCurve(void)
 
 		this->calculateControlPoints(one, two, three, four, 0.9f);
 	}
-
-	Ogre::Real inc = 1.0f / 100.0f;
+	
 	int size = points.size();
 
 	for(int a = 0; a < size; a+=3)
@@ -225,6 +225,8 @@ void Rail::createBezierCurve(void)
 		Ogre::Vector3 two = points[(a + 1)%size];
 		Ogre::Vector3 three = points[(a + 2)%size];
 		Ogre::Vector3 four = points[(a + 3)%size];
+
+		Ogre::Real inc = 1.0f / 100.0f;
 
 		for(Ogre::Real t = 0.0f; t < 1.0f; t += inc)
 		{
