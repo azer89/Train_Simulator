@@ -14,7 +14,7 @@ RayFlashInterface::~RayFlashInterface(void)
 void RayFlashInterface::update(Ogre::RenderWindow* mWindow)
 {
 	hikariMgr->update();	
-	controls->callFunction("setFPS", Hikari::Args((int)mWindow->getAverageFPS()));
+	mainMenuControl->callFunction("setFPS", Hikari::Args((int)mWindow->getAverageFPS()));
 }
 
 //-------------------------------------------------------------------------------------
@@ -25,27 +25,28 @@ void RayFlashInterface::setupHikari(void)
 	hikariMgr = new HikariManager("..\\..\\media\\flash\\RayRayRayUI\\bin");
 	//objectHikariMgr = new HikariManager("..\\..\\media\\flash\\ObjectUI\\bin");
 	
-	controls = hikariMgr->createFlashOverlay("Menu", rayApp->hViewPort, 300, 300, Position(TopLeft));
+	mainMenuControl = hikariMgr->createFlashOverlay("Menu", rayApp->hViewPort, 300, 300, Position(TopLeft));
 	
-	controls->load("RayRayRayUI.swf");
-	controls->setDraggable(false);
-	controls->setTransparent(true, true);
+	mainMenuControl->load("RayRayRayUI.swf");
+	mainMenuControl->setDraggable(false);
+	mainMenuControl->setTransparent(true, true);
 
-	controls->bind("Start", FlashDelegate(this, &RayFlashInterface::onStartClick));
-	controls->bind("Stop", FlashDelegate(this, &RayFlashInterface::onStopClick));
-	controls->bind("Exit", FlashDelegate(this, &RayFlashInterface::onExitClick));
-	controls->bind("Curve", FlashDelegate(this, &RayFlashInterface::onCurveChange));
-	controls->bind("MenuState", FlashDelegate(this, &RayFlashInterface::onMenuStateChange));
-	controls->bind("NumTrain", FlashDelegate(this, &RayFlashInterface::onNumTrainChange));
+	mainMenuControl->bind("Start", FlashDelegate(this, &RayFlashInterface::onStartClick));
+	mainMenuControl->bind("Stop", FlashDelegate(this, &RayFlashInterface::onStopClick));
+	mainMenuControl->bind("Exit", FlashDelegate(this, &RayFlashInterface::onExitClick));
+	mainMenuControl->bind("Curve", FlashDelegate(this, &RayFlashInterface::onCurveChange));
+	mainMenuControl->bind("MenuState", FlashDelegate(this, &RayFlashInterface::onMenuStateChange));
+	mainMenuControl->bind("NumTrain", FlashDelegate(this, &RayFlashInterface::onNumTrainChange));
 }
 
 void RayFlashInterface::showObjectControl(int xMPos, int yMPos)
 {
 	/*
 	using namespace Hikari;
-	//if(this->objectControls) delete objectControls;
+	
+	if(this->objectControls) hikariMgr->destroyFlashControl(objectControls->getName());
+	objectControls = hikariMgr->createFlashOverlay("OControl", rayApp->hViewPort, 300, 100, Position(TopLeft, xMPos, yMPos));
 
-	objectControls = objectHikariMgr->createFlashOverlay("ObjectMenu", rayApp->hViewPort, xMPos, yMPos, Position(TopLeft));
 	objectControls->load("ObjectUI.swf");
 	objectControls->setDraggable(false);
 	objectControls->setTransparent(true, true);

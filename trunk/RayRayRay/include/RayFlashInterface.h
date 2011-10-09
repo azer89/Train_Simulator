@@ -25,10 +25,10 @@ public:
 	Hikari::HikariManager* hikariMgr;
 	Hikari::HikariManager* objectHikariMgr;
 
-private:
-	
-	Hikari::FlashControl* controls;
+	Hikari::FlashControl* mainMenuControl;
 	Hikari::FlashControl* objectControls;
+
+private:
 	RayRayRay* rayApp;
 	bool isMenuOpen;
 
