@@ -176,7 +176,7 @@ void Rail::createLinearCurve(void)
 
 	for(int a = 0; a < cSize; a++)
 	{
-		Ogre::Vector3 one = railNodes[(a + 0)%cSize]->getPosition() + yAdd;
+		Ogre::Vector3 one = railNodes[a]->getPosition() + yAdd;
 		Ogre::Vector3 two = railNodes[(a + 1)%cSize]->getPosition() + yAdd;
 		Ogre::Vector3 three = railNodes[(a + 2)%cSize]->getPosition() + yAdd;
 		Ogre::Vector3 four = railNodes[(a + 3)%cSize]->getPosition() + yAdd;
@@ -185,14 +185,14 @@ void Rail::createLinearCurve(void)
 	}
 	
 	int size = points.size();
-	Ogre::Real inc = 1.0f / dist;
+	Ogre::Real oinc = 1.0f / dist;
 
 	for(int a = 0; a < size; a++)
 	{		
-		Ogre::Vector3 vect01 = points[(a + 0)%size];
+		Ogre::Vector3 vect01 = points[a];
 		Ogre::Vector3 vect02 = points[(a + 1)%size];
 		
-		inc /= vect01.distance(vect02);
+		Ogre::Real inc = oinc / vect01.distance(vect02);
 
 		for(Ogre::Real t = 0.0f; t < 1.0f; t += inc)
 		{	
@@ -211,7 +211,7 @@ void Rail::createBezierCurve(void)
 
 	for(int a = 0; a < cSize; a++)
 	{
-		Ogre::Vector3 one = railNodes[(a + 0)%cSize]->getPosition() + yAdd;
+		Ogre::Vector3 one = railNodes[a]->getPosition() + yAdd;
 		Ogre::Vector3 two = railNodes[(a + 1)%cSize]->getPosition() + yAdd;
 		Ogre::Vector3 three = railNodes[(a + 2)%cSize]->getPosition() + yAdd;
 		Ogre::Vector3 four = railNodes[(a + 3)%cSize]->getPosition() + yAdd;
@@ -220,16 +220,16 @@ void Rail::createBezierCurve(void)
 	}
 	
 	int size = points.size();
-	Ogre::Real inc = 1.0f / dist;
+	Ogre::Real oinc = 1.0f / dist;
 
 	for(int a = 0; a < size; a+=3)
 	{		
-		Ogre::Vector3 one = points[(a + 0)%size];
+		Ogre::Vector3 one = points[a];
 		Ogre::Vector3 two = points[(a + 1)%size];
 		Ogre::Vector3 three = points[(a + 2)%size];
 		Ogre::Vector3 four = points[(a + 3)%size];
 
-		inc /= two.distance(three);
+		Ogre::Real inc = oinc / two.distance(three);
 
 		for(Ogre::Real t = 0.0f; t < 1.0f; t += inc)
 		{
@@ -250,16 +250,16 @@ void Rail::createBSplineCurve(void)
 	int cSize = railNodes.size();
 	Ogre::Vector3 yAdd = Ogre::Vector3(0, 30, 0);
 
-	Ogre::Real inc = 1.0f / dist;
+	Ogre::Real oinc = 1.0f / dist;
 
 	for(int a = 0; a < cSize; a++)
 	{
-		Ogre::Vector3 one = railNodes[(a + 0)%cSize]->getPosition() + yAdd;
+		Ogre::Vector3 one = railNodes[a]->getPosition() + yAdd;
 		Ogre::Vector3 two = railNodes[(a + 1)%cSize]->getPosition() + yAdd;
 		Ogre::Vector3 three = railNodes[(a + 2)%cSize]->getPosition() + yAdd;
 		Ogre::Vector3 four = railNodes[(a + 3)%cSize]->getPosition() + yAdd;
 
-		inc /= two.distance(three);
+		Ogre::Real inc = oinc / two.distance(three);
 
 		for(Ogre::Real t = 0.0f; t < 1.0f; t += inc)
 		{
@@ -343,7 +343,7 @@ Ogre::Real Rail::getHeight(Ogre::Vector3 vect)
 
 	if (test.first) 
 	{
-		Ogre::Real terrainHeight = test.second.y;
+		Ogre::Real terrainHeight = test.second.y + 5.0f;
 		if(terrainHeight <= vect.y) return vect.y;		
 		return terrainHeight;
 	}
