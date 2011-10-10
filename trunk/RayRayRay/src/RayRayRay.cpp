@@ -428,8 +428,8 @@ void RayRayRay::repositionObjectMenu()
 	//std::cout << screenWidth << "-" << screenHeight << "\n";
 	//std::cout << pos.x << "-" << pos.y << "\n";
 
-	menu->showObjectControl(pos.x, pos.y);
-
+	int height = (int)(mCurrentObject->getScale().y - rail->defScale.y);
+	menu->showObjectControl(pos.x, pos.y, height);
 }
 
 //-------------------------------------------------------------------------------------
@@ -445,12 +445,12 @@ void RayRayRay::setPoleHeight(Ogre::Real h)
 {
 	if(mCurrentObject)
 	{
-		//Ogre::Vector3 cScale = mCurrentObject->getScale();
 		mCurrentObject->setScale(rail->defScale + Ogre::Vector3(0, h, 0));
 		rail->updateTrack();
 	}
 }
 
+//-------------------------------------------------------------------------------------
 #if OGRE_PLATFORM == OGRE_PLATFORM_WIN32
 #define WIN32_LEAN_AND_MEAN
 #include "windows.h"

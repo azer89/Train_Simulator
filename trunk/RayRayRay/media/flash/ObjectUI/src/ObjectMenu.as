@@ -12,6 +12,7 @@ package
 		private var _stage:Stage;
 		private var track:TrackMc;
 		private var slider:SliderMc;
+		private var sui:SliderUI;
 		
 		public function ObjectMenu(_stage:Stage) 
 		{
@@ -37,12 +38,15 @@ package
 			slider.y = 30;
 			this.addChild(slider);
 			
+			sui = new SliderUI(this._stage, "x", track, slider, 0, 50, 0);
 			//var sui:SliderUI = new SliderUI(this._stage, "x", track, slider, 0, 50, 0);
 		}
 		
 		private function setVal(val:Number):void
 		{
-			var sui:SliderUI = new SliderUI(this._stage, "x", track, slider, 0, 50, val);
+			sui.destroy();
+			sui = new SliderUI(this._stage, "x", track, slider, 0, 50, val);
+			
 		}
 		
 	}

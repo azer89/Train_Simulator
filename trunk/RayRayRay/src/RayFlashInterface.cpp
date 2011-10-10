@@ -47,11 +47,11 @@ void RayFlashInterface::setupHikari(void)
 	objectControls->bind("Height", FlashDelegate(this, &RayFlashInterface::onHeightChange));
 }
 
-void RayFlashInterface::showObjectControl(int xMPos, int yMPos)
+void RayFlashInterface::showObjectControl(int xMPos, int yMPos, int height)
 {
 	using namespace Hikari;
 
-	objectControls->callFunction("setVal", Hikari::Args(0));
+	objectControls->callFunction("setVal", Hikari::Args(height));
 	objectControls->show();
 	objectControls->setPosition(Position(TopLeft, xMPos, yMPos));
 

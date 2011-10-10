@@ -19,7 +19,7 @@ public:
 	
 	void setupHikari();
 	void update(Ogre::RenderWindow* mWindow);
-	void showObjectControl(int xMPos, int yMPos);
+	void showObjectControl(int xMPos, int yMPos, int height);
 	void hideObjectControl();
 	bool isInsideMenu(int mouseX, int mouseY);
 
