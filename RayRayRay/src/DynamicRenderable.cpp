@@ -1,4 +1,6 @@
 
+/*http://www.projectxenocide.com/public/docs/xenoui/html/dynamicrenderable_8cpp-source.html*/
+
 #include "Stdafx.h"
 #include "DynamicRenderable.h"
 #include <OgreCamera.h>
