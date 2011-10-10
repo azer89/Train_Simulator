@@ -103,13 +103,17 @@ package
 		
 		private function onGearClick( event:MouseEvent ):void
 		{
+			
+			
 			if (isDown)
 			{
+				TweenMax.to(gearIcon, 1, {shortRotation:{rotation:180}});
 				TweenMax.to(menu, 0.5, { x:0, y:50, ease:Circ.easeOut, alpha:1 } );
 				ExternalInterface.call("MenuState", "open");
 			}
 			else
 			{
+				TweenMax.to(gearIcon, 1, {shortRotation:{rotation:0}});
 				TweenMax.to(menu, 0.5, { x:0, y: -200, ease:Circ.easeIn, alpha:0 } );
 				ExternalInterface.call("MenuState", "close");
 			}
