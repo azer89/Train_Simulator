@@ -46,3 +46,8 @@ Feature requests, bug reports, etc - use the project issue tracker.
 Alternatively, leave a note in the Ogre Forum: http://www.ogre3d.org/forums/index.php
 
 /////////////////////////////////////////////////////////////////////////////
+About the author:
+
+Reza Adhitya Saputra - Computer Graphics Laboratory - NTUST Taiwan
+
+/////////////////////////////////////////////////////////////////////////////
