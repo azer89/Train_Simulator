@@ -177,10 +177,10 @@ void Rail::createLinearCurve(void)
 
 	for(int a = 0; a < cSize; a++)
 	{
-		Ogre::Vector3 one = railNodes[a]->getPosition() + yAdd + railNodes[a]->getScale().y - defScale.y;
-		Ogre::Vector3 two = railNodes[(a + 1)%cSize]->getPosition() + yAdd + railNodes[(a + 1)%cSize]->getScale().y - defScale.y;
-		Ogre::Vector3 three = railNodes[(a + 2)%cSize]->getPosition() + yAdd + railNodes[(a + 2)%cSize]->getScale().y - defScale.y;
-		Ogre::Vector3 four = railNodes[(a + 3)%cSize]->getPosition() + yAdd + railNodes[(a + 3)%cSize]->getScale().y - defScale.y;
+		Ogre::Vector3 one = railNodes[a]->getPosition() + yAdd + Ogre::Vector3(0, (railNodes[a]->getScale().y - defScale.y), 0);
+		Ogre::Vector3 two = railNodes[(a + 1)%cSize]->getPosition() + yAdd + Ogre::Vector3(0, (railNodes[(a + 1)%cSize]->getScale().y - defScale.y), 0);
+		Ogre::Vector3 three = railNodes[(a + 2)%cSize]->getPosition() + yAdd + Ogre::Vector3(0, (railNodes[(a + 2)%cSize]->getScale().y - defScale.y), 0);
+		Ogre::Vector3 four = railNodes[(a + 3)%cSize]->getPosition() + yAdd + Ogre::Vector3(0, (railNodes[(a + 3)%cSize]->getScale().y - defScale.y), 0);
 
 		this->calculateControlPoints(one, two, three, four, 0.05f);
 	}
@@ -212,10 +212,10 @@ void Rail::createBezierCurve(void)
 
 	for(int a = 0; a < cSize; a++)
 	{
-		Ogre::Vector3 one = railNodes[a]->getPosition() + yAdd + railNodes[a]->getScale().y - defScale.y;
-		Ogre::Vector3 two = railNodes[(a + 1)%cSize]->getPosition() + yAdd + railNodes[(a + 1)%cSize]->getScale().y - defScale.y;
-		Ogre::Vector3 three = railNodes[(a + 2)%cSize]->getPosition() + yAdd + railNodes[(a + 2)%cSize]->getScale().y - defScale.y;
-		Ogre::Vector3 four = railNodes[(a + 3)%cSize]->getPosition() + yAdd + railNodes[(a + 3)%cSize]->getScale().y - defScale.y;
+		Ogre::Vector3 one = railNodes[a]->getPosition() + yAdd + Ogre::Vector3(0, 3.6f * (railNodes[a]->getScale().y - defScale.y), 0);
+		Ogre::Vector3 two = railNodes[(a + 1)%cSize]->getPosition() + yAdd + Ogre::Vector3(0, 3.6f * (railNodes[(a + 1)%cSize]->getScale().y - defScale.y), 0);
+		Ogre::Vector3 three = railNodes[(a + 2)%cSize]->getPosition() + yAdd + Ogre::Vector3(0, 3.6f * (railNodes[(a + 2)%cSize]->getScale().y - defScale.y), 0);
+		Ogre::Vector3 four = railNodes[(a + 3)%cSize]->getPosition() + yAdd + Ogre::Vector3(0, 3.6f * (railNodes[(a + 3)%cSize]->getScale().y - defScale.y), 0);
 
 		this->calculateControlPoints(one, two, three, four, 0.9f);
 	}
@@ -255,10 +255,10 @@ void Rail::createBSplineCurve(void)
 
 	for(int a = 0; a < cSize; a++)
 	{
-		Ogre::Vector3 one = railNodes[a]->getPosition() + yAdd + railNodes[a]->getScale().y - defScale.y;
-		Ogre::Vector3 two = railNodes[(a + 1)%cSize]->getPosition() + yAdd + railNodes[(a + 1)%cSize]->getScale().y - defScale.y;
-		Ogre::Vector3 three = railNodes[(a + 2)%cSize]->getPosition() + yAdd + railNodes[(a + 2)%cSize]->getScale().y - defScale.y;
-		Ogre::Vector3 four = railNodes[(a + 3)%cSize]->getPosition() + yAdd + railNodes[(a + 3)%cSize]->getScale().y - defScale.y;
+		Ogre::Vector3 one = railNodes[a]->getPosition() + yAdd + Ogre::Vector3(0, 5.0f * (railNodes[a]->getScale().y - defScale.y), 0);
+		Ogre::Vector3 two = railNodes[(a + 1)%cSize]->getPosition() + yAdd + Ogre::Vector3(0, 5.0f * (railNodes[(a + 1)%cSize]->getScale().y - defScale.y), 0);
+		Ogre::Vector3 three = railNodes[(a + 2)%cSize]->getPosition() + yAdd + Ogre::Vector3(0, 5.0f * (railNodes[(a + 2)%cSize]->getScale().y - defScale.y), 0);
+		Ogre::Vector3 four = railNodes[(a + 3)%cSize]->getPosition() + yAdd + Ogre::Vector3(0, 5.0f * (railNodes[(a + 3)%cSize]->getScale().y - defScale.y), 0);
 
 		Ogre::Real inc = oinc / two.distance(three);
 
