@@ -50,7 +50,6 @@ void RayTrain::update(Ogre::Real timeSinceLastFrame)
 			v03.normalise();
 
 			trainNodes[a]->setDirection(v03, Ogre::SceneNode::TS_PARENT);
-			trainNodes[a]->needUpdate();
 			trainNodes[a]->setPosition(v01);			
 		}
 
@@ -82,7 +81,7 @@ void RayTrain::initTrain()
 	mNode->attachObject(ent);
 
 	mNode->setDirection(v03, Ogre::SceneNode::TS_WORLD);
-	mNode->setFixedYawAxis(true);
+	mNode->setFixedYawAxis(true);		// will be a problem if the yaw axis changed
 	//mNode->needUpdate();
 	mNode->scale(10.0f, 10.0f, 10.0f);
 
@@ -122,7 +121,6 @@ void RayTrain::repositionTrain(void)
 			v03.normalise();
 
 			trainNodes[a]->setDirection(v03, Ogre::SceneNode::TS_PARENT);
-			//trainNodes[a]->needUpdate();
 			trainNodes[a]->setPosition(v01);
 		}
 	}
@@ -156,7 +154,7 @@ void RayTrain::addTrain()
 	mNode->attachObject(ent);
 
 	mNode->setDirection(Ogre::Vector3::UNIT_Z, Ogre::SceneNode::TS_PARENT);
-	mNode->setFixedYawAxis(true);
+	mNode->setFixedYawAxis(true);		// will be a problem if the yaw axis changed
 	mNode->scale(10.0f, 10.0f, 10.0f);
 
 	this->trainNodes.push_back(mNode);

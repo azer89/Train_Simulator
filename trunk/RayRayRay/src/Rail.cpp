@@ -3,6 +3,7 @@
 #include "Rail.h"
 
 //-------------------------------------------------------------------------------------
+// Constructor
 Rail::Rail(Ogre::SceneManager* mSceneMgr, Ogre::Terrain* pTerrain): 
 	initiated(false), 
 	num(0), 
@@ -19,12 +20,14 @@ Rail::Rail(Ogre::SceneManager* mSceneMgr, Ogre::Terrain* pTerrain):
 }
 
 //-------------------------------------------------------------------------------------
+// Destructor 
 Rail::~Rail(void)
 {
 	if(lines) delete lines;
 }
 
 //-------------------------------------------------------------------------------------
+// Delete pole
 void Rail::deleteRailPoint(std::string name)
 {
 	int rSize = railNodes.size();
@@ -43,6 +46,7 @@ void Rail::deleteRailPoint(std::string name)
 }
 
 //-------------------------------------------------------------------------------------
+// Add pole
 Ogre::SceneNode* Rail::addPoint(Ogre::Vector3 pos)
 {
 	char name[16];
@@ -68,6 +72,7 @@ Ogre::SceneNode* Rail::addPoint(Ogre::Vector3 pos)
 }
 
 //-------------------------------------------------------------------------------------
+// update track if user change the pole
 void Rail::updateTrack(void)
 {	
 	lines->clear();

@@ -2,10 +2,12 @@
 #include "RayTerrain.h"
 
 //-------------------------------------------------------------------------------------
+// constructor
 RayTerrain::RayTerrain(void)
 {
 }
 //-------------------------------------------------------------------------------------
+// destructor
 RayTerrain::~RayTerrain(void)
 {
 	OGRE_DELETE mTerrainGroup;
@@ -13,13 +15,12 @@ RayTerrain::~RayTerrain(void)
 }
 
 //-------------------------------------------------------------------------------------
+// init function to create terrain
 void RayTerrain::createTerrain(Ogre::SceneManager* mSceneMgr, Ogre::Light* light)
 {
 	this->mSceneMgr = mSceneMgr;
 
 	mTerrainGlobals = OGRE_NEW Ogre::TerrainGlobalOptions();
-
-	// still not work
 	//mTerrainGlobals->setCastsDynamicShadows(true);
 	//mTerrainGlobals->setLightMapDirection(light->getDirection());
 
@@ -62,24 +63,29 @@ void RayTerrain::createTerrain(Ogre::SceneManager* mSceneMgr, Ogre::Light* light
 }
 
 //-------------------------------------------------------------------------------------
+// getter for mTerrainsImported
+//
 bool RayTerrain::getTerrainsImported(void)
 {
 	return this->mTerrainsImported;
 }
 
 //-------------------------------------------------------------------------------------
+// setter for mTerrainsImported
 void RayTerrain::setTerrainsImported(bool val)
 {
 	this->mTerrainsImported = val;
 }
 
 //-------------------------------------------------------------------------------------
+// getter for mTerrainGlobals
 Ogre::TerrainGlobalOptions* RayTerrain::getTerrainGlobals(void)
 {
 	return this->mTerrainGlobals;
 }
 
 //-------------------------------------------------------------------------------------
+// getter for mTerrainGroup
 Ogre::TerrainGroup* RayTerrain::getTerrainGroup(void)
 {
 	return this->mTerrainGroup;
@@ -87,6 +93,7 @@ Ogre::TerrainGroup* RayTerrain::getTerrainGroup(void)
 
 
 //-------------------------------------------------------------------------------------
+// get image
 void RayTerrain::getTerrainImage(bool flipX, bool flipY, Ogre::Image& img)
 {
 	img.load("terrain.png", 
@@ -96,6 +103,7 @@ void RayTerrain::getTerrainImage(bool flipX, bool flipY, Ogre::Image& img)
 	
 }
 //-------------------------------------------------------------------------------------
+// defining the terrain
 void RayTerrain::defineTerrain(long x, long y)
 {
 	Ogre::String filename = mTerrainGroup->generateFilename(x, y);
@@ -112,6 +120,7 @@ void RayTerrain::defineTerrain(long x, long y)
     }
 }
 //-------------------------------------------------------------------------------------
+// init blend map
 void RayTerrain::initBlendMaps(Ogre::Terrain* terrain)
 {
 	
@@ -145,6 +154,7 @@ void RayTerrain::initBlendMaps(Ogre::Terrain* terrain)
 }
 
 //-------------------------------------------------------------------------------------
+// terrain configuration
 void RayTerrain::configureTerrainDefaults(Ogre::Light* light)
 {
 	// Configure global

@@ -425,9 +425,6 @@ void RayRayRay::repositionObjectMenu()
 	pos.x = pos.x  * screenWidth;
 	pos.y = pos.y * screenHeight;
 
-	//std::cout << screenWidth << "-" << screenHeight << "\n";
-	//std::cout << pos.x << "-" << pos.y << "\n";
-
 	int height = (int)(mCurrentObject->getScale().y - rail->defScale.y);
 	menu->showObjectControl(pos.x, pos.y, height);
 }
@@ -447,6 +444,7 @@ void RayRayRay::setPoleHeight(Ogre::Real h)
 	{
 		mCurrentObject->setScale(rail->defScale + Ogre::Vector3(0, h, 0));
 		rail->updateTrack();
+		train->repositionTrain();
 	}
 }
 
