@@ -27,7 +27,7 @@ public:
 	Ogre::Vector3 defScale;
 
 	std::vector<Ogre::SceneNode*> railNodes;	// contains pole positions
-	//std::vector<Ogre::SceneNode*> tiesNodes;	// contains tie nodes
+	std::vector<Ogre::SceneNode*> tiesNodes;	// contains tie nodes
 	std::vector<Ogre::Vector3> tiePoints;		// contains tie position
 	std::vector<Ogre::Vector3> points;			// pole positions + control points
 	std::vector<Ogre::Vector3> curvePoints;		// interpolated points
@@ -52,8 +52,11 @@ private:
 	void createBSplineCurve(void);
 	void createLinearCurve(void);
 	void calculateControlPoints(Ogre::Vector3 v0, Ogre::Vector3 v1, Ogre::Vector3 v2, Ogre::Vector3 v3, Ogre::Real weight);
-	void addTie(Ogre::Vector3 pos, Ogre::Quaternion rot);
+	void showTie(Ogre::SceneNode* mNode, Ogre::Vector3 pos1, Ogre::Vector3 pos2);
+	void hideTie(int num);
+	void allocateTie(int num);
 	void deleteTieCube(void);
-	void initTieCube(void);
+	void buildTieCube(void);
+
 	
 };

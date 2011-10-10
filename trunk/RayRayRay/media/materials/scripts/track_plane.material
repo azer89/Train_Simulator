@@ -1,0 +1,15 @@
+material blinn6
+{
+	technique
+	{
+		pass
+		{			
+			texture_unit
+			{
+				texture wood.jpg
+				tex_coord_set 0
+				scale 1 1
+			}
+		}
+	}
+}
