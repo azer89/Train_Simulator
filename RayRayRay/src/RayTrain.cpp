@@ -47,17 +47,10 @@ void RayTrain::update(Ogre::Real timeSinceLastFrame)
 			Ogre::Vector3 v01 = rail->tiePoints[aCPoint];
 			Ogre::Vector3 v02 = rail->tiePoints[(aCPoint + 1) % tSize];
 			Ogre::Vector3 v03 = (v02 - v01);
-			
-			//Ogre::Real yRot = -v01.getRotationTo(v02).getYaw().valueDegrees() / Ogre::Math.PI;
-			v03.y = 0;
-
-			//std::cout << yRot << "\n";
-
-			v03.normalise();		
-			//v04.normalise();
+			v03.normalise();
 
 			trainNodes[a]->setDirection(v03, Ogre::SceneNode::TS_PARENT);
-			//trainNodes[a]->lookAt(v04, Ogre::SceneNode::TS_PARENT);
+			trainNodes[a]->needUpdate();
 			trainNodes[a]->setPosition(v01);			
 		}
 
@@ -73,7 +66,7 @@ void RayTrain::initTrain()
 	Ogre::Vector3 v01 = rail->tiePoints[counterPoint];
 	Ogre::Vector3 v02 = rail->tiePoints[(counterPoint + 1) % rail->tiePoints.size()];
 	Ogre::Vector3 v03 = v02 - v01;
-	v03.y = 0;
+	//v03.y = 0;
 	v03.normalise();
 	
 	char name[16];
@@ -87,7 +80,10 @@ void RayTrain::initTrain()
 	// attach the object to a scene node
 	Ogre::SceneNode* mNode = mSceneMgr->getRootSceneNode()->createChildSceneNode(std::string(name) + "Node", v01);
 	mNode->attachObject(ent);
-	mNode->setDirection(v03, Ogre::SceneNode::TS_PARENT);
+
+	mNode->setDirection(v03, Ogre::SceneNode::TS_WORLD);
+	mNode->setFixedYawAxis(true);
+	//mNode->needUpdate();
 	mNode->scale(10.0f, 10.0f, 10.0f);
 
 	this->trainNodes.push_back(mNode);
@@ -123,10 +119,10 @@ void RayTrain::repositionTrain(void)
 			Ogre::Vector3 v01 = rail->tiePoints[aCPoint];
 			Ogre::Vector3 v02 = rail->tiePoints[(aCPoint + 10) % tSize];
 			Ogre::Vector3 v03 = (v02 - v01);
-			v03.y = 0;
 			v03.normalise();
 
 			trainNodes[a]->setDirection(v03, Ogre::SceneNode::TS_PARENT);
+			//trainNodes[a]->needUpdate();
 			trainNodes[a]->setPosition(v01);
 		}
 	}
@@ -145,7 +141,6 @@ void RayTrain::addTrain()
 	Ogre::Vector3 v01 = rail->tiePoints[aCPoint];
 	Ogre::Vector3 v02 = rail->tiePoints[(aCPoint + 1) % rail->tiePoints.size()];
 	Ogre::Vector3 v03 = v02 - v01;
-	v03.y = 0;
 	v03.normalise();
 
 	char name[16];
@@ -159,8 +154,9 @@ void RayTrain::addTrain()
 	// attach the object to a scene node
 	Ogre::SceneNode* mNode = mSceneMgr->getRootSceneNode()->createChildSceneNode(std::string(name) + "Node", v01);
 	mNode->attachObject(ent);
-	
-	mNode->setDirection(v03, Ogre::SceneNode::TS_LOCAL);
+
+	mNode->setDirection(Ogre::Vector3::UNIT_Z, Ogre::SceneNode::TS_PARENT);
+	mNode->setFixedYawAxis(true);
 	mNode->scale(10.0f, 10.0f, 10.0f);
 
 	this->trainNodes.push_back(mNode);
