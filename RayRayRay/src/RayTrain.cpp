@@ -73,7 +73,6 @@ void RayTrain::initTrain()
 
 	Ogre::Entity* ent;
 	ent = mSceneMgr->createEntity(name, "front_train.mesh");
-	//ent->setDefaultQueryFlags(0xFFFFFFFF);
 	ent->setCastShadows(true);	
 	
 	// attach the object to a scene node
@@ -153,7 +152,7 @@ void RayTrain::addTrain()
 	Ogre::SceneNode* mNode = mSceneMgr->getRootSceneNode()->createChildSceneNode(std::string(name) + "Node", v01);
 	mNode->attachObject(ent);
 
-	mNode->setDirection(Ogre::Vector3::UNIT_Z, Ogre::SceneNode::TS_PARENT);
+	mNode->setDirection(v03, Ogre::SceneNode::TS_PARENT);
 	mNode->setFixedYawAxis(true);		// will be a problem if the yaw axis changed
 	mNode->scale(10.0f, 10.0f, 10.0f);
 

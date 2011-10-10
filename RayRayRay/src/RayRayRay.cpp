@@ -105,7 +105,7 @@ void RayRayRay::createScene(void)
 	// set train
 	train = new RayTrain(this->mSceneMgr, rail);
 
-	/*
+	
 	// this is to add water pond effect
 	Ogre::Plane plane(Ogre::Vector3::UNIT_Y, 0);
 
@@ -116,8 +116,7 @@ void RayRayRay::createScene(void)
 	mSceneMgr->getRootSceneNode()->createChildSceneNode("Water", Ogre::Vector3(0, 12.5, 0))->attachObject(entWater);
 
 	entWater->setMaterialName("Examples/WaterStream");
-	entWater->setCastShadows(false);
-	*/
+	entWater->setCastShadows(false);	
 }
  
 //-------------------------------------------------------------------------------------
