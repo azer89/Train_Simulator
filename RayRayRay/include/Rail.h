@@ -24,15 +24,16 @@ public:
 	void deleteRailPoint(std::string name);
 	void updateTrack(void);
 	void setCurve(int num);
-	Ogre::Vector3 defScale;
 
-	std::vector<Ogre::SceneNode*> railNodes;	// contains pole positions
-	std::vector<Ogre::SceneNode*> tiesNodes;	// contains tie nodes
+	Ogre::Vector3 defScale;
+	std::vector<Ogre::SceneNode*> railNodes;	// contains pole positions	
 	std::vector<Ogre::Vector3> tiePoints;		// contains tie position
-	std::vector<Ogre::Vector3> points;			// pole positions + control points
-	std::vector<Ogre::Vector3> curvePoints;		// interpolated points
 	
 private:
+	std::vector<Ogre::SceneNode*> tiesNodes;	// contains tie nodes
+	std::vector<Ogre::Vector3> points;			// pole positions + control points
+	std::vector<Ogre::Vector3> curvePoints;		// interpolated points
+
 	int num;				// number of rail point
 	int tieNum;				// number of tie
 	bool initiated;			// is initiated

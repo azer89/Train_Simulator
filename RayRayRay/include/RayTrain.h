@@ -1,10 +1,4 @@
 
-#include <OgreCamera.h>
-#include <OgreEntity.h>
-#include <OgreRoot.h>
-#include <OgreViewport.h>
-#include <OgreSceneManager.h>
-
 #include "Stdafx.h"
 #include "ClassDefine.h"
 

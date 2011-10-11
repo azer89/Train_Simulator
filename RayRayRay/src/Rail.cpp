@@ -18,13 +18,19 @@ Rail::Rail(Ogre::SceneManager* mSceneMgr, Ogre::Terrain* pTerrain):
 	lines = new DynamicLines(Ogre::RenderOperation::OT_LINE_LIST);
 	linesNode = mSceneMgr->getRootSceneNode()->createChildSceneNode("TrackLines");
 
-	allocateTie(200);
+	allocateTie(600);
 }
 
 //-------------------------------------------------------------------------------------
 // Destructor 
 Rail::~Rail(void)
 {
+	railNodes.clear();
+	tiesNodes.clear();
+	tiePoints.clear();
+	points.clear();
+	curvePoints.clear();
+
 	if(lines) delete lines;
 }
 
@@ -459,7 +465,7 @@ void Rail::allocateTie(int num)
 		tieNum++;
 
 		Ogre::Entity* ent;
-		ent = mSceneMgr->createEntity(name, "track_plane.mesh");
+		ent = mSceneMgr->createEntity(name, "track_simple.mesh");
 
 		Ogre::SceneNode* mNode = mSceneMgr->getRootSceneNode()->createChildSceneNode(std::string(name) + "Node");
 		mNode->attachObject(ent);

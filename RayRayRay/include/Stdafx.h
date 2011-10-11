@@ -1,3 +1,4 @@
+
 #include <Ogre.h>
 #include <OgreCamera.h>
 #include <OgreEntity.h>
@@ -15,3 +16,6 @@
 
 #include <SdkTrays.h>
 #include <SdkCameraMan.h>
+
+#include <Terrain/OgreTerrain.h>
+#include <Terrain/OgreTerrainGroup.h>
