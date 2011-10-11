@@ -1,0 +1,13 @@
+material blinnblinn
+{
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				texture wood.jpg	
+			}
+		}
+	}
+}

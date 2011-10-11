@@ -1,6 +1,5 @@
 
-#include <Terrain/OgreTerrain.h>
-#include <Terrain/OgreTerrainGroup.h>
+#include "Stdafx.h"
 
 class RayTerrain
 {

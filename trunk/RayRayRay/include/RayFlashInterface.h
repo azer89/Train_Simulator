@@ -2,10 +2,7 @@
 #include "ClassDefine.h"
 #include "Hikari.h"
 
-#include <OgreRoot.h>
-#include <OgreViewport.h>
-#include <OgreSceneManager.h>
-#include <OgreRenderWindow.h>
+#include "Stdafx.h"
 
 class RayFlashInterface
 {
