@@ -1,9 +1,7 @@
 
+#include "Stdafx.h"
 #include "ClassDefine.h"
 #include "Hikari.h"
-
-#include "Stdafx.h"
-
 class RayFlashInterface
 {
 

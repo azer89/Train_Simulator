@@ -18,7 +18,7 @@ Rail::Rail(Ogre::SceneManager* mSceneMgr, Ogre::Terrain* pTerrain):
 	lines = new DynamicLines(Ogre::RenderOperation::OT_LINE_LIST);
 	linesNode = mSceneMgr->getRootSceneNode()->createChildSceneNode("TrackLines");
 
-	allocateTie(600);
+	allocateTie(1000);
 }
 
 //-------------------------------------------------------------------------------------
@@ -381,7 +381,7 @@ Ogre::Real Rail::getHeight(Ogre::Vector3 vect)
 void Rail::buildTieCube(void)
 {
 	int cSize = curvePoints.size();
-	Ogre::Real gap = 5.0f;
+	Ogre::Real gap = 4.0f;
 	Ogre::Real count = 0.0f;
 	int tNeeded = 0;
 
@@ -412,28 +412,6 @@ void Rail::showTie(Ogre::SceneNode* mNode, Ogre::Vector3 pos1, Ogre::Vector3 pos
 	mNode->setDirection(pos3, Ogre::SceneNode::TS_WORLD);
 	mNode->setPosition(pos1);
 	mNode->setVisible(true);
-
-	/*
-	char name[20];
-	sprintf(name, "TiesPoint%d", tieNum);
-	tieNum++;
-
-	Ogre::Vector3 pos3 = pos2 - pos1;
-	//pos3.y = 0;
-	pos3.normalise();
-
-	Ogre::Entity* ent;
-	ent = mSceneMgr->createEntity(name, "track_plane.mesh");
-
-	Ogre::SceneNode* mNode = mSceneMgr->getRootSceneNode()->createChildSceneNode(std::string(name) + "Node", pos1);
-	mNode->attachObject(ent);
-	
-	mNode->setFixedYawAxis(true);
-	mNode->setDirection(pos3, Ogre::SceneNode::TS_WORLD);
-	mNode->scale(10.0f, 10.0f, 10.0f);
-
-	this->tiesNodes.push_back(mNode);
-	*/
 }
 
 //-------------------------------------------------------------------------------------
@@ -471,7 +449,7 @@ void Rail::allocateTie(int num)
 		mNode->attachObject(ent);
 
 		mNode->setFixedYawAxis(true);
-		mNode->scale(6.0f, 10.0f, 6.0f);
+		mNode->scale(6.0f, 10.0f, 15.0f);
 		mNode->setVisible(false);
 
 		this->tiesNodes.push_back(mNode);

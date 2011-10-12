@@ -1,5 +1,6 @@
 
 #include <Ogre.h>
+#include <OgreMath.h>
 #include <OgreCamera.h>
 #include <OgreEntity.h>
 #include <OgreLogManager.h>
@@ -8,6 +9,7 @@
 #include <OgreSceneManager.h>
 #include <OgreRenderWindow.h>
 #include <OgreConfigFile.h>
+#include <OgreSimpleRenderable.h>
 
 #include <OISEvents.h>
 #include <OISInputManager.h>
