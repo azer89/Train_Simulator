@@ -1,9 +1,6 @@
 
 
-#include <OgreCamera.h>
-#include <OgreEntity.h>
-#include <OgreRoot.h>
-#include <OgreSceneManager.h>
+#include "Stdafx.h"
 
 class RailTriangle
 {

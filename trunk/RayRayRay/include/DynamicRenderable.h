@@ -6,7 +6,7 @@ http://www.projectxenocide.com/public/docs/xenoui/html/classDynamicRenderable.ht
 #ifndef DYNAMIC_RENDERABLE_H
 #define DYNAMIC_RENDERABLE_H
  
-#include <OgreSimpleRenderable.h>
+#include "Stdafx.h"
  
 /// Abstract base class providing mechanisms for dynamically growing hardware buffers.
 class DynamicRenderable : public Ogre::SimpleRenderable

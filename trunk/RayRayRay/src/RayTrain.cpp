@@ -2,7 +2,7 @@
 #include "Stdafx.h"
 #include "RayTrain.h"
 #include "Rail.h"
-#include "OgreMath.h"
+
 
 //-------------------------------------------------------------------------------------
 RayTrain::RayTrain(Ogre::SceneManager* mSceneMgr, Rail* rail ): numTrain(0)
@@ -15,7 +15,6 @@ RayTrain::RayTrain(Ogre::SceneManager* mSceneMgr, Rail* rail ): numTrain(0)
 	counterPoint = 0;					// counter 0
 	trainDistance = 5;					// distance between train
 }
-
 
 //-------------------------------------------------------------------------------------
 RayTrain::~RayTrain(void)
@@ -81,7 +80,6 @@ void RayTrain::initTrain()
 
 	mNode->setDirection(v03, Ogre::SceneNode::TS_WORLD);
 	mNode->setFixedYawAxis(true);		// will be a problem if the yaw axis changed
-	//mNode->needUpdate();
 	mNode->scale(10.0f, 10.0f, 10.0f);
 
 	this->trainNodes.push_back(mNode);
@@ -167,5 +165,4 @@ void RayTrain::deleteTrain()
 	this->mSceneMgr->getRootSceneNode()->removeChild(lastNode->getName());	// delete it by name
 	trainNodes.pop_back();													// remove from list
 }
-
 
