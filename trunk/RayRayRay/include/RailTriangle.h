@@ -1,4 +1,6 @@
 
+#ifndef __RailTriangle__
+#define __RailTriangle__
 
 #include "Stdafx.h"
 
@@ -17,3 +19,5 @@ private:
 	Ogre::SceneManager* mSceneMgr;
 	Ogre::SceneNode* tNode;
 };
+
+#endif

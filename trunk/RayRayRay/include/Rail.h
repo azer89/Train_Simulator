@@ -1,4 +1,8 @@
 
+
+#ifndef __Rail__
+#define __Rail__
+
 #include "Stdafx.h"
 #include "ClassDefine.h"
 #include "DynamicLines.h"
@@ -50,3 +54,5 @@ private:
 
 	
 };
+
+#endif
