@@ -1,7 +1,11 @@
 
+#ifndef __RayFlashInterface__
+#define __RayFlashInterface__
+
 #include "Stdafx.h"
 #include "ClassDefine.h"
 #include "Hikari.h"
+
 class RayFlashInterface
 {
 
@@ -39,3 +43,5 @@ private:
 
 	Hikari::FlashValue onHeightChange(Hikari::FlashControl* caller, const Hikari::Arguments& args);		// event listener to change pole's height
 };
+
+#endif

@@ -1,4 +1,7 @@
 
+#ifndef __RayTerrain__
+#define __RayTerrain__
+
 #include "Stdafx.h"
 
 class RayTerrain
@@ -26,3 +29,5 @@ private:
 	void getTerrainImage(bool flipX, bool flipY, Ogre::Image& img);
 
 };
+
+#endif

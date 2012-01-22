@@ -161,8 +161,8 @@ void RayTerrain::configureTerrainDefaults(Ogre::Light* light)
 	// Configure global
     mTerrainGlobals->setMaxPixelError(8);
     // testing composite map
-    mTerrainGlobals->setCompositeMapDistance(3000);
-	//mTerrainGlobals->setCastsDynamicShadows(true);
+    mTerrainGlobals->setCompositeMapDistance(500);
+	mTerrainGlobals->setCastsDynamicShadows(true);
 	
     // Important to set these so that the terrain knows what to use for derived (non-realtime) data
     mTerrainGlobals->setLightMapDirection(light->getDerivedDirection());
