@@ -116,6 +116,12 @@ void RayRayRay::createScene(void)
 
 	entWater->setMaterialName("Examples/WaterStream");
 	entWater->setCastShadows(false);	
+
+	CompositorSample* compSample = new CompositorSample();
+	compSample->mCamera = this->mCamera;
+	compSample->mViewport = this->hViewPort;
+	compSample->setupCompositorContent();
+	compSample->setCompositorEnabled("HDR", true);
 }
  
 //-------------------------------------------------------------------------------------
