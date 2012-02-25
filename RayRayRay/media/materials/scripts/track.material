@@ -11,6 +11,8 @@ material blinn6
 
 			texture_unit
 			{
+			
+				
 				texture wood.jpg
 				tex_coord_set 0
 				colour_op modulate
@@ -34,6 +36,7 @@ material blinn5
 
 			texture_unit
 			{
+				
 				texture rust_steel.jpg
 				tex_coord_set 0
 				colour_op modulate
