@@ -6,6 +6,9 @@ material blinn6
 		{			
 			texture_unit
 			{
+				cull_hardware none
+				cull_software none
+			
 				texture wood.jpg
 				tex_coord_set 0
 				scale 1 1

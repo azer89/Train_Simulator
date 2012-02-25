@@ -4,8 +4,13 @@ material blinnblinn
 	{
 		pass
 		{
+			cull_hardware none
+			cull_software none
+		
 			texture_unit
-			{
+			{			
+				
+				
 				texture wood.jpg	
 			}
 		}
